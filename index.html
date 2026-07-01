@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>你的名字 - 个人主页</title>
+    <meta name="description" content="个人主页 - 研究方向、论文发表、项目展示">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">YN</span>
+                <span class="brand-text">你的名字</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="index.html" class="nav-link active">首页</a>
+                <a href="about.html" class="nav-link">关于我</a>
+                <a href="research.html" class="nav-link">研究方向</a>
+                <a href="publications.html" class="nav-link">论文发表</a>
+                <a href="projects.html" class="nav-link">项目展示</a>
+                <a href="cv.html" class="nav-link">简历</a>
+            </nav>
+            <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 主页 Hero 区域 -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <p class="hero-eyebrow">欢迎来到我的个人主页</p>
+                <h1 class="hero-title">你好，我是 <span class="accent">你的名字</span></h1>
+                <p class="hero-subtitle">
+                    一句话简介：例如「清华大学计算机系博士生，研究方向为机器学习与自然语言处理」。
+                    请在 <code>index.html</code> 中修改这段文字。
+                </p>
+                <div class="hero-cta">
+                    <a href="research.html" class="btn btn-primary">了解研究方向</a>
+                    <a href="cv.html" class="btn btn-ghost">查看简历</a>
+                </div>
+                <div class="hero-meta">
+                    <a href="mailto:your.email@example.com" class="meta-item">📧 邮箱</a>
+                    <a href="https://github.com/yourusername" class="meta-item" target="_blank" rel="noopener">💻 GitHub</a>
+                    <a href="https://scholar.google.com" class="meta-item" target="_blank" rel="noopener">🎓 Google Scholar</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <!-- 替换 src 即可换头像 -->
+                <img src="assets/images/profile.svg" alt="个人头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder">头像<br>占位</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 概览信息 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">个人概览</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎓 教育背景</h3>
+                    <p>20XX.09 - 至今　XX大学　XX专业　博士</p>
+                    <p>20XX.09 - 20XX.06　XX大学　XX专业　硕士</p>
+                    <p>20XX.09 - 20XX.06　XX大学　XX专业　学士</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔬 研究兴趣</h3>
+                    <p>机器学习、自然语言处理、深度学习</p>
+                    <p>大语言模型、文本生成、表示学习</p>
+                </div>
+                <div class="info-card">
+                    <h3>💼 当前状态</h3>
+                    <p>XX大学 XX系 博士研究生</p>
+                    <p>导师：XXX 教授</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 所在地</h3>
+                    <p>中国，北京</p>
+                    <p>欢迎邮件交流合作</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 最新动态 -->
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">最新动态</h2>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="timeline-date">2026.06</span>
+                    <p>论文《论文标题》被 <strong>XXX Conference</strong> 接收。</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2026.03</span>
+                    <p>在 <strong>XXX 研讨会</strong> 上做口头报告。</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2025.12</span>
+                    <p>获得 <strong>XX 奖学金</strong>。</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2025.09</span>
+                    <p>开始 <strong>XX 项目</strong> 研究。</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- 精选论文 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">代表性论文 <a href="publications.html" class="see-all">查看全部 →</a></h2>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <div class="pub-venue">XXX 2026</div>
+                    <div class="pub-content">
+                        <div class="pub-title">论文标题示例：一种新的深度学习方法</div>
+                        <div class="pub-authors"><strong>你的名字</strong>, 作者A, 作者B, 通讯作者*</div>
+                        <div class="pub-links">
+                            <a href="#" class="pub-link">PDF</a>
+                            <a href="#" class="pub-link">Code</a>
+                            <a href="#" class="pub-link">BibTeX</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-venue">XXX 2025</div>
+                    <div class="pub-content">
+                        <div class="pub-title">论文标题示例：基于预训练模型的文本生成研究</div>
+                        <div class="pub-authors">作者A, <strong>你的名字</strong>, 作者B</div>
+                        <div class="pub-links">
+                            <a href="#" class="pub-link">PDF</a>
+                            <a href="#" class="pub-link">Code</a>
+                            <a href="#" class="pub-link">BibTeX</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚 -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 你的名字. 由 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 强力驱动.</p>
+            <p>最后更新：<span id="last-updated">2026.07</span></p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
