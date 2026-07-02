@@ -16,11 +16,45 @@
     <meta property="og:image" content="https://canyon-netizen.github.io/assets/images/profile.svg">
     <meta name="twitter:card" content="summary">
 
+    <link rel="preload" as="style" href="assets/css/style.css">
+    <link rel="dns-prefetch" href="//ghchart.rshah.org"><link rel="dns-prefetch" href="//visitor-badge.glitch.me">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://canyon-netizen.github.io/">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="rss.xml">
     <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- JSON-LD 结构化数据 -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "你的名字",
+      "url": "https://canyon-netizen.github.io/",
+      "image": "https://canyon-netizen.github.io/assets/images/profile.svg",
+      "description": "研究方向、论文发表、项目展示",
+      "jobTitle": "PhD Student",
+      "sameAs": [
+        "https://github.com/yourusername",
+        "https://scholar.google.com/citations?user=YOUR_ID"
+      ]
+    }
+    </script>
+
+    <!-- 站点导航 JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "你的名字 - 个人主页",
+      "url": "https://canyon-netizen.github.io/",
+      "inLanguage": "zh-CN"
+    }
+    </script>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
     <!-- 顶部导航栏 -->
     <header class="site-header">
         <div class="container header-inner">
@@ -73,7 +107,7 @@
             </div>
             <div class="hero-avatar">
                 <!-- 替换 src 即可换头像 -->
-                <img src="assets/images/profile.svg" alt="个人头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <img loading="lazy" src="assets/images/profile.svg" alt="个人头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                 <div class="avatar-placeholder">头像<br>占位</div>
             </div>
         </div>
@@ -110,7 +144,7 @@
                     <div class="stat-text">
                         <div class="stat-label">访客数</div>
                         <div class="stat-value">
-                            <img src="https://visitor-badge.glitch.me/badge?page_id=canyon-netizen.github.io" alt="访客" style="display:inline; height: 22px; vertical-align: middle;">
+                            <img loading="lazy" src="https://visitor-badge.glitch.me/badge?page_id=canyon-netizen.github.io" alt="访客" style="display:inline; height: 22px; vertical-align: middle;">
                         </div>
                     </div>
                 </div>
@@ -118,7 +152,7 @@
 
             <!-- GitHub 贡献图（需要联网，加载失败不显示） -->
             <div class="github-chart reveal">
-                <img src="https://ghchart.rshah.org/1e3a5f/Canyon-netizen" alt="GitHub 贡献图"
+                <img loading="lazy" src="https://ghchart.rshah.org/1e3a5f/Canyon-netizen" alt="GitHub 贡献图"
                      onerror="this.parentElement.style.display='none';">
                 <p class="github-chart-caption">最近一年 GitHub 贡献记录（如果未显示，可在 index.html 中修改/移除）</p>
             </div>
@@ -256,6 +290,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </body>
 </html>

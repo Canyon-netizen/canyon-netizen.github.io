@@ -1,4 +1,45 @@
 /* ========================================
+   跳过导航链接（无障碍）
+   ======================================== */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 9999;
+    padding: 12px 20px;
+    background: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 0 var(--radius-md) 0;
+    text-decoration: none;
+}
+
+.skip-link:focus {
+    left: 0;
+    outline: 2px solid #fff;
+    outline-offset: -4px;
+}
+
+/* ========================================
+   全局焦点环（仅键盘）
+   ======================================== */
+:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+[data-theme="dark"] :focus-visible {
+    outline-color: var(--color-accent);
+}
+
+button:focus-visible,
+.nav-toggle:focus-visible,
+.nav-action:focus-visible {
+    outline-offset: 2px;
+}
+
+/* ========================================
    全局变量与重置
    ======================================== */
 :root {
@@ -890,6 +931,66 @@ code {
     display: flex;
     gap: 12px;
     justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+}
+
+.error-suggestions {
+    text-align: left;
+    margin-top: 32px;
+}
+
+.error-suggestions h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-mute);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.suggestion-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+}
+
+.suggestion-item {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: var(--color-text);
+    transition: all 0.2s ease;
+}
+
+.suggestion-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    color: var(--color-text);
+}
+
+.suggestion-icon {
+    font-size: 28px;
+    margin-bottom: 8px;
+    line-height: 1;
+}
+
+.suggestion-title {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--color-primary);
+}
+
+.suggestion-desc {
+    font-size: 12px;
+    color: var(--color-text-mute);
+    line-height: 1.4;
 }
 
 /* ========================================
@@ -1296,6 +1397,69 @@ code {
     background: transparent;
     padding: 0;
     color: inherit;
+}
+
+/* 代码块复制按钮 */
+.post-content pre {
+    position: relative;
+}
+
+.code-copy {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    font-family: var(--font-sans);
+}
+
+.post-content pre:hover .code-copy {
+    opacity: 1;
+}
+
+.code-copy:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* KaTeX 公式样式微调 */
+.post-content .katex-display {
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+/* 面包屑导航 */
+.breadcrumb {
+    font-size: 13px;
+    color: var(--color-text-mute);
+    margin-bottom: 16px;
+}
+
+.breadcrumb a {
+    color: var(--color-text-mute);
+    text-decoration: none;
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumb-sep {
+    margin: 0 6px;
+    color: var(--color-text-mute);
+}
+
+/* 评论区容器 */
+.comments-section {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--color-border);
 }
 
 .post-content img {

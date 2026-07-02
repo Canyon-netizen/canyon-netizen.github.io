@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - 页面未找到</title>
+    <link rel="preload" as="style" href="assets/css/style.css">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://canyon-netizen.github.io/404.html">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="rss.xml">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="brand">
@@ -38,18 +43,55 @@
         </div>
     </header>
 
-    <main class="error-page">
-        <div class="container">
+    <main id="main-content" class="error-page">
+        <div class="container narrow">
             <div class="error-content">
                 <h1 class="error-code">404</h1>
                 <h2 class="error-title">页面未找到</h2>
                 <p class="error-desc">
                     抱歉，你访问的页面不存在或已被移除。<br>
-                    请通过下方导航回到主页。
+                    不妨看看下面的常用入口：
                 </p>
                 <div class="error-cta">
                     <a href="index.html" class="btn btn-primary">回到首页</a>
+                    <a href="blog.html" class="btn btn-ghost">浏览博客</a>
                 </div>
+
+                <nav class="error-suggestions" aria-label="常用页面">
+                    <h3>也许你想访问：</h3>
+                    <div class="suggestion-grid">
+                        <a href="index.html" class="suggestion-item">
+                            <div class="suggestion-icon">🏠</div>
+                            <div class="suggestion-title">首页</div>
+                            <div class="suggestion-desc">个人简介与最新动态</div>
+                        </a>
+                        <a href="about.html" class="suggestion-item">
+                            <div class="suggestion-icon">👤</div>
+                            <div class="suggestion-title">关于</div>
+                            <div class="suggestion-desc">教育背景与技能</div>
+                        </a>
+                        <a href="research.html" class="suggestion-item">
+                            <div class="suggestion-icon">🔬</div>
+                            <div class="suggestion-title">研究</div>
+                            <div class="suggestion-desc">研究方向</div>
+                        </a>
+                        <a href="publications.html" class="suggestion-item">
+                            <div class="suggestion-icon">📄</div>
+                            <div class="suggestion-title">论文</div>
+                            <div class="suggestion-desc">发表列表</div>
+                        </a>
+                        <a href="blog.html" class="suggestion-item">
+                            <div class="suggestion-icon">✍️</div>
+                            <div class="suggestion-title">博客</div>
+                            <div class="suggestion-desc">学习笔记与思考</div>
+                        </a>
+                        <a href="cv.html" class="suggestion-item">
+                            <div class="suggestion-icon">📋</div>
+                            <div class="suggestion-title">简历</div>
+                            <div class="suggestion-desc">教育经历与项目</div>
+                        </a>
+                    </div>
+                </nav>
             </div>
         </div>
     </main>
@@ -60,6 +102,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </body>
 </html>

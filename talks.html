@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>分享 - 你的名字</title>
     <meta name="description" content="会议报告、研讨会演讲、内部分享">
+    <link rel="preload" as="style" href="assets/css/style.css">
+    <meta name="theme-color" content="#1e3a5f">
+    <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href="https://canyon-netizen.github.io/talks.html">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
     <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="rss.xml">
     <meta property="og:title" content="分享 - 你的名字">
@@ -12,6 +16,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
     <header class="site-header">
         <div class="container header-inner">
             <a href="index.html" class="brand">
@@ -41,7 +46,7 @@
         </div>
     </header>
 
-    <main class="page-main">
+    <main id="main-content" class="page-main">
         <div class="container narrow">
             <h1 class="page-title">分享 / Talks</h1>
             <p class="lead">
@@ -120,6 +125,6 @@
         </div>
     </footer>
 
-    <script src="assets/js/main.js"></script>
+    <script defer src="assets/js/main.js"></script>
 </body>
 </html>
