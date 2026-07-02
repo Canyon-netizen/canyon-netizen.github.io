@@ -1,0 +1,21 @@
+{
+  "name": "你的名字 - 个人主页",
+  "short_name": "你的名字",
+  "description": "研究方向、论文发表、项目展示",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#ffffff",
+  "theme_color": "#1e3a5f",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["education", "productivity"]
+}

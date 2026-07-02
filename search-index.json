@@ -1,0 +1,112 @@
+[
+  {
+    "title": "首页",
+    "url": "/",
+    "excerpt": "你的名字 — 个人简介、研究方向、论文发表、项目展示、最新动态"
+  },
+  {
+    "title": "关于我",
+    "url": "/about.html",
+    "excerpt": "个人简介、教育背景、工作经历、技能清单、获奖与荣誉"
+  },
+  {
+    "title": "研究方向",
+    "url": "/research.html",
+    "excerpt": "当前研究方向、研究兴趣、合作邀请"
+  },
+  {
+    "title": "论文发表",
+    "url": "/publications.html",
+    "excerpt": "完整的论文发表列表，按年份倒序"
+  },
+  {
+    "title": "项目展示",
+    "url": "/projects.html",
+    "excerpt": "研究项目、开源项目展示"
+  },
+  {
+    "title": "博客",
+    "url": "/blog.html",
+    "excerpt": "学习笔记、研究随想、技术分享"
+  },
+  {
+    "title": "分享 / Talks",
+    "url": "/talks.html",
+    "excerpt": "会议报告、研讨会演讲、内部分享"
+  },
+  {
+    "title": "阅读 / Books",
+    "url": "/books.html",
+    "excerpt": "读过的书，按主题分类，技术、文学、传记"
+  },
+  {
+    "title": "爱好 / Hobbies",
+    "url": "/hobbies.html",
+    "excerpt": "工作之外的兴趣：跑步、摄影、吉他、写作、咖啡、徒步、游戏、电影"
+  },
+  {
+    "title": "简历 / CV",
+    "url": "/cv.html",
+    "excerpt": "完整简历，支持 PDF 下载"
+  },
+  {
+    "title": "研究笔记：从零开始读一篇论文",
+    "url": "/blog/2026-06-20-research-notes.html",
+    "excerpt": "分享读论文的三遍阅读法，以及如何用一周时间吃透一篇顶会论文"
+  },
+  {
+    "title": "Python 项目配置管理：环境变量、配置文件、密钥",
+    "url": "/blog/2026-05-08-python-config.html",
+    "excerpt": "整理 Python 项目中几种配置管理方式：环境变量、.env 文件、YAML/TOML、Pydantic Settings、密钥管理"
+  },
+  {
+    "title": "Home (EN)",
+    "url": "/en/index.html",
+    "excerpt": "Personal homepage — research, publications, projects"
+  },
+  {
+    "title": "About (EN)",
+    "url": "/en/about.html",
+    "excerpt": "Bio, education, work experience, skills, honors"
+  },
+  {
+    "title": "Research (EN)",
+    "url": "/en/research.html",
+    "excerpt": "Research interests and directions"
+  },
+  {
+    "title": "Publications (EN)",
+    "url": "/en/publications.html",
+    "excerpt": "Complete list of publications"
+  },
+  {
+    "title": "Projects (EN)",
+    "url": "/en/projects.html",
+    "excerpt": "Research projects and open-source tools"
+  },
+  {
+    "title": "Blog (EN)",
+    "url": "/en/blog.html",
+    "excerpt": "Notes, thoughts, and tutorials"
+  },
+  {
+    "title": "Talks (EN)",
+    "url": "/en/talks.html",
+    "excerpt": "Conference talks and presentations"
+  },
+  {
+    "title": "Books (EN)",
+    "url": "/en/books.html",
+    "excerpt": "Books I've read — tech, fiction, biographies"
+  },
+  {
+    "title": "Hobbies (EN)",
+    "url": "/en/hobbies.html",
+    "excerpt": "Beyond work: running, photography, guitar, writing, coffee, hiking"
+  },
+  {
+    "title": "CV (EN)",
+    "url": "/en/cv.html",
+    "excerpt": "Curriculum Vitae, PDF download available"
+  }
+]

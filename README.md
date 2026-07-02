@@ -10,9 +10,14 @@
 - ✨ **滚动渐入动画** — IntersectionObserver 实现
 - ⬆️ **回到顶部按钮** — 滚动后自动出现
 - 📡 **RSS 订阅** — 博客文章自动生成 RSS
-- 🗺️ **SEO 友好** — `sitemap.xml` / `robots.txt` / Open Graph / Twitter Card
+- 🗺️ **SEO 友好** — `sitemap.xml` / `robots.txt` / canonical / JSON-LD（Person / BlogPosting / WebSite）
 - 📊 **GitHub 统计** — 贡献图、访客数、博客/论文计数
-- 🔍 **博客分类过滤** — 客户端 JS 实现
+- 🔍 **全站模糊搜索** — Fuse.js + `Ctrl+K` / `Cmd+K` 唤起
+- 💻 **博客代码高亮** — highlight.js（自动亮/暗主题）
+- 📋 **博客自动目录（TOC）** — 滚动时显示当前章节
+- 📝 **CV 打印样式** — 一键打印干净的简历
+- 💾 **PWA 支持** — `manifest.json` + Service Worker，可离线访问与添加到主屏
+- 🎨 **自定义 OG 预览图** — 社媒分享更专业
 
 ## 📁 项目结构
 
@@ -45,14 +50,18 @@
 │   └── cv.html
 ├── assets/
 │   ├── css/style.css       # 主样式（CSS 变量 + 深色模式）
-│   ├── js/main.js          # 交互脚本
+│   ├── js/main.js          # 交互脚本（搜索、TOC、主题、动画）
 │   ├── images/
 │   │   ├── favicon.svg
-│   │   └── profile.svg     # 头像占位
+│   │   ├── profile.svg     # 头像占位
+│   │   └── og-image.svg    # OG 分享预览图
 │   └── files/              # 简历 PDF 等
 ├── sitemap.xml             # SEO 站点地图
 ├── robots.txt              # 搜索引擎指令
 ├── rss.xml                 # 博客 RSS
+├── manifest.json           # PWA 配置
+├── sw.js                   # Service Worker（离线缓存）
+├── search-index.json       # 全站搜索索引
 └── README.md
 ```
 

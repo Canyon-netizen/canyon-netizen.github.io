@@ -200,3 +200,181 @@
         el.textContent = new Date().toISOString().slice(0, 7).replace('-', '.');
     });
 })();
+
+// ========================================
+// 注册 Service Worker（PWA + 离线访问）
+// ========================================
+(function () {
+    if (!('serviceWorker' in navigator)) return;
+    // 仅在 https 或 localhost 下生效（GitHub Pages 默认 https）
+    if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') return;
+
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js').catch(function (err) {
+            console.warn('Service Worker 注册失败：', err);
+        });
+    });
+})();
+
+// ========================================
+// 博客文章自动生成目录（TOC）
+// ========================================
+(function () {
+    const tocContainer = document.getElementById('toc');
+    if (!tocContainer) return;
+
+    const article = document.querySelector('.post-content');
+    if (!article) return;
+
+    const headings = article.querySelectorAll('h2, h3');
+    if (headings.length < 2) {
+        tocContainer.style.display = 'none';
+        return;
+    }
+
+    headings.forEach(function (h, i) {
+        if (!h.id) {
+            const text = h.textContent.trim();
+            const slug = text.toLowerCase()
+                .replace(/\s+/g, '-')
+                .replace(/[^一-龥a-z0-9\-]/g, '')
+                .substring(0, 50);
+            h.id = slug || 'section-' + i;
+        }
+    });
+
+    const list = document.createElement('ul');
+    list.className = 'toc-list';
+    let currentH2Li = null;
+
+    headings.forEach(function (h) {
+        const li = document.createElement('li');
+        li.className = 'toc-item toc-' + h.tagName.toLowerCase();
+        const a = document.createElement('a');
+        a.href = '#' + h.id;
+        a.textContent = h.textContent;
+        li.appendChild(a);
+        if (h.tagName === 'H2') {
+            list.appendChild(li);
+            currentH2Li = li;
+        } else if (h.tagName === 'H3' && currentH2Li) {
+            let subList = currentH2Li.querySelector('ul');
+            if (!subList) {
+                subList = document.createElement('ul');
+                subList.className = 'toc-sublist';
+                currentH2Li.appendChild(subList);
+            }
+            subList.appendChild(li);
+        }
+    });
+
+    tocContainer.appendChild(list);
+})();
+
+// ========================================
+// 全站搜索（Fuse.js 模糊匹配）
+// ========================================
+(function () {
+    const trigger = document.getElementById('search-trigger');
+    const overlay = document.getElementById('search-overlay');
+    const input = document.getElementById('search-input');
+    const closeBtn = document.getElementById('search-close');
+    const results = document.getElementById('search-results');
+
+    if (!trigger || !overlay || !input || !results) return;
+
+    let fuse = null;
+    let searchIndexUrl = '/search-index.json';
+    // 兼容 blog/ 和 en/ 子目录
+    if (location.pathname.includes('/blog/')) {
+        searchIndexUrl = '../search-index.json';
+    } else if (location.pathname.includes('/en/')) {
+        searchIndexUrl = '../search-index.json';
+    }
+
+    function open() {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+        setTimeout(function () { input.focus(); }, 50);
+        loadIndex();
+    }
+
+    function close() {
+        overlay.classList.remove('open');
+        document.body.style.overflow = '';
+        input.value = '';
+        results.innerHTML = '<div class="search-empty">输入关键词搜索</div>';
+    }
+
+    function loadIndex() {
+        if (fuse) return;
+        fetch(searchIndexUrl)
+            .then(function (r) { return r.json(); })
+            .then(function (data) {
+                fuse = new Fuse(data, {
+                    keys: ['title', 'excerpt'],
+                    threshold: 0.4,
+                    includeMatches: true,
+                    minMatchCharLength: 1
+                });
+                render('');
+            })
+            .catch(function () {
+                results.innerHTML = '<div class="search-empty">⚠ 搜索索引加载失败</div>';
+            });
+    }
+
+    function escapeHtml(s) {
+        return s.replace(/[&<>"']/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+        });
+    }
+
+    function highlight(text, query) {
+        if (!query) return escapeHtml(text);
+        const escaped = escapeHtml(text);
+        const safeQ = query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return escaped.replace(new RegExp(safeQ, 'gi'), function (m) { return '<mark>' + m + '</mark>'; });
+    }
+
+    function render(query) {
+        if (!fuse) return;
+        const items = query ? fuse.search(query).slice(0, 10) : [];
+        if (!query) {
+            results.innerHTML = '<div class="search-empty">输入关键词搜索</div>';
+            return;
+        }
+        if (!items.length) {
+            results.innerHTML = '<div class="search-empty">没有找到与「' + escapeHtml(query) + '」相关的内容</div>';
+            return;
+        }
+        results.innerHTML = items.map(function (item) {
+            return '<a class="search-result" href="' + item.item.url + '">' +
+                '<div class="search-result-title">' + highlight(item.item.title, query) + '</div>' +
+                '<div class="search-result-excerpt">' + highlight(item.item.excerpt, query) + '</div>' +
+                '</a>';
+        }).join('');
+    }
+
+    trigger.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', function (e) {
+        if (e.target === overlay) close();
+    });
+
+    input.addEventListener('input', function () {
+        render(this.value.trim());
+    });
+
+    document.addEventListener('keydown', function (e) {
+        // Ctrl+K / Cmd+K 唤起搜索
+        if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+            e.preventDefault();
+            open();
+        }
+        // Esc 关闭
+        if (e.key === 'Escape' && overlay.classList.contains('open')) {
+            close();
+        }
+    });
+})();
