@@ -77,12 +77,16 @@
         return document.documentElement.getAttribute('data-theme') || 'light';
     }
 
+    const isEnglish = location.pathname.indexOf('/en/') !== -1;
+    const LANG = isEnglish
+        ? { light: 'Switch to light theme', dark: 'Switch to dark theme' }
+        : { light: '切换到浅色主题', dark: '切换到深色主题' };
+
     function applyTheme(theme) {
         document.documentElement.setAttribute('data-theme', theme);
-        themeToggle.setAttribute('aria-label',
-            theme === 'dark' ? '切换到浅色主题' : '切换到深色主题');
-        themeToggle.setAttribute('title',
-            theme === 'dark' ? '切换到浅色主题' : '切换到深色主题');
+        const label = theme === 'dark' ? LANG.light : LANG.dark;
+        themeToggle.setAttribute('aria-label', label);
+        themeToggle.setAttribute('title', label);
     }
 
     // 初始化：localStorage > 浏览器偏好 > light
