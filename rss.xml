@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>你的名字 - 博客</title>
+    <link>https://canyon-netizen.github.io/</link>
+    <description>学习笔记、研究随想、技术分享</description>
+    <language>zh-CN</language>
+    <atom:link href="https://canyon-netizen.github.io/rss.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Jul 2026 00:00:00 +0800</lastBuildDate>
+
+    <item>
+      <title>研究笔记：从零开始读一篇论文</title>
+      <link>https://canyon-netizen.github.io/blog/2026-06-20-research-notes.html</link>
+      <description>分享读论文的三遍阅读法，以及如何用一周时间吃透一篇顶会论文。</description>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 +0800</pubDate>
+      <guid>https://canyon-netizen.github.io/blog/2026-06-20-research-notes.html</guid>
+      <category>研究</category>
+    </item>
+
+    <item>
+      <title>Python 项目配置管理：环境变量、配置文件、密钥</title>
+      <link>https://canyon-netizen.github.io/blog/2026-05-08-python-config.html</link>
+      <description>整理 Python 项目中几种配置管理方式：环境变量、.env 文件、YAML/TOML、Pydantic Settings、密钥管理。</description>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0800</pubDate>
+      <guid>https://canyon-netizen.github.io/blog/2026-05-08-python-config.html</guid>
+      <category>技术</category>
+    </item>
+  </channel>
+</rss>

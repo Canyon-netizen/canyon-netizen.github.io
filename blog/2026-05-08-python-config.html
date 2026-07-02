@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python 项目配置管理：环境变量、配置文件、密钥 - 你的名字</title>
+    <meta name="description" content="Python 项目配置管理实践">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="../rss.xml">
+    <meta property="og:title" content="Python 项目配置管理：环境变量、配置文件、密钥">
+    <meta property="og:description" content="Python 项目配置管理实践">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark">YN</span>
+                <span class="brand-text">你的名字</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="../about.html" class="nav-link">关于</a>
+                <a href="../research.html" class="nav-link">研究</a>
+                <a href="../publications.html" class="nav-link">论文</a>
+                <a href="../projects.html" class="nav-link">项目</a>
+                <a href="../blog.html" class="nav-link active">博客</a>
+                <a href="../talks.html" class="nav-link">分享</a>
+                <a href="../cv.html" class="nav-link">简历</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="#" class="nav-action nav-lang" id="lang-toggle" title="English version" aria-label="English version">EN</a>
+                <button class="nav-action nav-theme" id="theme-toggle" title="切换主题" aria-label="切换主题">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container narrow">
+            <a href="../blog.html" class="post-back">← 返回博客列表</a>
+
+            <header class="post-header">
+                <div class="post-meta">
+                    <time>2026-05-08</time>
+                    <span class="post-category">技术</span>
+                    <span class="read-time">约 8 分钟</span>
+                </div>
+                <h1>Python 项目配置管理：环境变量、配置文件、密钥</h1>
+            </header>
+
+            <article class="post-content">
+                <p>
+                    一个工程化的 Python 项目往往要处理多种配置：数据库连接、API 密钥、模型超参、
+                    不同的运行环境（开发/测试/生产）。本文整理几种常见方案的取舍。
+                </p>
+
+                <h2>1. 环境变量（最基础）</h2>
+                <p>用 <code>os.environ</code> 读取，简单但弱类型、不便管理。</p>
+<pre><code>import os
+DB_URL = os.environ.get("DATABASE_URL", "sqlite:///dev.db")
+</code></pre>
+
+                <h2>2. .env 文件 + python-dotenv</h2>
+                <p>
+                    把环境变量写进 <code>.env</code>，开发时方便切换。
+                    一定要把 <code>.env</code> 加进 <code>.gitignore</code>。
+                </p>
+<pre><code># .env
+DATABASE_URL=postgres://...
+SECRET_KEY=xxx
+</code></pre>
+
+                <h2>3. YAML/JSON/TOML 配置文件</h2>
+                <p>适合结构化配置，比如 ML 训练的超参。</p>
+<pre><code># config.yaml
+model:
+  name: resnet50
+  lr: 0.001
+  batch_size: 64
+data:
+  train: data/train
+  val: data/val
+</code></pre>
+
+                <h2>4. Pydantic Settings（推荐）</h2>
+                <p>
+                    类型安全 + 自动校验 + 多来源合并（env > file > default）。
+                    新项目强烈推荐。
+                </p>
+<pre><code>from pydantic_settings import BaseSettings
+
+class Settings(BaseSettings):
+    db_url: str
+    secret_key: str
+    debug: bool = False
+
+    class Config:
+        env_file = ".env"
+
+settings = Settings()
+</code></pre>
+
+                <h2>5. 密钥管理</h2>
+                <p>
+                    永远不要把密钥写进代码、配置文件、git。
+                    团队项目用 <strong>Vault / AWS Secrets Manager / GCP Secret Manager</strong>；
+                    个人项目至少用 <code>.env</code> 并加 <code>.gitignore</code>。
+                </p>
+
+                <blockquote>
+                    <p>如果密钥曾经提交到 git，立刻 rotate（重新生成）并清理 git history。</p>
+                </blockquote>
+
+                <h2>我的实践</h2>
+                <ol>
+                    <li>小脚本：直接 <code>os.environ</code> + <code>.env</code>。</li>
+                    <li>中等项目：<strong>Pydantic Settings</strong> + <code>.env</code>。</li>
+                    <li>训练实验：<code>Hydra</code> 或 <code>OmegaConf</code> 做配置组合。</li>
+                    <li>生产部署：<strong>12-factor</strong>，配置全部走环境变量，密钥交给云服务。</li>
+                </ol>
+            </article>
+
+            <footer class="post-footer">
+                <p>本文采用 CC BY 4.0 协议，转载请保留原文链接。</p>
+            </footer>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 你的名字. 由 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 强力驱动.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

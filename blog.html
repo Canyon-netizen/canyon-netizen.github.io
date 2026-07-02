@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>博客 - 你的名字</title>
+    <meta name="description" content="学习笔记、研究随想、技术分享">
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="rss.xml">
+    <meta property="og:title" content="博客 - 你的名字">
+    <meta property="og:description" content="学习笔记、研究随想、技术分享">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">YN</span>
+                <span class="brand-text">你的名字</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="index.html" class="nav-link">首页</a>
+                <a href="about.html" class="nav-link">关于</a>
+                <a href="research.html" class="nav-link">研究</a>
+                <a href="publications.html" class="nav-link">论文</a>
+                <a href="projects.html" class="nav-link">项目</a>
+                <a href="blog.html" class="nav-link active">博客</a>
+                <a href="talks.html" class="nav-link">分享</a>
+                <a href="cv.html" class="nav-link">简历</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="en/blog.html" class="nav-action nav-lang" id="lang-toggle" title="Switch to English" aria-label="Switch to English">EN</a>
+                <button class="nav-action nav-theme" id="theme-toggle" title="切换主题" aria-label="切换主题">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container narrow">
+            <h1 class="page-title">博客</h1>
+            <p class="lead">
+                这里记录我的学习笔记、研究随想和技术分享。
+                <a href="rss.xml" style="font-size: 14px;">📡 RSS 订阅</a>
+            </p>
+
+            <!-- 分类过滤 -->
+            <div class="filter-bar" id="filter-bar">
+                <button class="filter-btn active" data-filter="all">全部</button>
+                <button class="filter-btn" data-filter="research">研究</button>
+                <button class="filter-btn" data-filter="tech">技术</button>
+                <button class="filter-btn" data-filter="life">随笔</button>
+            </div>
+
+            <div class="post-list">
+                <article class="post-item reveal" data-category="research">
+                    <div class="post-meta">
+                        <time>2026-06-20</time>
+                        <span class="post-category">研究</span>
+                        <span class="read-time">约 5 分钟</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="blog/2026-06-20-research-notes.html">研究笔记：从零开始读一篇论文</a>
+                    </h2>
+                    <p class="post-excerpt">
+                        分享一下我读论文的"三遍阅读法"，以及如何用一周时间吃透一篇顶会论文。
+                        从标题、摘要到实验设计，每一步的侧重点和常见误区都讲清楚。
+                    </p>
+                </article>
+
+                <article class="post-item reveal" data-category="tech">
+                    <div class="post-meta">
+                        <time>2026-05-08</time>
+                        <span class="post-category">技术</span>
+                        <span class="read-time">约 8 分钟</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="blog/2026-05-08-python-config.html">Python 项目配置管理：环境变量、配置文件、密钥</a>
+                    </h2>
+                    <p class="post-excerpt">
+                        一个 Python 项目往往需要在不同环境（开发/测试/生产）下切换配置。
+                        本文整理了我常用的几种配置管理方式，以及它们各自的适用场景。
+                    </p>
+                </article>
+
+                <article class="post-item reveal" data-category="life">
+                    <div class="post-meta">
+                        <time>2026-03-15</time>
+                        <span class="post-category">随笔</span>
+                        <span class="read-time">约 3 分钟</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="#">读博第一年的反思</a>
+                    </h2>
+                    <p class="post-excerpt">
+                        回头看看读博第一年踩过的坑：选题的反复、实验的低效、与导师的沟通。
+                        写给同样在科研路上摸索的你。
+                    </p>
+                </article>
+
+                <article class="post-item reveal" data-category="research">
+                    <div class="post-meta">
+                        <time>2026-01-22</time>
+                        <span class="post-category">研究</span>
+                        <span class="read-time">约 6 分钟</span>
+                    </div>
+                    <h2 class="post-title">
+                        <a href="#">如何写好一篇学术论文的引言</a>
+                    </h2>
+                    <p class="post-excerpt">
+                        学术论文的引言（Introduction）是一篇文章的门面。
+                        本文总结一个"漏斗式"引言写作结构：从大问题到小问题，从已有工作到本文贡献。
+                    </p>
+                </article>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 你的名字. 由 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 强力驱动.</p>
+            <p>最后更新：<span id="last-updated">2026.07</span></p>
+        </div>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://canyon-netizen.github.io/sitemap.xml

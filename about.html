@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>关于我 - 你的名字</title>
+    <title>关于 - 你的名字</title>
     <meta name="description" content="个人简介、教育背景、研究经历">
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="rss.xml">
+    <meta property="og:title" content="关于 - 你的名字">
+    <meta property="og:description" content="个人简介、教育背景、研究经历">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
@@ -17,15 +20,24 @@
             </a>
             <nav class="site-nav" id="site-nav">
                 <a href="index.html" class="nav-link">首页</a>
-                <a href="about.html" class="nav-link active">关于我</a>
-                <a href="research.html" class="nav-link">研究方向</a>
-                <a href="publications.html" class="nav-link">论文发表</a>
-                <a href="projects.html" class="nav-link">项目展示</a>
+                <a href="about.html" class="nav-link active">关于</a>
+                <a href="research.html" class="nav-link">研究</a>
+                <a href="publications.html" class="nav-link">论文</a>
+                <a href="projects.html" class="nav-link">项目</a>
+                <a href="blog.html" class="nav-link">博客</a>
+                <a href="talks.html" class="nav-link">分享</a>
                 <a href="cv.html" class="nav-link">简历</a>
             </nav>
-            <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
-                <span></span><span></span><span></span>
-            </button>
+            <div class="nav-actions">
+                <a href="en/about.html" class="nav-action nav-lang" id="lang-toggle" title="Switch to English" aria-label="Switch to English">EN</a>
+                <button class="nav-action nav-theme" id="theme-toggle" title="切换主题" aria-label="切换主题">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
         </div>
     </header>
 

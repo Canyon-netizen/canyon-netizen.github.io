@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Homepage</title>
+    <meta name="description" content="Personal homepage - research, publications, projects">
+    <meta name="keywords" content="personal homepage, research, machine learning">
+    <meta name="author" content="Your Name">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Your Name - Personal Homepage">
+    <meta property="og:description" content="Personal homepage - research, publications, projects">
+    <meta property="og:url" content="https://canyon-netizen.github.io/en/">
+    <meta property="og:image" content="https://canyon-netizen.github.io/assets/images/profile.svg">
+    <meta name="twitter:card" content="summary">
+
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="Blog RSS" href="../rss.xml">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="index.html" class="brand">
+                <span class="brand-mark">YN</span>
+                <span class="brand-text">Your Name</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="research.html" class="nav-link">Research</a>
+                <a href="publications.html" class="nav-link">Publications</a>
+                <a href="projects.html" class="nav-link">Projects</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="talks.html" class="nav-link">Talks</a>
+                <a href="cv.html" class="nav-link">CV</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="../index.html" class="nav-action nav-lang" id="lang-toggle" title="切换到中文" aria-label="切换到中文">中</a>
+                <button class="nav-action nav-theme" id="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-inner">
+            <div class="hero-text">
+                <p class="hero-eyebrow">Welcome to my personal homepage</p>
+                <h1 class="hero-title">Hi, I'm <span class="accent">Your Name</span></h1>
+                <p class="hero-subtitle">
+                    One-line bio: e.g. "PhD student at Tsinghua University, researching machine learning and NLP."
+                    Edit <code>en/index.html</code> to update this text.
+                </p>
+                <div class="hero-cta">
+                    <a href="research.html" class="btn btn-primary">My Research</a>
+                    <a href="cv.html" class="btn btn-ghost">View CV</a>
+                </div>
+                <div class="hero-meta">
+                    <a href="mailto:your.email@example.com" class="meta-item">📧 Email</a>
+                    <a href="https://github.com/yourusername" class="meta-item" target="_blank" rel="noopener">💻 GitHub</a>
+                    <a href="https://scholar.google.com" class="meta-item" target="_blank" rel="noopener">🎓 Scholar</a>
+                </div>
+            </div>
+            <div class="hero-avatar">
+                <img src="../assets/images/profile.svg" alt="Profile photo" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="avatar-placeholder">Photo<br>Placeholder</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">At a Glance</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>🎓 Education</h3>
+                    <p>20XX.09 - Present　PhD, University</p>
+                    <p>20XX.09 - 20XX.06　M.S., University</p>
+                    <p>20XX.09 - 20XX.06　B.S., University</p>
+                </div>
+                <div class="info-card">
+                    <h3>🔬 Research</h3>
+                    <p>Machine learning, NLP, deep learning</p>
+                    <p>LLMs, text generation, representation learning</p>
+                </div>
+                <div class="info-card">
+                    <h3>💼 Current</h3>
+                    <p>PhD student, Department of XX</p>
+                    <p>Advisor: Prof. XXX</p>
+                </div>
+                <div class="info-card">
+                    <h3>📍 Location</h3>
+                    <p>Beijing, China</p>
+                    <p>Open to collaboration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt">
+        <div class="container">
+            <h2 class="section-title">News</h2>
+            <ul class="timeline">
+                <li class="timeline-item">
+                    <span class="timeline-date">2026.06</span>
+                    <p>Paper "Title" accepted at <strong>XXX Conference</strong>.</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2026.03</span>
+                    <p>Gave a talk at <strong>XXX Workshop</strong>.</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2025.12</span>
+                    <p>Awarded <strong>XX Scholarship</strong>.</p>
+                </li>
+                <li class="timeline-item">
+                    <span class="timeline-date">2025.09</span>
+                    <p>Started <strong>XX project</strong>.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Selected Publications <a href="publications.html" class="see-all">See all →</a></h2>
+            <div class="pub-list">
+                <div class="pub-item">
+                    <div class="pub-venue">XXX 2026</div>
+                    <div class="pub-content">
+                        <div class="pub-title">Sample paper title: a new deep learning method</div>
+                        <div class="pub-authors"><strong>Your Name</strong>, Author A, Author B, Corresponding*</div>
+                        <div class="pub-links">
+                            <a href="#" class="pub-link">PDF</a>
+                            <a href="#" class="pub-link">Code</a>
+                            <a href="#" class="pub-link">BibTeX</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="pub-item">
+                    <div class="pub-venue">XXX 2025</div>
+                    <div class="pub-content">
+                        <div class="pub-title">Sample paper title: text generation with pretrained models</div>
+                        <div class="pub-authors">Author A, <strong>Your Name</strong>, Author B</div>
+                        <div class="pub-links">
+                            <a href="#" class="pub-link">PDF</a>
+                            <a href="#" class="pub-link">Code</a>
+                            <a href="#" class="pub-link">BibTeX</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 Your Name. Powered by <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a>.</p>
+            <p>Last updated: <span id="last-updated">2026.07</span></p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>

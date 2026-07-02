@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>研究笔记：从零开始读一篇论文 - 你的名字</title>
+    <meta name="description" content="分享读论文的三遍阅读法">
+    <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+    <link rel="alternate" type="application/rss+xml" title="博客 RSS" href="../rss.xml">
+    <meta property="og:title" content="研究笔记：从零开始读一篇论文">
+    <meta property="og:description" content="分享读论文的三遍阅读法">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a href="../index.html" class="brand">
+                <span class="brand-mark">YN</span>
+                <span class="brand-text">你的名字</span>
+            </a>
+            <nav class="site-nav" id="site-nav">
+                <a href="../index.html" class="nav-link">首页</a>
+                <a href="../about.html" class="nav-link">关于</a>
+                <a href="../research.html" class="nav-link">研究</a>
+                <a href="../publications.html" class="nav-link">论文</a>
+                <a href="../projects.html" class="nav-link">项目</a>
+                <a href="../blog.html" class="nav-link active">博客</a>
+                <a href="../talks.html" class="nav-link">分享</a>
+                <a href="../cv.html" class="nav-link">简历</a>
+            </nav>
+            <div class="nav-actions">
+                <a href="2026-06-20-research-notes.html" class="nav-action nav-lang" id="lang-toggle" title="English version" aria-label="English version">EN</a>
+                <button class="nav-action nav-theme" id="theme-toggle" title="切换主题" aria-label="切换主题">
+                    <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                    <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                </button>
+                <button class="nav-toggle" id="nav-toggle" aria-label="切换导航">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container narrow">
+            <a href="../blog.html" class="post-back">← 返回博客列表</a>
+
+            <header class="post-header">
+                <div class="post-meta">
+                    <time>2026-06-20</time>
+                    <span class="post-category">研究</span>
+                    <span class="read-time">约 5 分钟</span>
+                </div>
+                <h1>研究笔记：从零开始读一篇论文</h1>
+            </header>
+
+            <article class="post-content">
+                <p>
+                    读论文是研究生的日常。一篇顶会论文动辄 8-15 页，方法 + 实验 + 附录，可能还有补充材料。
+                    很多同学（包括曾经的我）会一头扎进细节，结果读了一周还是云里雾里。
+                    这里分享一下我的"三遍阅读法"。
+                </p>
+
+                <h2>第一遍：鸟瞰（15-20 分钟）</h2>
+                <p>
+                    目标：判断这篇论文值不值得细读、属于哪个子方向。
+                </p>
+                <ul>
+                    <li><strong>标题 + 摘要</strong>：解决什么问题？用什么方法？有什么结果？</li>
+                    <li><strong>Introduction 末尾</strong>：通常会列出 3-5 个具体贡献，这部分是最有信息密度的。</li>
+                    <li><strong>章节标题 + 图表标题</strong>：快速浏览，了解文章整体结构。</li>
+                    <li><strong>结论</strong>：看作者认为自己的工作有什么意义。</li>
+                </ul>
+                <p>
+                    读完之后，你应该能用自己的话概括出："本文针对 XXX 问题，提出了 XXX 方法，
+                    在 XXX 数据集上比 SOTA 提升了 X%。"
+                </p>
+
+                <h2>第二遍：理解（1-2 小时）</h2>
+                <p>
+                    目标：理解方法的核心思想，能复述、能向他人解释。
+                </p>
+                <ul>
+                    <li>仔细读 <strong>方法章节</strong>，对每个公式问"它在算什么"。</li>
+                    <li>画一张 <strong>系统框架图</strong>，用纸笔画出来。</li>
+                    <li>跳过复杂的数学推导，<strong>重点是直觉</strong>。</li>
+                    <li>遇到不熟悉的概念，标记下来后查资料，不要中断阅读节奏。</li>
+                </ul>
+
+                <blockquote>
+                    <p>好的论文读完后，你能在脑海中"播放"它的方法流程图；差的论文读完后，你只记得一堆符号。</p>
+                </blockquote>
+
+                <h2>第三遍：复现（半天-1 天）</h2>
+                <p>
+                    目标：发现论文的隐藏细节、实验设置的合理性、未明确说明的取舍。
+                </p>
+                <ul>
+                    <li>假设你要复现这篇论文，你会遇到什么问题？</li>
+                    <li>作者没说清的：超参数怎么选？数据怎么切分？失败案例是什么？</li>
+                    <li>实验设计是否公平？<strong>baseline 是不是选得最有利</strong>？</li>
+                    <li>把上面的疑问整理成 5-10 个问题，去找作者发的代码或者去读作者的博士论文。</li>
+                </ul>
+
+                <h2>一些个人习惯</h2>
+                <ol>
+                    <li><strong>不动笔墨不读书</strong>：每篇精读论文都有 1-2 页的笔记，半年后翻出来仍然能复述。</li>
+                    <li><strong>先跑代码再读</strong>：能跑通的代码能让方法变得具体。</li>
+                    <li><strong>和同学讲一遍</strong>：讲不清楚就说明没真懂。</li>
+                    <li><strong>组会上分享</strong>：逼自己用 20 分钟讲清楚，是最好的输出练习。</li>
+                </ol>
+
+                <h2>小结</h2>
+                <p>
+                    读论文不是看小说，而是一次"逆向工程"。
+                    第一遍判断值不值得读，第二遍搞清楚方法是什么，第三遍才真正内化作者的取舍。
+                    一周一篇精读 + 三五篇泛读，是比较舒服的节奏。
+                </p>
+            </article>
+
+            <footer class="post-footer">
+                <p>📮 欢迎在 <a href="mailto:your.email@example.com">邮箱</a> 交流你对读论文的方法。</p>
+                <p>本文采用 CC BY 4.0 协议，转载请保留原文链接。</p>
+            </footer>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2026 你的名字. 由 <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> 强力驱动.</p>
+        </div>
+    </footer>
+
+    <script src="../assets/js/main.js"></script>
+</body>
+</html>
