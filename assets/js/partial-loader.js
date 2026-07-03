@@ -1,0 +1,117 @@
+// ========================================
+// 公共 HTML 片段加载器
+// ========================================
+// 扫描所有 <template data-include="...">，fetch 对应 _partials/*.html，
+// 替换占位符与路径前缀，注入到原位置。最后设置页面 title / meta。
+// 完成后派发 'partials:loaded' 事件，main.js 监听后初始化。
+(function () {
+    'use strict';
+
+    const tpls = document.querySelectorAll('template[data-include]');
+    if (!tpls.length) {
+        document.dispatchEvent(new CustomEvent('partials:loaded'));
+        return;
+    }
+
+    // 防止 FOUC：partials 注入前隐藏 body
+    (function injectFoucGuard() {
+        const css = 'html.partials-loading body{visibility:hidden;}';
+        const style = document.createElement('style');
+        style.setAttribute('data-partial-loader', 'fouc-guard');
+        style.textContent = css;
+        document.head.appendChild(style);
+    })();
+    document.documentElement.classList.add('partials-loading');
+
+    const meta = window.__PAGE_META__ || {};
+    const basePath = meta.basePath || '';
+    const baseNav = basePath; // nav 链接走同一前缀
+
+    function replaceAll(str, find, replacement) {
+        return str.split(find).join(replacement);
+    }
+
+    function applyPlaceholders(html) {
+        // 路径占位
+        html = replaceAll(html, '__BASE__', basePath);
+        html = replaceAll(html, '__BASE_NAV__', baseNav);
+        // 变量占位
+        Object.keys(meta).forEach(function (k) {
+            const v = String(meta[k] == null ? '' : meta[k]);
+            html = replaceAll(html, '{{' + k + '}}', v);
+        });
+        return html;
+    }
+
+    function loadOne(tpl) {
+        const name = tpl.dataset.include;
+        const url = basePath + '_partials/' + name + '.html';
+        return fetch(url, { credentials: 'same-origin' })
+            .then(function (r) {
+                if (!r.ok) throw new Error('partial ' + name + ' HTTP ' + r.status);
+                return r.text();
+            })
+            .then(function (text) {
+                const html = applyPlaceholders(text);
+                const frag = document.createRange().createContextualFragment(html);
+                tpl.parentNode.insertBefore(frag, tpl);
+                tpl.remove();
+            });
+    }
+
+    Promise.all(Array.prototype.map.call(tpls, loadOne))
+        .then(function () {
+            // 设置 title / meta / canonical
+            if (meta.title) document.title = meta.title;
+            setMeta('description', meta.description);
+            setMetaProp('og:title', meta.ogTitle);
+            setMetaProp('og:description', meta.ogDescription);
+            if (meta.ogType) setMetaProp('og:type', meta.ogType);
+            if (meta.ogUrl) setMetaProp('og:url', meta.ogUrl);
+            setLink('canonical', meta.canonical);
+
+            // 移除 FOUC 防护
+            document.documentElement.classList.remove('partials-loading');
+
+            // 通知 main.js 启动
+            document.dispatchEvent(new CustomEvent('partials:loaded'));
+        })
+        .catch(function (err) {
+            console.error('[partial-loader] 加载失败：', err);
+            document.documentElement.classList.remove('partials-loading');
+            document.dispatchEvent(new CustomEvent('partials:loaded', { detail: { error: true } }));
+        });
+
+    function setMeta(name, value) {
+        if (!value) return;
+        let el = document.querySelector('meta[name="' + name + '"]');
+        if (!el) {
+            el = document.createElement('meta');
+            el.setAttribute('name', name);
+            document.head.appendChild(el);
+        }
+        el.setAttribute('content', value);
+    }
+
+    function setMetaProp(prop, value) {
+        if (!value) return;
+        let el = document.querySelector('meta[property="' + prop + '"]');
+        if (!el) {
+            el = document.createElement('meta');
+            el.setAttribute('property', prop);
+            document.head.appendChild(el);
+        }
+        el.setAttribute('content', value);
+    }
+
+    function setLink(rel, href) {
+        if (!href) return;
+        let el = document.querySelector('link[rel="' + rel + '"]');
+        if (!el) {
+            el = document.createElement('link');
+            el.setAttribute('rel', rel);
+            document.head.appendChild(el);
+        }
+        el.setAttribute('href', href);
+    }
+})();

@@ -1,7 +1,7 @@
 // ========================================
 // Service Worker — 缓存优先策略
 // ========================================
-const CACHE_VERSION = 'v1.0.0';
+const CACHE_VERSION = 'v1.1.0';
 const CACHE_NAME = `personal-site-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
@@ -18,6 +18,13 @@ const PRECACHE_URLS = [
     '/cv.html',
     '/assets/css/style.css',
     '/assets/js/main.js',
+    '/assets/js/partial-loader.js',
+    '/_partials/head-base.html',
+    '/_partials/head-extra-index.html',
+    '/_partials/head-blog.html',
+    '/_partials/header.html',
+    '/_partials/footer.html',
+    '/_partials/search-overlay.html',
     '/assets/images/favicon.svg',
     '/assets/images/profile.svg',
     '/manifest.json',
