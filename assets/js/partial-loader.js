@@ -27,6 +27,17 @@
     const basePath = meta.basePath || '';
     const baseNav = basePath; // nav 链接走同一前缀
 
+    // 计算条件性占位符（在普通变量替换前处理）
+    // 默认 showLastUpdated=true（meta 缺省时显示「最后更新」行）
+    if (meta.showLastUpdated === undefined) meta.showLastUpdated = true;
+    const derived = {};
+    if (meta.showLastUpdated) {
+        derived.lastUpdatedLine = '<p>' + (meta.lastUpdatedLabel || 'Last updated:') +
+            ' <span id="last-updated">2026.07</span></p>';
+    } else {
+        derived.lastUpdatedLine = '';
+    }
+
     function replaceAll(str, find, replacement) {
         return str.split(find).join(replacement);
     }
@@ -35,6 +46,10 @@
         // 路径占位
         html = replaceAll(html, '__BASE__', basePath);
         html = replaceAll(html, '__BASE_NAV__', baseNav);
+        // 派生占位（条件渲染等）
+        Object.keys(derived).forEach(function (k) {
+            html = replaceAll(html, '{{' + k + '}}', derived[k]);
+        });
         // 变量占位
         Object.keys(meta).forEach(function (k) {
             const v = String(meta[k] == null ? '' : meta[k]);
