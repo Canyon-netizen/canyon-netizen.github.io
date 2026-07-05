@@ -11,7 +11,8 @@
       "city": "杭州",
       "cityEn": "Hangzhou",
       "district": "西湖区",
-      "university": "浙江大学"
+      "university": "浙江大学",
+      "universityEn": "Zhejiang University"
     },
     "online": {
       "github": "canyon-netizen",
@@ -23,6 +24,7 @@
   "education": [
     {
       "period": "2026.09 - 至今",
+      "periodEn": "2026.09 - Present",
       "school": "浙江大学",
       "schoolEn": "Zhejiang University",
       "department": "计算机科学与技术学院",
@@ -30,11 +32,13 @@
       "degree": "博士研究生",
       "degreeEn": "Ph.D.",
       "advisor": "XXX 教授",
+      "advisorEn": "Prof. XXX",
       "gpa": null,
       "current": true
     },
     {
       "period": "2022.09 - 2026.06",
+      "periodEn": "2022.09 - 2026.06",
       "school": "浙江大学",
       "schoolEn": "Zhejiang University",
       "department": "计算机科学与技术学院",
@@ -42,6 +46,7 @@
       "degree": "本科",
       "degreeEn": "undergraduate",
       "advisor": null,
+      "advisorEn": null,
       "gpa": null,
       "current": false
     }

@@ -103,7 +103,7 @@
             { value: pick(p, 'email') },
             { value: pick(p, 'phone') },
             { value: p.address && (isEnglish
-                ? [p.address.university, pick(p.address, 'city'), pick(p.address, 'country')].filter(Boolean).join(', ')
+                ? [pick(p.address, 'university'), pick(p.address, 'city'), pick(p.address, 'country')].filter(Boolean).join(', ')
                 : p.address.full) },
             { value: online.github ? 'github.com/' + online.github : '' },
             { value: online.homepage ? online.homepage.replace(/^https?:\/\//, '') : '' },
@@ -130,7 +130,7 @@
         ul.innerHTML = '';
         arr.forEach(function (e) {
             ul.appendChild(makeExpItem(
-                e.period,
+                pick(e, 'period'),
                 pick(e, 'school') + (e.department ? ' · ' + pick(e, 'department') : ''),
                 makeEduP(e)
             ));
@@ -141,7 +141,7 @@
         if (isEnglish) {
             // English: "Advisor: Prof. XXX　　GPA: X.X/4.0"
             const parts = [];
-            const advisor = e.advisor;
+            const advisor = pick(e, 'advisor');
             if (advisor) parts.push('Advisor: ' + advisor);
             if (e.gpa) parts.push('GPA: ' + e.gpa);
             return parts.length ? parts.join('　　') : null;
@@ -163,7 +163,7 @@
         ul.innerHTML = '';
         arr.forEach(function (r) {
             const li = document.createElement('li');
-            li.appendChild(makeExpPeriod(r.period));
+            li.appendChild(makeExpPeriod(pick(r, 'period')));
             const body = document.createElement('div');
             body.className = 'exp-body';
             const h3 = document.createElement('h3');
@@ -187,7 +187,7 @@
         ul.innerHTML = '';
         arr.forEach(function (i) {
             ul.appendChild(makeExpItem(
-                i.period,
+                pick(i, 'period'),
                 (i.company || '') + (i.role ? ' · ' + i.role : ''),
                 i.description
             ));
