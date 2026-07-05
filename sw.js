@@ -34,7 +34,13 @@ const PRECACHE_URLS = [
 
 self.addEventListener('install', (event) => {
     event.waitUntil(
-        caches.open(CACHE_NAME).then((cache) => cache.addAll(PRECACHE_URLS))
+        caches.open(CACHE_NAME)
+            .then((cache) => cache.addAll(PRECACHE_URLS.map((u) => new Request(u, { cache: 'reload' })))
+                .catch((err) => {
+                    // 单个 URL 失败不阻塞整个 SW 安装
+                    console.warn('[sw] 部分 URL 预缓存失败：', err);
+                })
+            )
             .then(() => self.skipWaiting())
     );
 });

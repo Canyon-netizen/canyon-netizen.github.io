@@ -27,15 +27,6 @@
     const basePath = meta.basePath || '';
     const baseNav = basePath; // nav 链接走同一前缀
 
-    // DEBUG: 输出关键 meta 字段到 console，用于诊断右上角文本泄漏问题
-    try {
-        console.log('[partial-loader DEBUG]',
-            'basePath=', JSON.stringify(basePath),
-            'langText=', JSON.stringify(meta.langText),
-            'langTitle=', JSON.stringify(meta.langTitle),
-            'keys=', Object.keys(meta).length);
-    } catch (e) {}
-
     // 计算条件性占位符（在普通变量替换前处理）
     // 默认 showLastUpdated=true（meta 缺省时显示「最后更新」行）
     if (meta.showLastUpdated === undefined) meta.showLastUpdated = true;
