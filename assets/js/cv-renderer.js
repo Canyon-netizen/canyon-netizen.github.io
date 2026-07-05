@@ -11,7 +11,7 @@
     document.addEventListener('partials:loaded', init);
 
     const meta = window.__PAGE_META__ || {};
-    const isEnglish = meta.htmlLang === 'en';
+    const isEnglish = meta.htmlLang === 'en' || /^\/en\//.test(location.pathname);
 
     // 字段取词辅助：英文版优先用 xxxEn 字段，否则原字段
     function pick(obj, base) {
