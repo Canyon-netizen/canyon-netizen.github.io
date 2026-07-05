@@ -30,16 +30,30 @@
     // 用于让英文页面的 nav 跳到 en/ 对应页
     const baseLang = meta.baseLang || '';
 
+    // 自动计算中文/英文版本 URL（基于 location.pathname）
+    // - 中文页 pathname: /cv.html → zh='.', en='en/'
+    // - 英文页 pathname: /en/cv.html → zh='../', en='./'
+    const isEnPage = location.pathname.indexOf('/en/') !== -1 || location.pathname.endsWith('/en/');
+    const isInBlog = location.pathname.indexOf('/blog/') !== -1;
+    const sameName = location.pathname.replace(/^.*\//, '') || 'index.html';
+    if (meta.langZhHref === undefined || meta.langZhHref === '') {
+        meta.langZhHref = isEnPage ? '../' + sameName : sameName;
+    }
+    if (meta.langEnHref === undefined || meta.langEnHref === '') {
+        // 博客内嵌页没有英文版，兑底到 en/blog.html
+        if (isInBlog) {
+            meta.langEnHref = isEnPage ? 'blog.html' : 'en/blog.html';
+        } else {
+            meta.langEnHref = isEnPage ? sameName : 'en/' + sameName;
+        }
+    }
+
     // 计算条件性占位符（在普通变量替换前处理）
     // 默认 showLastUpdated=true（meta 缺省时显示「最后更新」行）
     if (meta.showLastUpdated === undefined) meta.showLastUpdated = true;
-    const derived = {};
-    if (meta.showLastUpdated) {
-        derived.lastUpdatedLine = '<p>' + (meta.lastUpdatedLabel || 'Last updated:') +
-            ' <span id="last-updated">2026.07</span></p>';
-    } else {
-        derived.lastUpdatedLine = '';
-    }
+    // 当前语言（用于 lang toggle 高亮）
+    derived.activeLangZh = isEnPage ? '' : ' active';
+    derived.activeLangEn = isEnPage ? ' active' : '';
 
     function replaceAll(str, find, replacement) {
         return str.split(find).join(replacement);

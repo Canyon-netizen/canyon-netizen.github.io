@@ -1990,3 +1990,33 @@ code {
         grid-template-columns: 1fr;
     }
 }
+
+/* === Lang toggle: 中 / EN 双按钮 === */
+.nav-lang-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    font-size: 13px;
+    font-weight: 600;
+    height: 36px;
+    padding: 0 8px;
+    border-radius: 4px;
+}
+.nav-lang-zh, .nav-lang-en {
+    color: var(--color-text);
+    text-decoration: none;
+    padding: 4px 6px;
+    border-radius: 3px;
+    transition: background 0.15s, color 0.15s;
+}
+.nav-lang-zh:hover, .nav-lang-en:hover {
+    background: var(--color-bg-alt);
+}
+.nav-lang-zh.active, .nav-lang-en.active {
+    color: var(--color-accent);
+    background: var(--color-bg-alt);
+}
+.nav-lang-divider {
+    color: var(--color-text-mute);
+    user-select: none;
+}
