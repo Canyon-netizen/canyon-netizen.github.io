@@ -26,6 +26,9 @@
     const meta = window.__PAGE_META__ || {};
     const basePath = meta.basePath || '';
     const baseNav = basePath; // nav 链接走同一前缀
+    // baseLang：英文页面 'en/'，中文页面 ''
+    // 用于让英文页面的 nav 跳到 en/ 对应页
+    const baseLang = meta.baseLang || '';
 
     // 计算条件性占位符（在普通变量替换前处理）
     // 默认 showLastUpdated=true（meta 缺省时显示「最后更新」行）
@@ -46,6 +49,7 @@
         // 路径占位
         html = replaceAll(html, '__BASE__', basePath);
         html = replaceAll(html, '__BASE_NAV__', baseNav);
+        html = replaceAll(html, '__BASE_LANG__', baseLang);
         // 派生占位（条件渲染等）
         Object.keys(derived).forEach(function (k) {
             html = replaceAll(html, '{{' + k + '}}', derived[k]);
