@@ -1,7 +1,7 @@
 // ========================================
 // 公共 HTML 片段加载器
 // ========================================
-// 扫描所有 <template data-include="...">，fetch 对应 _partials/*.html，
+// 扫描所有 <template data-include="...">，fetch 对应 partials/*.html，
 // 替换占位符与路径前缀，注入到原位置。最后设置页面 title / meta。
 // 完成后派发 'partials:loaded' 事件，main.js 监听后初始化。
 (function () {
@@ -60,7 +60,7 @@
 
     function loadOne(tpl) {
         const name = tpl.dataset.include;
-        const url = basePath + '_partials/' + name + '.html';
+        const url = basePath + 'partials/' + name + '.html';
         return fetch(url, { credentials: 'same-origin' })
             .then(function (r) {
                 if (!r.ok) throw new Error('partial ' + name + ' HTTP ' + r.status);

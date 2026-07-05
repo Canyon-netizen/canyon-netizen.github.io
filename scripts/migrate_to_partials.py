@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-把现有 HTML 页面改为使用 _partials 模板。
+把现有 HTML 页面改为使用 partials 模板。
 
 策略：用字符串定位切分文件，保留 <main>...</main> 块不变，
 替换 head、header、footer+search-overlay 三段。
