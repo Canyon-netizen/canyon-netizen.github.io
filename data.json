@@ -7,7 +7,9 @@
     "address": {
       "full": "浙江省杭州市西湖区浙江大学",
       "country": "中国",
+      "countryEn": "China",
       "city": "杭州",
+      "cityEn": "Hangzhou",
       "district": "西湖区",
       "university": "浙江大学"
     },

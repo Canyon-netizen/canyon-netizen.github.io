@@ -30,65 +30,16 @@
                 <a href="mailto:your.email@example.com" class="btn btn-ghost">📧 Email</a>
             </div>
 
-            <section class="content-block">
-                <h2>Basic Information</h2>
-                <ul class="info-list">
-                    <li><strong>Name:</strong> Your Name</li>
-                    <li><strong>Email:</strong> your.email@example.com</li>
-                    <li><strong>Phone:</strong> +86 XXX-XXXX-XXXX</li>
-                    <li><strong>Address:</strong> XXX University, Beijing, China</li>
-                    <li><strong>GitHub:</strong> github.com/yourusername</li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>Education</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.09 - Present</div>
-                        <div class="exp-body">
-                            <h3>XXX University · Ph.D.</h3>
-                            <p>Advisor: Prof. XXX　　GPA: X.X/4.0</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XXX University · M.S.</h3>
-                            <p>Advisor: Prof. XXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XXX University · B.S.</h3>
-                            <p>GPA: X.X/4.0　　Rank: X / XX</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>Publications</h2>
-                <ul class="award-list">
-                    <li><strong>Your Name</strong>, et al. "Title." <em>Conference</em>, Year.</li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>Awards</h2>
-                <ul class="award-list">
-                    <li><strong>20XX</strong>　National Scholarship</li>
-                    <li><strong>20XX</strong>　MCM/ICM Meritorious Winner</li>
-                </ul>
-            </section>
+            <!-- CV 内容由 cv-renderer.js 从 data.json 渲染 -->
+            <div id="cv-content"></div>
         </div>
     </main>
 
-    
+
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/cv-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>
