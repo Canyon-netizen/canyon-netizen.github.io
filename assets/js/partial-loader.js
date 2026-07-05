@@ -51,6 +51,13 @@
     // 计算条件性占位符（在普通变量替换前处理）
     // 默认 showLastUpdated=true（meta 缺省时显示「最后更新」行）
     if (meta.showLastUpdated === undefined) meta.showLastUpdated = true;
+    const derived = {};
+    if (meta.showLastUpdated) {
+        derived.lastUpdatedLine = '<p>' + (meta.lastUpdatedLabel || 'Last updated:') +
+            ' <span id="last-updated">2026.07</span></p>';
+    } else {
+        derived.lastUpdatedLine = '';
+    }
     // 当前语言（用于 lang toggle 高亮）
     derived.activeLangZh = isEnPage ? '' : ' active';
     derived.activeLangEn = isEnPage ? ' active' : '';
