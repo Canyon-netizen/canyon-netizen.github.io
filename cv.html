@@ -65,116 +65,23 @@
                 <a href="mailto:3220102194@zju.edu.cn" class="btn btn-ghost">📧 邮件联系</a>
             </div>
 
-            <!-- 占位提示：替换下面的内容为你的真实简历，或将 PDF 放到 assets/files/cv.pdf 即可让上面的下载按钮生效 -->
-
-            <section class="content-block">
-                <h2>基本信息</h2>
-                <ul class="info-list">
-                    <li><strong>姓名：</strong>周睿</li>
-                    <li><strong>邮箱：</strong>3220102194@zju.edu.cn</li>
-                    <li><strong>电话：</strong>+86 17351359530</li>
-                    <li><strong>地址：</strong>浙江省杭州市西湖区浙江大学</li>
-                    <li><strong>GitHub：</strong>github.com/canyon-netizen</li>
-                    <li><strong>个人主页：</strong>canyon-netizen.github.io</li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>教育背景</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">2026.09 - 至今</div>
-                        <div class="exp-body">
-                            <h3>浙江大学 · 计算机科学与技术学院</h3>
-                            <p>博士研究生　　导师：XXX 教授</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">2022.09 - 2026.06</div>
-                        <div class="exp-body">
-                            <h3>浙江大学 · 计算机科学与技术学院</h3>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>研究经历</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.XX - 至今</div>
-                        <div class="exp-body">
-                            <h3>课题一：XXX</h3>
-                            <p>与 XXX 教授合作，研究 XXX 问题。</p>
-                            <p>主要贡献：方法设计、实验分析、论文撰写。</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.XX - 20XX.XX</div>
-                        <div class="exp-body">
-                            <h3>课题二：XXX</h3>
-                            <p>研究 XXX。</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>实习经历</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.XX - 20XX.XX</div>
-                        <div class="exp-body">
-                            <h3>XX公司 · 算法实习生</h3>
-                            <p>工作内容：XXX</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>论文发表</h2>
-                <ul class="award-list">
-                    <li><strong>你的名字</strong>, et al. "论文标题." <em>会议名</em>, 年份.</li>
-                    <li><strong>你的名字</strong>, et al. "论文标题." <em>会议名</em>, 年份.</li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>获奖经历</h2>
-                <ul class="award-list">
-                    <li><strong>20XX 年</strong>　国家奖学金</li>
-                    <li><strong>20XX 年</strong>　XX 竞赛一等奖</li>
-                    <li><strong>20XX 年</strong>　XX 奖学金</li>
-                </ul>
-            </section>
-
-            <section class="content-block">
-                <h2>技能清单</h2>
-                <div class="skill-group">
-                    <h3>编程语言</h3>
-                    <div class="tags">
-                        <span class="tag">Python（熟练）</span>
-                        <span class="tag">C/C++（熟练）</span>
-                        <span class="tag">Java（了解）</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>框架与工具</h3>
-                    <div class="tags">
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">Git</span>
-                        <span class="tag">Linux</span>
-                    </div>
-                </div>
-            </section>
+            <!-- CV 内容由 cv-renderer.js 从 data.json 渲染 -->
+            <div id="cv-content">
+                <section class="content-block"><h2>基本信息</h2><ul class="info-list"></ul></section>
+                <section class="content-block"><h2>教育背景</h2><ul class="exp-list"></ul></section>
+                <section class="content-block"><h2>研究经历</h2><ul class="exp-list"></ul></section>
+                <section class="content-block"><h2>实习经历</h2><ul class="exp-list"></ul></section>
+                <section class="content-block"><h2>论文发表</h2><ul class="award-list"></ul></section>
+                <section class="content-block"><h2>获奖经历</h2><ul class="award-list"></ul></section>
+                <section class="content-block"><h2>技能清单</h2></section>
+            </div>
         </div>
     </main>
 
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/cv-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

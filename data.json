@@ -1,0 +1,103 @@
+{
+  "personal": {
+    "name": "周睿",
+    "nameEn": "Zhou Rui",
+    "email": "3220102194@zju.edu.cn",
+    "phone": "+86 17351359530",
+    "address": {
+      "full": "浙江省杭州市西湖区浙江大学",
+      "country": "中国",
+      "city": "杭州",
+      "district": "西湖区",
+      "university": "浙江大学"
+    },
+    "online": {
+      "github": "canyon-netizen",
+      "githubUrl": "https://github.com/canyon-netizen",
+      "homepage": "https://canyon-netizen.github.io",
+      "scholar": null
+    }
+  },
+  "education": [
+    {
+      "period": "2026.09 - 至今",
+      "school": "浙江大学",
+      "schoolEn": "Zhejiang University",
+      "department": "计算机科学与技术学院",
+      "departmentEn": "College of Computer Science and Technology",
+      "degree": "博士研究生",
+      "degreeEn": "Ph.D.",
+      "advisor": "XXX 教授",
+      "gpa": null,
+      "current": true
+    },
+    {
+      "period": "2022.09 - 2026.06",
+      "school": "浙江大学",
+      "schoolEn": "Zhejiang University",
+      "department": "计算机科学与技术学院",
+      "departmentEn": "College of Computer Science and Technology",
+      "degree": "硕士研究生",
+      "degreeEn": "M.S.",
+      "advisor": null,
+      "gpa": null,
+      "current": false
+    }
+  ],
+  "research": [
+    {
+      "period": "20XX.XX - 至今",
+      "title": "课题一：XXX",
+      "collaborator": "XXX 教授",
+      "description": "与 XXX 教授合作，研究 XXX 问题。",
+      "contributions": ["方法设计", "实验分析", "论文撰写"]
+    },
+    {
+      "period": "20XX.XX - 20XX.XX",
+      "title": "课题二：XXX",
+      "collaborator": null,
+      "description": "研究 XXX。",
+      "contributions": []
+    }
+  ],
+  "internships": [
+    {
+      "period": "20XX.XX - 20XX.XX",
+      "company": "XX公司",
+      "role": "算法实习生",
+      "description": "工作内容：XXX"
+    }
+  ],
+  "publications": [
+    {
+      "authors": ["你的名字", "et al."],
+      "title": "论文标题",
+      "venue": "会议名",
+      "year": "年份"
+    },
+    {
+      "authors": ["你的名字", "et al."],
+      "title": "论文标题",
+      "venue": "会议名",
+      "year": "年份"
+    }
+  ],
+  "awards": [
+    { "year": "20XX", "name": "国家奖学金" },
+    { "year": "20XX", "name": "XX 竞赛一等奖" },
+    { "year": "20XX", "name": "XX 奖学金" }
+  ],
+  "skills": {
+    "languages": [
+      { "name": "Python", "level": "熟练" },
+      { "name": "C/C++", "level": "熟练" },
+      { "name": "Java", "level": "了解" }
+    ],
+    "frameworks": [
+      { "name": "PyTorch" },
+      { "name": "TensorFlow" },
+      { "name": "Git" },
+      { "name": "Linux" }
+    ]
+  }
+}
