@@ -22,82 +22,11 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">博客</h1>
-            <p class="lead">
-                这里记录我的学习笔记、研究随想和技术分享。
-                <a href="rss.xml" style="font-size: 14px;">📡 RSS 订阅</a>
-            </p>
-
-            <!-- 分类过滤 -->
-            <div class="filter-bar" id="filter-bar">
-                <button class="filter-btn active" data-filter="all">全部</button>
-                <button class="filter-btn" data-filter="research">研究</button>
-                <button class="filter-btn" data-filter="tech">技术</button>
-                <button class="filter-btn" data-filter="life">随笔</button>
-            </div>
-
-            <div class="post-list">
-                <article class="post-item reveal" data-category="research">
-                    <div class="post-meta">
-                        <time>2026-06-20</time>
-                        <span class="post-category">研究</span>
-                        <span class="read-time">约 5 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="blog/2026-06-20-research-notes.html">研究笔记：从零开始读一篇论文</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        分享一下我读论文的"三遍阅读法"，以及如何用一周时间吃透一篇顶会论文。
-                        从标题、摘要到实验设计，每一步的侧重点和常见误区都讲清楚。
-                    </p>
-                </article>
-
-                <article class="post-item reveal" data-category="tech">
-                    <div class="post-meta">
-                        <time>2026-05-08</time>
-                        <span class="post-category">技术</span>
-                        <span class="read-time">约 8 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="blog/2026-05-08-python-config.html">Python 项目配置管理：环境变量、配置文件、密钥</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        一个 Python 项目往往需要在不同环境（开发/测试/生产）下切换配置。
-                        本文整理了我常用的几种配置管理方式，以及它们各自的适用场景。
-                    </p>
-                </article>
-
-                <article class="post-item reveal" data-category="life">
-                    <div class="post-meta">
-                        <time>2026-03-15</time>
-                        <span class="post-category">随笔</span>
-                        <span class="read-time">约 3 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="#">读博第一年的反思</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        回头看看读博第一年踩过的坑：选题的反复、实验的低效、与导师的沟通。
-                        写给同样在科研路上摸索的你。
-                    </p>
-                </article>
-
-                <article class="post-item reveal" data-category="research">
-                    <div class="post-meta">
-                        <time>2026-01-22</time>
-                        <span class="post-category">研究</span>
-                        <span class="read-time">约 6 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="#">如何写好一篇学术论文的引言</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        学术论文的引言（Introduction）是一篇文章的门面。
-                        本文总结一个"漏斗式"引言写作结构：从大问题到小问题，从已有工作到本文贡献。
-                    </p>
-                </article>
-            </div>
+            <p class="lead">这里记录我的学习笔记、研究随想和技术分享。<a href="rss.xml">📡 RSS 订阅</a></p>
+            <div class="filter-bar" id="filter-bar" data-filter-bar></div>
+            <div class="post-list" data-posts-list data-section="all-posts"></div>
         </div>
     </main>
 
@@ -105,6 +34,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

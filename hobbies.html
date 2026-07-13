@@ -22,55 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">爱好 / Beyond Work</h1>
-            <p class="lead">
-                研究和工程之外的我。下面是我工作之外常做的事情 ——
-                它们大多帮助我成为一个更好的研究者。
-            </p>
-
-            <div class="hobby-grid">
-                <div class="hobby-card">
-                    <div class="hobby-icon">🏃</div>
-                    <div class="hobby-name">跑步</div>
-                    <div class="hobby-desc">每周 3-5 次，配速 5'30"。跑步是给大脑放空的时间。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">📷</div>
-                    <div class="hobby-name">摄影</div>
-                    <div class="hobby-desc">用手机记录日常与旅行的瞬间，喜欢街拍和自然光。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎸</div>
-                    <div class="hobby-name">吉他</div>
-                    <div class="hobby-desc">正在练习指弹，《River Flows in You》练了 100 遍。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">✍️</div>
-                    <div class="hobby-name">写作</div>
-                    <div class="hobby-desc">偶尔写点技术博客或非虚构随笔，记录思考。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">☕</div>
-                    <div class="hobby-name">手冲咖啡</div>
-                    <div class="hobby-desc">每天一杯浅烘耶加雪菲，钟爱花果香调。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🥾</div>
-                    <div class="hobby-name">徒步</div>
-                    <div class="hobby-desc">周末约同学去城市周边徒步，每年至少一次长线。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎮</div>
-                    <div class="hobby-name">游戏</div>
-                    <div class="hobby-desc">休闲时玩《塞尔达》《黑神话》，喜欢剧情驱动型。</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎬</div>
-                    <div class="hobby-name">电影</div>
-                    <div class="hobby-desc">偏爱科幻、悬疑、文艺片。最近沉迷是枝裕和。</div>
-                </div>
-            </div>
+            <p class="lead">研究和工程之外的我。下面是我工作之外常做的事情 —— 它们大多帮助我成为一个更好的研究者。</p>
+            <div data-section="hobbies"></div>
         </div>
     </main>
 
@@ -78,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

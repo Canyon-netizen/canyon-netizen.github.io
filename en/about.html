@@ -22,81 +22,26 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">About Me</h1>
 
-            <section class="content-block">
-                <h2>Bio</h2>
-                <p>I am a PhD student at XXX University, advised by Prof. XXX.</p>
-                <p>My research interests focus on XXX, XXX, and XXX. I have published papers in top venues such as XXX and XXX.</p>
+            <section class="content-block" data-section="personal-bio">
+                <h2>About</h2>
+                <div data-bio-paragraphs></div>
             </section>
 
-            <section class="content-block">
+            <section class="content-block" data-section="education">
                 <h2>Education</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.09 - Present</div>
-                        <div class="exp-body">
-                            <h3>XXX University · Ph.D.</h3>
-                            <p>Major: XXX　　Advisor: Prof. XXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XXX University · M.S.</h3>
-                            <p>Major: XXX　　Advisor: Prof. XXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XXX University · B.S.</h3>
-                            <p>Major: XXX　　GPA: X.X/4.0</p>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="exp-list" data-education-list></ul>
             </section>
 
-            <section class="content-block">
-                <h2>Work Experience</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.XX - 20XX.XX</div>
-                        <div class="exp-body">
-                            <h3>XXX Company · Research Intern</h3>
-                            <p>Worked on XXX.</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
+            <section class="content-block" data-section="skills">
                 <h2>Skills</h2>
-                <div class="skill-group">
-                    <h3>Programming</h3>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">C/C++</span>
-                        <span class="tag">Java</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>Tools & Frameworks</h3>
-                    <div class="tags">
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">Hugging Face</span>
-                    </div>
-                </div>
             </section>
 
             <section class="content-block">
-                <h2>Honors & Awards</h2>
-                <ul class="award-list">
-                    <li><strong>20XX</strong>　National Scholarship</li>
-                    <li><strong>20XX</strong>　Meritorious Winner, MCM/ICM</li>
-                </ul>
+                <h2>Awards</h2>
+                <ul class="award-list" data-awards-list></ul>
             </section>
         </div>
     </main>
@@ -105,6 +50,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/page-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>

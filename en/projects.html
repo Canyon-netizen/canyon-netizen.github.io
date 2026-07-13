@@ -22,43 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">Projects</h1>
-            <p class="lead">
-                Research projects and open-source tools I have built or contributed to.
-            </p>
-
-            <section class="project-card">
-                <div class="project-header">
-                    <h2>Project Title 1</h2>
-                    <span class="project-status status-active">Active</span>
-                </div>
-                <p class="project-desc">
-                    Brief description: what the project does, its target use case, and key techniques.
-                </p>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">PyTorch</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="pub-link">GitHub</a>
-                    <a href="#" class="pub-link">Demo</a>
-                </div>
-            </section>
-
-            <section class="project-card">
-                <div class="project-header">
-                    <h2>Project Title 2</h2>
-                    <span class="project-status status-completed">Completed</span>
-                </div>
-                <p class="project-desc">Brief description.</p>
-                <div class="project-tech">
-                    <span class="tag">JavaScript</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="pub-link">GitHub</a>
-                </div>
-            </section>
+            <p class="lead">Research and open-source projects I have led or contributed to.</p>
+            <div data-section="projects-list"></div>
         </div>
     </main>
 
@@ -66,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/page-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>

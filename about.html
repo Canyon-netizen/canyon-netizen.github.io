@@ -17,116 +17,38 @@
 <body>
 
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
-    
+
     <template data-include="header"></template>
 
-
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">关于我</h1>
 
-            <section class="content-block">
+            <section class="content-block" data-section="personal-bio">
                 <h2>个人简介</h2>
-                <p>
-                    这里是个人简介部分。请用 2-3 段话介绍你自己，例如：
-                </p>
-                <p>
-                    我是 XXX 大学 XXX 系的博士研究生，导师是 XXX 教授。
-                    本科与硕士均毕业于 XXX 大学 XXX 专业。
-                    主要研究方向为 XXX，在 XXX 会议/期刊上发表论文 X 篇。
-                </p>
-                <p>
-                    目前的研究兴趣包括 XXX、XXX、XXX。
-                    欢迎对相关方向感兴趣的同学邮件交流与合作。
-                </p>
+                <div data-bio-paragraphs></div>
             </section>
 
-            <section class="content-block">
+            <section class="content-block" data-section="education">
                 <h2>教育背景</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.09 - 至今</div>
-                        <div class="exp-body">
-                            <h3>XX大学 · 博士研究生</h3>
-                            <p>专业：XXX　　导师：XXX 教授</p>
-                            <p>研究方向：XXX</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XX大学 · 硕士研究生</h3>
-                            <p>专业：XXX　　导师：XXX 教授</p>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="exp-period">20XX.09 - 20XX.06</div>
-                        <div class="exp-body">
-                            <h3>XX大学 · 本科</h3>
-                            <p>专业：XXX　　GPA：X.X/4.0</p>
-                        </div>
-                    </li>
-                </ul>
+                <ul class="exp-list" data-education-list></ul>
             </section>
 
-            <section class="content-block">
-                <h2>工作经历</h2>
-                <ul class="exp-list">
-                    <li>
-                        <div class="exp-period">20XX.XX - 20XX.XX</div>
-                        <div class="exp-body">
-                            <h3>XX公司 · 实习</h3>
-                            <p>岗位：XXX　　团队：XXX</p>
-                            <p>主要工作：XXX</p>
-                        </div>
-                    </li>
-                </ul>
-            </section>
-
-            <section class="content-block">
+            <section class="content-block" data-section="skills">
                 <h2>技能清单</h2>
-                <div class="skill-group">
-                    <h3>编程语言</h3>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">C/C++</span>
-                        <span class="tag">Java</span>
-                        <span class="tag">JavaScript</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>工具与框架</h3>
-                    <div class="tags">
-                        <span class="tag">PyTorch</span>
-                        <span class="tag">TensorFlow</span>
-                        <span class="tag">Hugging Face</span>
-                        <span class="tag">LaTeX</span>
-                    </div>
-                </div>
-                <div class="skill-group">
-                    <h3>语言能力</h3>
-                    <div class="tags">
-                        <span class="tag">中文（母语）</span>
-                        <span class="tag">英语（流利）</span>
-                    </div>
-                </div>
             </section>
 
             <section class="content-block">
                 <h2>获奖与荣誉</h2>
-                <ul class="award-list">
-                    <li><strong>20XX 年</strong>　XX 奖学金</li>
-                    <li><strong>20XX 年</strong>　XX 竞赛一等奖</li>
-                    <li><strong>20XX 年</strong>　XX 优秀学生</li>
-                </ul>
+                <ul class="award-list" data-awards-list></ul>
             </section>
         </div>
     </main>
 
-    
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

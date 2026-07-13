@@ -22,67 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">项目展示</h1>
-            <p class="lead">
-                这里展示我参与或主导的研究项目和开源项目。
-            </p>
-
-            <section class="project-card">
-                <div class="project-header">
-                    <h2>项目标题一</h2>
-                    <span class="project-status status-active">进行中</span>
-                </div>
-                <p class="project-desc">
-                    项目简介：简要描述这个项目的目标、应用场景、关键技术。
-                    比如「一个面向少样本场景的文本分类框架，集成多种预训练模型，支持快速微调」。
-                </p>
-                <div class="project-tech">
-                    <span class="tag">Python</span>
-                    <span class="tag">PyTorch</span>
-                    <span class="tag">Hugging Face</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="pub-link">GitHub</a>
-                    <a href="#" class="pub-link">Demo</a>
-                    <a href="#" class="pub-link">文档</a>
-                </div>
-            </section>
-
-            <section class="project-card">
-                <div class="project-header">
-                    <h2>项目标题二</h2>
-                    <span class="project-status status-completed">已完成</span>
-                </div>
-                <p class="project-desc">
-                    项目简介：简要描述这个项目。
-                </p>
-                <div class="project-tech">
-                    <span class="tag">JavaScript</span>
-                    <span class="tag">React</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="pub-link">GitHub</a>
-                </div>
-            </section>
-
-            <section class="project-card">
-                <div class="project-header">
-                    <h2>项目标题三</h2>
-                    <span class="project-status status-completed">已完成</span>
-                </div>
-                <p class="project-desc">
-                    项目简介：简要描述这个项目。
-                </p>
-                <div class="project-tech">
-                    <span class="tag">C++</span>
-                    <span class="tag">CUDA</span>
-                </div>
-                <div class="project-links">
-                    <a href="#" class="pub-link">GitHub</a>
-                    <a href="#" class="pub-link">论文</a>
-                </div>
-            </section>
+            <p class="lead">这里展示我参与或主导的研究项目和开源项目。</p>
+            <div data-section="projects-list"></div>
         </div>
     </main>
 
@@ -90,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

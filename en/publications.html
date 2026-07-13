@@ -22,65 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">Publications</h1>
-            <p class="lead">
-                <span class="pub-count">* denotes corresponding author, † denotes equal contribution</span>
-            </p>
-
-            <section class="content-block">
-                <h2>2026</h2>
-                <div class="pub-list-full">
-                    <div class="pub-item">
-                        <div class="pub-venue">NeurIPS 2026</div>
-                        <div class="pub-content">
-                            <div class="pub-title">Sample paper title: a new XXX method</div>
-                            <div class="pub-authors"><strong>Your Name</strong>, Author A, Author B, Corresponding*</div>
-                            <div class="pub-desc">Abstract: brief description of contributions.</div>
-                            <div class="pub-links">
-                                <a href="#" class="pub-link">PDF</a>
-                                <a href="#" class="pub-link">Code</a>
-                                <a href="#" class="pub-link">BibTeX</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-block">
-                <h2>2025</h2>
-                <div class="pub-list-full">
-                    <div class="pub-item">
-                        <div class="pub-venue">ACL 2025</div>
-                        <div class="pub-content">
-                            <div class="pub-title">Text generation research with pretrained models</div>
-                            <div class="pub-authors">Author A, <strong>Your Name</strong>†, Author B, Corresponding*</div>
-                            <div class="pub-links">
-                                <a href="#" class="pub-link">PDF</a>
-                                <a href="#" class="pub-link">Code</a>
-                                <a href="#" class="pub-link">BibTeX</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section class="content-block">
-                <h2>Preprints</h2>
-                <div class="pub-list-full">
-                    <div class="pub-item">
-                        <div class="pub-venue">arXiv 2026</div>
-                        <div class="pub-content">
-                            <div class="pub-title">Latest preprint</div>
-                            <div class="pub-authors"><strong>Your Name</strong>, Author A</div>
-                            <div class="pub-links">
-                                <a href="#" class="pub-link">arXiv</a>
-                                <a href="#" class="pub-link">Code</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <p class="lead">* denotes corresponding author, † denotes equal contribution</p>
+            <div data-section="all-publications"></div>
         </div>
     </main>
 
@@ -88,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/page-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>

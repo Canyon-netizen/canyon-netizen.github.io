@@ -22,77 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">阅读 / Books</h1>
-            <p class="lead">
-                我读过的书，按主题分类。⭐ 越多表示个人推荐度越高。
-            </p>
-
-            <div class="book-group">
-                <h2>📚 技术与工程</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">深入理解计算机系统 (CSAPP)</div>
-                        <div class="book-author">Randal E. Bryant</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">计算机基础"圣经"，从硬件到应用层打通，强烈推荐。</div>
-                    </li>
-                    <li class="book-item">
-                        <div class="book-title">设计模式</div>
-                        <div class="book-author">Gang of Four</div>
-                        <div class="book-rating">⭐⭐⭐⭐</div>
-                        <div class="book-comment">面向对象设计的经典，但部分模式在现代语言中已被简化。</div>
-                    </li>
-                    <li class="book-item">
-                        <div class="book-title">深度学习 (花书)</div>
-                        <div class="book-author">Ian Goodfellow</div>
-                        <div class="book-rating">⭐⭐⭐⭐</div>
-                        <div class="book-comment">系统性强，适合当作工具书翻阅。</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="book-group">
-                <h2>📖 文学</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">百年孤独</div>
-                        <div class="book-author">加西亚·马尔克斯</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">魔幻现实主义的巅峰之作。</div>
-                    </li>
-                    <li class="book-item">
-                        <div class="book-title">三体</div>
-                        <div class="book-author">刘慈欣</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">中国科幻的代表作，宏大叙事+硬核科学。</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="book-group">
-                <h2>🌟 传记与人物</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">活出生命的意义</div>
-                        <div class="book-author">维克多·弗兰克尔</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">从集中营到意义疗法，治愈内耗的一本书。</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="book-group">
-                <h2>🎯 正在读</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">思考，快与慢</div>
-                        <div class="book-author">Daniel Kahneman</div>
-                        <div class="book-rating">⏳ 在读</div>
-                        <div class="book-comment">关于人类两种思维系统的心理学经典。</div>
-                    </li>
-                </ul>
-            </div>
+            <p class="lead">我读过的书，按主题分类。⭐ 越多表示个人推荐度越高。</p>
+            <div data-section="books"></div>
         </div>
     </main>
 
@@ -100,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>

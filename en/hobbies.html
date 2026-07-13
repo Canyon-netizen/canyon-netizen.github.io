@@ -22,44 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">Hobbies / Beyond Work</h1>
-            <p class="lead">
-                What I do when I'm not at the keyboard — most of these help me become a better researcher.
-            </p>
-
-            <div class="hobby-grid">
-                <div class="hobby-card">
-                    <div class="hobby-icon">🏃</div>
-                    <div class="hobby-name">Running</div>
-                    <div class="hobby-desc">3-5 times a week at 5'30" pace. Running is when my brain rests.</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">📷</div>
-                    <div class="hobby-name">Photography</div>
-                    <div class="hobby-desc">Street and travel photography with a phone camera.</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🎸</div>
-                    <div class="hobby-name">Guitar</div>
-                    <div class="hobby-desc">Practicing fingerstyle. Currently working on "River Flows in You".</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">✍️</div>
-                    <div class="hobby-name">Writing</div>
-                    <div class="hobby-desc">Occasional blog posts and short essays.</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">☕</div>
-                    <div class="hobby-name">Pour-over Coffee</div>
-                    <div class="hobby-desc">Daily Ethiopian Yirgacheffe, light roast, floral.</div>
-                </div>
-                <div class="hobby-card">
-                    <div class="hobby-icon">🥾</div>
-                    <div class="hobby-name">Hiking</div>
-                    <div class="hobby-desc">Weekend trails, plus one multi-day trek every year.</div>
-                </div>
-            </div>
+            <p class="lead">What I do when I'm not at the keyboard. Most of these help me become a better researcher.</p>
+            <div data-section="hobbies"></div>
         </div>
     </main>
 
@@ -67,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/page-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>

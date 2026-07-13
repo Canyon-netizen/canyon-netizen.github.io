@@ -366,8 +366,8 @@
 
     // ---- all-posts：blog 完整列表（4 篇含已发布与占位） ----
     const renderAllPosts = function (sec, data) {
-        // 分类过滤栏
-        const filterBar = sec.querySelector('[data-filter-bar]');
+        // 分类过滤栏（可能在 sec 兄弟元素中）
+        const filterBar = sec.querySelector('[data-filter-bar]') || sec.parentNode && sec.parentNode.querySelector('[data-filter-bar]');
         if (filterBar && data.pages && data.pages.blog && data.pages.blog.categories) {
             filterBar.innerHTML = '';
             data.pages.blog.categories.forEach(function (c) {

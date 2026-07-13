@@ -22,51 +22,10 @@
 
 
     <main id="main-content" class="page-main">
-        <div class="container narrow">
+        <div id="page-content" class="container narrow">
             <h1 class="page-title">Books</h1>
-            <p class="lead">Books I've read, grouped by topic. More ⭐ means higher personal recommendation.</p>
-
-            <div class="book-group">
-                <h2>📚 Tech & Engineering</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">Computer Systems: A Programmer's Perspective (CSAPP)</div>
-                        <div class="book-author">Randal E. Bryant</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">The bible of systems programming. Highly recommended.</div>
-                    </li>
-                    <li class="book-item">
-                        <div class="book-title">Design Patterns</div>
-                        <div class="book-author">Gang of Four</div>
-                        <div class="book-rating">⭐⭐⭐⭐</div>
-                        <div class="book-comment">Classic OOP design; some patterns are simplified in modern languages.</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="book-group">
-                <h2>📖 Fiction</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">One Hundred Years of Solitude</div>
-                        <div class="book-author">Gabriel García Márquez</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">Masterpiece of magical realism.</div>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="book-group">
-                <h2>🌟 Biography & Philosophy</h2>
-                <ul class="book-list">
-                    <li class="book-item">
-                        <div class="book-title">Man's Search for Meaning</div>
-                        <div class="book-author">Viktor Frankl</div>
-                        <div class="book-rating">⭐⭐⭐⭐⭐</div>
-                        <div class="book-comment">From the Holocaust to logotherapy — a deeply healing read.</div>
-                    </li>
-                </ul>
-            </div>
+            <p class="lead">Books I have read, organized by topic. ⭐ ratings are personal.</p>
+            <div data-section="books"></div>
         </div>
     </main>
 
@@ -74,6 +33,7 @@
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="../assets/js/page-renderer.js"></script>
     <script defer src="../assets/js/main.js"></script>
 </body>
 </html>
