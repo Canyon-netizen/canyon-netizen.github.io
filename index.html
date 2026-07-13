@@ -20,213 +20,131 @@
 <body>
 
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
-    <!-- 顶部导航栏 -->
-    
+
     <template data-include="header"></template>
 
+    <!-- 主页内容由 page-renderer.js 从 data.json 渲染 -->
+    <main id="main-content" class="page-main">
+        <div id="page-content">
+            <!-- 顶部 hero -->
+            <section class="hero" data-section="personal-hero">
+                <div class="container hero-inner">
+                    <div class="hero-text">
+                        <p class="hero-eyebrow" data-hero-eyebrow></p>
+                        <h1 class="hero-title">你好，我是 <span class="accent" data-hero-name></span></h1>
+                        <p class="hero-subtitle" data-hero-subtitle></p>
+                        <div class="hero-cta" data-hero-ctas></div>
+                        <div class="hero-meta" data-hero-contacts></div>
+                    </div>
+                    <div class="hero-avatar">
+                        <img loading="lazy" data-hero-avatar src="assets/images/profile.svg" alt="个人头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="avatar-placeholder">头像<br>占位</div>
+                    </div>
+                </div>
+            </section>
 
-    <!-- 主页 Hero 区域 -->
-    <section class="hero">
-        <div class="container hero-inner">
-            <div class="hero-text">
-                <p class="hero-eyebrow">欢迎来到我的个人主页</p>
-                <h1 class="hero-title">你好，我是 <span class="accent">你的名字</span></h1>
-                <p class="hero-subtitle">
-                    一句话简介：例如「清华大学计算机系博士生，研究方向为机器学习与自然语言处理」。
-                    请在 <code>index.html</code> 中修改这段文字。
-                </p>
-                <div class="hero-cta">
-                    <a href="research.html" class="btn btn-primary">了解研究方向</a>
-                    <a href="cv.html" class="btn btn-ghost">查看简历</a>
-                </div>
-                <div class="hero-meta">
-                    <a href="mailto:your.email@example.com" class="meta-item">📧 邮箱</a>
-                    <a href="https://github.com/yourusername" class="meta-item" target="_blank" rel="noopener">💻 GitHub</a>
-                    <a href="https://scholar.google.com" class="meta-item" target="_blank" rel="noopener">🎓 Google Scholar</a>
-                </div>
-            </div>
-            <div class="hero-avatar">
-                <!-- 替换 src 即可换头像 -->
-                <img loading="lazy" src="assets/images/profile.svg" alt="个人头像" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="avatar-placeholder">头像<br>占位</div>
-            </div>
-        </div>
-    </section>
+            <!-- 统计信息 -->
+            <section class="section" data-section="stats">
+                <div class="container">
+                    <h2 class="section-title">数据一览</h2>
+                    <div class="stats-row reveal">
+                        <div class="stat-card" data-stat="posts">
+                            <div class="stat-icon" data-stat-icon></div>
+                            <div class="stat-text">
+                                <div class="stat-label" data-stat-label></div>
+                                <div class="stat-value" data-stat-value></div>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="publications">
+                            <div class="stat-icon" data-stat-icon></div>
+                            <div class="stat-text">
+                                <div class="stat-label" data-stat-label></div>
+                                <div class="stat-value" data-stat-value></div>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="githubStars">
+                            <div class="stat-icon" data-stat-icon></div>
+                            <div class="stat-text">
+                                <div class="stat-label" data-stat-label></div>
+                                <div class="stat-value" data-stat-value></div>
+                            </div>
+                        </div>
+                        <div class="stat-card" data-stat="visitors">
+                            <div class="stat-icon" data-stat-icon></div>
+                            <div class="stat-text">
+                                <div class="stat-label" data-stat-label></div>
+                                <div class="stat-value">
+                                    <img loading="lazy" src="https://visitor-badge.glitch.me/badge?page_id=canyon-netizen.github.io" alt="访客" style="display:inline; height: 22px; vertical-align: middle;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <!-- 统计信息 -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">数据一览</h2>
-            <div class="stats-row reveal">
-                <div class="stat-card">
-                    <div class="stat-icon">📝</div>
-                    <div class="stat-text">
-                        <div class="stat-label">博客文章</div>
-                        <div class="stat-value">12</div>
+                    <div class="github-chart reveal">
+                        <img loading="lazy" data-contributions-chart src="https://ghchart.rshah.org/1e3a5f/Canyon-netizen" alt="GitHub 贡献图"
+                             onerror="this.parentElement.style.display='none';">
+                        <p class="github-chart-caption" data-contributions-caption></p>
                     </div>
                 </div>
-                <div class="stat-card">
-                    <div class="stat-icon">📄</div>
-                    <div class="stat-text">
-                        <div class="stat-label">发表论文</div>
-                        <div class="stat-value">8</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⭐</div>
-                    <div class="stat-text">
-                        <div class="stat-label">GitHub Stars</div>
-                        <div class="stat-value">2.3k</div>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">👀</div>
-                    <div class="stat-text">
-                        <div class="stat-label">访客数</div>
-                        <div class="stat-value">
-                            <img loading="lazy" src="https://visitor-badge.glitch.me/badge?page_id=canyon-netizen.github.io" alt="访客" style="display:inline; height: 22px; vertical-align: middle;">
+            </section>
+
+            <!-- 个人概览 -->
+            <section class="section section-alt" data-section="overview">
+                <div class="container">
+                    <h2 class="section-title">个人概览</h2>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h3>🎓 教育背景</h3>
+                            <ul data-overview-education></ul>
+                        </div>
+                        <div class="info-card">
+                            <h3>🔬 研究兴趣</h3>
+                            <ul data-overview-interests></ul>
+                        </div>
+                        <div class="info-card" data-overview-status>
+                            <h3>💼 当前状态</h3>
+                            <p data-overview-affiliation></p>
+                            <p data-overview-advisor></p>
+                        </div>
+                        <div class="info-card" data-overview-location>
+                            <h3>📍 所在地</h3>
+                            <p data-overview-city></p>
+                            <p data-overview-note></p>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
-            <!-- GitHub 贡献图（需要联网，加载失败不显示） -->
-            <div class="github-chart reveal">
-                <img loading="lazy" src="https://ghchart.rshah.org/1e3a5f/Canyon-netizen" alt="GitHub 贡献图"
-                     onerror="this.parentElement.style.display='none';">
-                <p class="github-chart-caption">最近一年 GitHub 贡献记录（如果未显示，可在 index.html 中修改/移除）</p>
-            </div>
+            <!-- 最新动态 -->
+            <section class="section section-alt" data-section="news">
+                <div class="container">
+                    <h2 class="section-title">最新动态</h2>
+                    <ul class="timeline" data-news-list></ul>
+                </div>
+            </section>
+
+            <!-- 代表性论文 -->
+            <section class="section" data-section="featured-publications">
+                <div class="container">
+                    <h2 class="section-title">代表性论文 <a href="publications.html" class="see-all">查看全部 →</a></h2>
+                    <div class="pub-list" data-featured-pubs></div>
+                </div>
+            </section>
+
+            <!-- 最新博客 -->
+            <section class="section section-alt" data-section="latest-posts">
+                <div class="container">
+                    <h2 class="section-title">最新博客 <a href="blog.html" class="see-all">所有文章 →</a></h2>
+                    <div class="post-list" data-latest-posts></div>
+                </div>
+            </section>
         </div>
-    </section>
+    </main>
 
-    <!-- 概览信息 -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">个人概览</h2>
-            <div class="info-grid">
-                <div class="info-card">
-                    <h3>🎓 教育背景</h3>
-                    <p>20XX.09 - 至今　XX大学　XX专业　博士</p>
-                    <p>20XX.09 - 20XX.06　XX大学　XX专业　硕士</p>
-                    <p>20XX.09 - 20XX.06　XX大学　XX专业　学士</p>
-                </div>
-                <div class="info-card">
-                    <h3>🔬 研究兴趣</h3>
-                    <p>机器学习、自然语言处理、深度学习</p>
-                    <p>大语言模型、文本生成、表示学习</p>
-                </div>
-                <div class="info-card">
-                    <h3>💼 当前状态</h3>
-                    <p>XX大学 XX系 博士研究生</p>
-                    <p>导师：XXX 教授</p>
-                </div>
-                <div class="info-card">
-                    <h3>📍 所在地</h3>
-                    <p>中国，北京</p>
-                    <p>欢迎邮件交流合作</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 最新动态 -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">最新动态</h2>
-            <ul class="timeline">
-                <li class="timeline-item">
-                    <span class="timeline-date">2026.06</span>
-                    <p>论文《论文标题》被 <strong>XXX Conference</strong> 接收。</p>
-                </li>
-                <li class="timeline-item">
-                    <span class="timeline-date">2026.03</span>
-                    <p>在 <strong>XXX 研讨会</strong> 上做口头报告。</p>
-                </li>
-                <li class="timeline-item">
-                    <span class="timeline-date">2025.12</span>
-                    <p>获得 <strong>XX 奖学金</strong>。</p>
-                </li>
-                <li class="timeline-item">
-                    <span class="timeline-date">2025.09</span>
-                    <p>开始 <strong>XX 项目</strong> 研究。</p>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <!-- 精选论文 -->
-    <section class="section">
-        <div class="container">
-            <h2 class="section-title">代表性论文 <a href="publications.html" class="see-all">查看全部 →</a></h2>
-            <div class="pub-list">
-                <div class="pub-item">
-                    <div class="pub-venue">XXX 2026</div>
-                    <div class="pub-content">
-                        <div class="pub-title">论文标题示例：一种新的深度学习方法</div>
-                        <div class="pub-authors"><strong>你的名字</strong>, 作者A, 作者B, 通讯作者*</div>
-                        <div class="pub-links">
-                            <a href="#" class="pub-link">PDF</a>
-                            <a href="#" class="pub-link">Code</a>
-                            <a href="#" class="pub-link">BibTeX</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="pub-item">
-                    <div class="pub-venue">XXX 2025</div>
-                    <div class="pub-content">
-                        <div class="pub-title">论文标题示例：基于预训练模型的文本生成研究</div>
-                        <div class="pub-authors">作者A, <strong>你的名字</strong>, 作者B</div>
-                        <div class="pub-links">
-                            <a href="#" class="pub-link">PDF</a>
-                            <a href="#" class="pub-link">Code</a>
-                            <a href="#" class="pub-link">BibTeX</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 最新博客 -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">最新博客 <a href="blog.html" class="see-all">所有文章 →</a></h2>
-            <div class="post-list">
-                <article class="post-item reveal" data-category="research">
-                    <div class="post-meta">
-                        <time>2026-06-20</time>
-                        <span class="post-category">研究</span>
-                        <span class="read-time">约 5 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="blog/2026-06-20-research-notes.html">研究笔记：从零开始读一篇论文</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        分享一下我读论文的"三遍阅读法"，以及如何用一周时间吃透一篇顶会论文。
-                    </p>
-                </article>
-                <article class="post-item reveal" data-category="tech">
-                    <div class="post-meta">
-                        <time>2026-05-08</time>
-                        <span class="post-category">技术</span>
-                        <span class="read-time">约 8 分钟</span>
-                    </div>
-                    <h2 class="post-title">
-                        <a href="blog/2026-05-08-python-config.html">Python 项目配置管理：环境变量、配置文件、密钥</a>
-                    </h2>
-                    <p class="post-excerpt">
-                        整理 Python 项目中几种配置管理方式：环境变量、.env 文件、YAML/TOML、Pydantic Settings、密钥管理。
-                    </p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- 页脚 -->
-    
     <template data-include="footer"></template>
     <template data-include="search-overlay"></template>
 
+    <script defer src="assets/js/page-renderer.js"></script>
     <script defer src="assets/js/main.js"></script>
 </body>
 </html>
