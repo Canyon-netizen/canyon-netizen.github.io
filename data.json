@@ -19,8 +19,75 @@
       "githubUrl": "https://github.com/canyon-netizen",
       "homepage": "https://canyon-netizen.github.io",
       "scholar": null
+    },
+    "heroEyebrow": "欢迎来到我的个人主页",
+    "heroSubtitle": "一句话简介：例如「清华大学计算机系博士生，研究方向为机器学习与自然语言处理」。请在 data.json 中修改这段文字。",
+    "bio": [
+      "这里是个人简介部分。请用 2-3 段话介绍你自己。",
+      "我是 XXX 大学 XXX 系的博士研究生，导师是 XXX 教授。本科与硕士均毕业于 XXX 大学 XXX 专业。主要研究方向为 XXX，在 XXX 会议/期刊上发表论文 X 篇。",
+      "目前的研究兴趣包括 XXX、XXX、XXX。欢迎对相关方向感兴趣的同学邮件交流与合作。"
+    ],
+    "interests": [
+      "机器学习",
+      "自然语言处理",
+      "深度学习",
+      "大语言模型"
+    ],
+    "currentAffiliation": "XX大学 XX系",
+    "currentAdvisor": "XXX 教授",
+    "collaborationNote": "我乐于与对相关方向感兴趣的研究者交流合作。如果你正在研究 XXX / XXX / XXX，并希望讨论一些想法，欢迎通过邮件联系我。",
+    "avatar": "assets/images/profile.svg"
+  },
+  "stats": {
+    "posts": { "label": "博客文章", "value": "12", "icon": "📝" },
+    "publications": { "label": "发表论文", "value": "8", "icon": "📄" },
+    "githubStars": { "label": "GitHub Stars", "value": "2.3k", "icon": "⭐" },
+    "visitors": {
+      "label": "访客数",
+      "icon": "👀",
+      "badgeUrl": "https://visitor-badge.glitch.me/badge?page_id=canyon-netizen.github.io"
+    },
+    "contributionsChart": {
+      "username": "Canyon-netizen",
+      "theme": "1e3a5f",
+      "caption": "最近一年 GitHub 贡献记录（如果未显示，可在 index.html 中修改/移除）"
     }
   },
+  "news": [
+    { "date": "2026.06", "content": "论文《论文标题》被 <strong>XXX Conference</strong> 接收。" },
+    { "date": "2026.03", "content": "在 <strong>XXX 研讨会</strong> 上做口头报告。" },
+    { "date": "2025.12", "content": "获得 <strong>XX 奖学金</strong>。" },
+    { "date": "2025.09", "content": "开始 <strong>XX 项目</strong> 研究。" }
+  ],
+  "overview": {
+    "education": [
+      { "period": "20XX.09 - 至今", "school": "XX大学", "major": "XX专业", "degree": "博士" },
+      { "period": "20XX.09 - 20XX.06", "school": "XX大学", "major": "XX专业", "degree": "硕士" },
+      { "period": "20XX.09 - 20XX.06", "school": "XX大学", "major": "XX专业", "degree": "学士" }
+    ],
+    "interests": [
+      "机器学习、自然语言处理、深度学习",
+      "大语言模型、文本生成、表示学习"
+    ],
+    "currentStatus": {
+      "affiliation": "XX大学 XX系 博士研究生",
+      "advisor": "导师：XXX 教授"
+    },
+    "location": {
+      "city": "北京",
+      "country": "中国",
+      "note": "欢迎邮件交流合作"
+    }
+  },
+  "heroCtas": [
+    { "label": "了解研究方向", "href": "research.html", "variant": "primary" },
+    { "label": "查看简历", "href": "cv.html", "variant": "ghost" }
+  ],
+  "contacts": [
+    { "icon": "📧", "label": "邮箱", "href": "mailto:3220102194@zju.edu.cn" },
+    { "icon": "💻", "label": "GitHub", "href": "https://github.com/canyon-netizen", "external": true },
+    { "icon": "🎓", "label": "Google Scholar", "href": "https://scholar.google.com", "external": true }
+  ],
   "education": [
     {
       "period": "2026.09 - 至今",
@@ -54,17 +121,45 @@
   "research": [
     {
       "period": "20XX.XX - 至今",
+      "periodEn": "20XX.XX - Present",
       "title": "课题一：XXX",
+      "titleEn": "Research Topic 1: XXX",
       "collaborator": "XXX 教授",
       "description": "与 XXX 教授合作，研究 XXX 问题。",
+      "descriptionEn": "Collaborating with Prof. XXX on XXX problem.",
       "contributions": ["方法设计", "实验分析", "论文撰写"]
     },
     {
       "period": "20XX.XX - 20XX.XX",
       "title": "课题二：XXX",
-      "collaborator": null,
       "description": "研究 XXX。",
       "contributions": []
+    }
+  ],
+  "researchDirections": [
+    {
+      "icon": "🔍",
+      "title": "方向一：XXX",
+      "titleEn": "Direction 1: XXX",
+      "description": "描述你在这个方向上研究什么问题、采用什么方法、解决了什么挑战。可以加入具体的研究问题，比如「如何让模型在少样本场景下更好地泛化」。",
+      "techniques": ["方法 A", "方法 B", "方法 C"],
+      "relatedPubs": ["publications.html"]
+    },
+    {
+      "icon": "🧠",
+      "title": "方向二：XXX",
+      "titleEn": "Direction 2: XXX",
+      "description": "描述第二个研究方向。这里是占位文字，请替换为你的真实研究内容。",
+      "techniques": [],
+      "relatedPubs": ["publications.html"]
+    },
+    {
+      "icon": "⚙️",
+      "title": "方向三：XXX",
+      "titleEn": "Direction 3: XXX",
+      "description": "描述第三个研究方向。",
+      "techniques": [],
+      "relatedPubs": []
     }
   ],
   "internships": [
@@ -77,16 +172,126 @@
   ],
   "publications": [
     {
-      "authors": ["你的名字", "et al."],
-      "title": "论文标题",
-      "venue": "会议名",
-      "year": "年份"
+      "id": "pub-1",
+      "year": 2026,
+      "venue": "NeurIPS 2026",
+      "title": "论文标题示例：一种新的 XXX 方法",
+      "authors": [
+        { "name": "你的名字", "isMe": true },
+        { "name": "作者A" },
+        { "name": "作者B" },
+        { "name": "通讯作者*", "isCorresponding": true }
+      ],
+      "summary": "摘要：简要描述论文的核心贡献。",
+      "links": [
+        { "label": "PDF", "href": "#" },
+        { "label": "Code", "href": "#" },
+        { "label": "Project", "href": "#" },
+        { "label": "BibTeX", "href": "#" }
+      ],
+      "featured": true
     },
     {
-      "authors": ["你的名字", "et al."],
-      "title": "论文标题",
-      "venue": "会议名",
-      "year": "年份"
+      "id": "pub-2",
+      "year": 2025,
+      "venue": "ACL 2025",
+      "title": "基于预训练模型的文本生成研究",
+      "authors": [
+        { "name": "作者A" },
+        { "name": "你的名字", "isMe": true, "isCoFirst": true },
+        { "name": "作者B" },
+        { "name": "通讯作者*", "isCorresponding": true }
+      ],
+      "summary": "摘要：简要描述论文的核心贡献。",
+      "links": [
+        { "label": "PDF", "href": "#" },
+        { "label": "Code", "href": "#" },
+        { "label": "BibTeX", "href": "#" }
+      ],
+      "featured": true
+    },
+    {
+      "id": "pub-3",
+      "year": 2025,
+      "venue": "EMNLP 2025 Findings",
+      "title": "另一个研究方向：少样本学习",
+      "authors": [
+        { "name": "你的名字", "isMe": true },
+        { "name": "作者A" },
+        { "name": "作者B" }
+      ],
+      "links": [
+        { "label": "PDF", "href": "#" },
+        { "label": "Code", "href": "#" },
+        { "label": "BibTeX", "href": "#" }
+      ]
+    },
+    {
+      "id": "pub-4",
+      "year": 2024,
+      "venue": "ICML 2024",
+      "title": "博士生涯第一篇论文",
+      "authors": [
+        { "name": "作者A" },
+        { "name": "作者B" },
+        { "name": "你的名字", "isMe": true },
+        { "name": "通讯作者*", "isCorresponding": true }
+      ],
+      "links": [
+        { "label": "PDF", "href": "#" },
+        { "label": "Code", "href": "#" },
+        { "label": "BibTeX", "href": "#" }
+      ]
+    },
+    {
+      "id": "pub-5",
+      "year": 2026,
+      "venue": "arXiv 2026",
+      "title": "最新预印本论文",
+      "category": "Preprint",
+      "authors": [
+        { "name": "你的名字", "isMe": true },
+        { "name": "作者A" }
+      ],
+      "links": [
+        { "label": "arXiv", "href": "#" },
+        { "label": "Code", "href": "#" }
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "项目标题一",
+      "status": "active",
+      "statusLabel": "进行中",
+      "description": "项目简介：简要描述这个项目的目标、应用场景、关键技术。比如「一个面向少样本场景的文本分类框架，集成多种预训练模型，支持快速微调」。",
+      "tech": ["Python", "PyTorch", "Hugging Face"],
+      "links": [
+        { "label": "GitHub", "href": "#" },
+        { "label": "Demo", "href": "#" },
+        { "label": "文档", "href": "#" }
+      ]
+    },
+    {
+      "title": "项目标题二",
+      "status": "completed",
+      "statusLabel": "已完成",
+      "description": "项目简介：简要描述这个项目。",
+      "tech": ["JavaScript", "React"],
+      "links": [
+        { "label": "GitHub", "href": "#" }
+      ]
+    },
+    {
+      "title": "项目标题三",
+      "status": "completed",
+      "statusLabel": "已完成",
+      "description": "项目简介：简要描述这个项目。",
+      "tech": ["C++", "CUDA"],
+      "links": [
+        { "label": "GitHub", "href": "#" },
+        { "label": "论文", "href": "#" }
+      ]
     }
   ],
   "awards": [
@@ -100,11 +305,179 @@
       { "name": "C/C++", "level": "熟练" },
       { "name": "Java", "level": "了解" }
     ],
-    "frameworks": [
+    "tools": [
       { "name": "PyTorch" },
       { "name": "TensorFlow" },
-      { "name": "Git" },
-      { "name": "Linux" }
+      { "name": "Hugging Face" },
+      { "name": "LaTeX" }
+    ],
+    "spoken": [
+      { "name": "中文", "level": "母语" },
+      { "name": "英语", "level": "流利" }
     ]
+  },
+  "posts": [
+    {
+      "slug": "2026-06-20-research-notes",
+      "date": "2026-06-20",
+      "category": "research",
+      "categoryLabel": "研究",
+      "readTime": "约 5 分钟",
+      "title": "研究笔记：从零开始读一篇论文",
+      "href": "blog/2026-06-20-research-notes.html",
+      "excerpt": "分享一下我读论文的\"三遍阅读法\"，以及如何用一周时间吃透一篇顶会论文。从标题、摘要到实验设计，每一步的侧重点和常见误区都讲清楚。",
+      "published": true
+    },
+    {
+      "slug": "2026-05-08-python-config",
+      "date": "2026-05-08",
+      "category": "tech",
+      "categoryLabel": "技术",
+      "readTime": "约 8 分钟",
+      "title": "Python 项目配置管理：环境变量、配置文件、密钥",
+      "href": "blog/2026-05-08-python-config.html",
+      "excerpt": "一个 Python 项目往往需要在不同环境（开发/测试/生产）下切换配置。本文整理了我常用的几种配置管理方式，以及它们各自的适用场景。",
+      "published": true
+    },
+    {
+      "slug": "2026-03-15-reflection",
+      "date": "2026-03-15",
+      "category": "life",
+      "categoryLabel": "随笔",
+      "readTime": "约 3 分钟",
+      "title": "读博第一年的反思",
+      "href": "#",
+      "excerpt": "回头看看读博第一年踩过的坑：选题的反复、实验的低效、与导师的沟通。写给同样在科研路上摸索的你。",
+      "published": false
+    },
+    {
+      "slug": "2026-01-22-intro-writing",
+      "date": "2026-01-22",
+      "category": "research",
+      "categoryLabel": "研究",
+      "readTime": "约 6 分钟",
+      "title": "如何写好一篇学术论文的引言",
+      "href": "#",
+      "excerpt": "学术论文的引言（Introduction）是一篇文章的门面。本文总结一个\"漏斗式\"引言写作结构：从大问题到小问题，从已有工作到本文贡献。",
+      "published": false
+    }
+  ],
+  "books": [
+    {
+      "category": "技术与工程",
+      "icon": "📚",
+      "items": [
+        {
+          "title": "深入理解计算机系统 (CSAPP)",
+          "author": "Randal E. Bryant",
+          "rating": { "stars": 5 },
+          "comment": "计算机基础\"圣经\"，从硬件到应用层打通，强烈推荐。"
+        },
+        {
+          "title": "设计模式",
+          "author": "Gang of Four",
+          "rating": { "stars": 4 },
+          "comment": "面向对象设计的经典，但部分模式已过时，需结合现代语言特性理解。"
+        },
+        {
+          "title": "深度学习 (花书)",
+          "author": "Ian Goodfellow",
+          "rating": { "stars": 4 },
+          "comment": "深度学习领域的\"圣经\"，理论扎实，但代码示例已过时。"
+        }
+      ]
+    },
+    {
+      "category": "文学",
+      "icon": "📖",
+      "items": [
+        {
+          "title": "百年孤独",
+          "author": "加西亚·马尔克斯",
+          "rating": { "stars": 5 },
+          "comment": "魔幻现实主义代表作，每读一遍都有新发现。"
+        },
+        {
+          "title": "三体",
+          "author": "刘慈欣",
+          "rating": { "stars": 5 },
+          "comment": "中国科幻的巅峰之作，宏大的宇宙观和深刻的人性思考。"
+        }
+      ]
+    },
+    {
+      "category": "传记与人物",
+      "icon": "🌟",
+      "items": [
+        {
+          "title": "活出生命的意义",
+          "author": "维克多·弗兰克尔",
+          "rating": { "stars": 5 },
+          "comment": "从集中营经历中提炼的意义疗法，震撼人心。"
+        }
+      ]
+    },
+    {
+      "category": "正在读",
+      "icon": "🎯",
+      "items": [
+        {
+          "title": "思考，快与慢",
+          "author": "Daniel Kahneman",
+          "rating": { "status": "reading", "label": "⏳ 在读" },
+          "comment": "卡尼曼的认知心理学经典，系统 1 与系统 2 的思考框架很有启发。"
+        }
+      ]
+    }
+  ],
+  "hobbies": [
+    { "icon": "🏃", "name": "跑步", "desc": "每周 3-5 次，配速 5'30\"。跑步是给大脑放空的时间。" },
+    { "icon": "📷", "name": "摄影", "desc": "街头与旅行摄影，主要用手机拍摄。喜欢捕捉光影瞬间。" },
+    { "icon": "🎸", "name": "吉他", "desc": "练习指弹，目前在啃《River Flows in You》。" },
+    { "icon": "✍️", "name": "写作", "desc": "偶尔写博客和短文，整理思路的方式。" },
+    { "icon": "☕", "name": "手冲咖啡", "desc": "每天一杯埃塞俄比亚耶加雪菲，浅烘，花香突出。" },
+    { "icon": "🥾", "name": "徒步", "desc": "周末短途徒步，每年一次多日长线。" },
+    { "icon": "🎮", "name": "游戏", "desc": "偶尔玩单机，独立游戏为主，少碰网游。" },
+    { "icon": "🎬", "name": "电影", "desc": "偏好科幻、悬疑、文艺片。诺兰、维伦纽瓦、奉俊昊的忠实观众。" }
+  ],
+  "pages": {
+    "books": {
+      "title": "阅读 / Books",
+      "lead": "我读过的书，按主题分类。⭐ 越多表示个人推荐度越高。"
+    },
+    "hobbies": {
+      "title": "爱好 / Beyond Work",
+      "lead": "研究和工程之外的我。下面是我工作之外常做的事情 —— 它们大多帮助我成为一个更好的研究者。"
+    },
+    "blog": {
+      "title": "博客",
+      "lead": "这里记录我的学习笔记、研究随想和技术分享。",
+      "categories": [
+        { "key": "all", "label": "全部" },
+        { "key": "research", "label": "研究" },
+        { "key": "tech", "label": "技术" },
+        { "key": "life", "label": "随笔" }
+      ],
+      "rssLabel": "📡 RSS 订阅",
+      "rssUrl": "rss.xml"
+    },
+    "404": {
+      "code": "404",
+      "title": "页面未找到",
+      "desc": "抱歉，你访问的页面不存在或已被移除。<br>不妨看看下面的常用入口：",
+      "ctas": [
+        { "label": "回到首页", "href": "index.html", "variant": "primary" },
+        { "label": "浏览博客", "href": "blog.html", "variant": "ghost" }
+      ],
+      "suggestionsTitle": "也许你想访问：",
+      "suggestions": [
+        { "icon": "🏠", "title": "首页", "desc": "个人简介与最新动态", "href": "index.html" },
+        { "icon": "👤", "title": "关于", "desc": "教育背景与技能", "href": "about.html" },
+        { "icon": "🔬", "title": "研究", "desc": "研究方向", "href": "research.html" },
+        { "icon": "📄", "title": "论文", "desc": "发表列表", "href": "publications.html" },
+        { "icon": "✍️", "title": "博客", "desc": "学习笔记与思考", "href": "blog.html" },
+        { "icon": "📋", "title": "简历", "desc": "教育经历与项目", "href": "cv.html" }
+      ]
+    }
   }
 }
