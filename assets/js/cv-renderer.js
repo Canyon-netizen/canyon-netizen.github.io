@@ -1,6 +1,7 @@
 // ========================================
 // CV 渲染器：从 data.json 读取并填充 #cv-content
-// 支持中英文双语（根据 page meta.htmlLang 切换）
+// 双语约定：英文页优先 xxxEn 字段（缺失回退中文），所有 UI 文案按语言分派。
+// 事件契约：监听 partials:loaded 后渲染，完成派发 cv:rendered。
 // ========================================
 (function () {
     'use strict';
@@ -8,36 +9,71 @@
     const root = document.getElementById('cv-content');
     if (!root) return;
 
-    document.addEventListener('partials:loaded', init);
-
     const meta = window.__PAGE_META__ || {};
     const isEnglish = meta.htmlLang === 'en' || /^\/en\//.test(location.pathname);
 
-    // 字段取词辅助：英文版优先用 xxxEn 字段，否则原字段
-    function pick(obj, base) {
-        if (!obj) return '';
-        if (isEnglish && obj[base + 'En'] != null) return obj[base + 'En'];
-        return obj[base] != null ? obj[base] : '';
+    // partials 注入完成后渲染；若本脚本下载较慢、partials:loaded 已经派发过，直接初始化
+    if (document.querySelector('template[data-include]')) {
+        document.addEventListener('partials:loaded', init);
+    } else {
+        init();
     }
 
-    // 文案：section 标题 + 行内 label
+    // 单字段取词：英文页优先 xxxEn，缺失/为空时回退原字段
+    function pick(obj, base) {
+        if (!obj) return '';
+        if (isEnglish) {
+            const en = obj[base + 'En'];
+            if (Array.isArray(en)) {
+                if (en.length) return en;
+            } else if (en !== null && en !== undefined && String(en).trim() !== '') {
+                return en;
+            }
+        }
+        const v = obj[base];
+        return v === null || v === undefined ? '' : v;
+    }
+
+    function pickList(obj, base) {
+        const v = pick(obj, base);
+        return Array.isArray(v) ? v : (v ? [v] : []);
+    }
+
+    // UI 文案：章节标题 / 行内标签 / 连接词都按语言分派，避免中英混排
+    // 章节用「清单」描述，避免到处写死索引（此前 7 个 section 靠位置对应，
+    // 少一个「项目经历」就整段消失且没人发现）
+    const SECTIONS = [
+        { key: 'personal', type: 'info-list', title: { zh: '基本信息', en: 'Basic Information' } },
+        { key: 'education', type: 'exp-list', title: { zh: '教育背景', en: 'Education' } },
+        { key: 'research', type: 'exp-list', title: { zh: '研究经历', en: 'Research' } },
+        { key: 'projects', type: 'exp-list', title: { zh: '项目经历', en: 'Projects' } },
+        { key: 'internships', type: 'exp-list', title: { zh: '实习经历', en: 'Internships' } },
+        { key: 'publications', type: 'award-list', title: { zh: '论文发表', en: 'Publications' } },
+        { key: 'awards', type: 'award-list', title: { zh: '获奖经历', en: 'Awards' } },
+        { key: 'skills', type: null, title: { zh: '技能清单', en: 'Skills' } }
+    ];
+
     const T = {
-        sectionTitles: isEnglish
-            ? ['Basic Information', 'Education', 'Research', 'Internships', 'Publications', 'Awards', 'Skills']
-            : ['基本信息', '教育背景', '研究经历', '实习经历', '论文发表', '获奖经历', '技能清单'],
         skillGroups: isEnglish
-            ? ['Programming Languages', 'Frameworks & Tools']
-            : ['编程语言', '框架与工具'],
+            ? ['Programming Languages', 'Frameworks & Tools', 'Languages']
+            : ['编程语言', '框架与工具', '语言能力'],
         personalLabels: isEnglish
             ? ['Name:', 'Email:', 'Phone:', 'Address:', 'GitHub:', 'Homepage:', 'Google Scholar:']
             : ['姓名：', '邮箱：', '电话：', '地址：', 'GitHub：', '个人主页：', 'Google Scholar：'],
         contributionPrefix: isEnglish ? 'Contributions: ' : '主要贡献：',
-        noData: isEnglish ? '(none yet)' : '（暂无）',
+        advisorPrefix: isEnglish ? 'Advisor: ' : '导师：',
+        listSep: isEnglish ? ', ' : '、',
+        yearSuffix: isEnglish ? '' : ' 年'
     };
 
     function init() {
-        const basePath = meta.basePath || '';
-        const dataUrl = basePath + 'data.json';
+        const dataUrl = (meta.basePath || '') + 'data.json';
+
+        const inline = readInlineData();
+        if (inline) {
+            renderAll(inline);
+            return;
+        }
 
         fetch(dataUrl, { credentials: 'same-origin' })
             .then(function (r) {
@@ -48,65 +84,88 @@
             .catch(handleError);
     }
 
+    // 构建时内联的页面数据（见 tools/inline-page-data.py）；缺失时回退到 fetch
+    function readInlineData() {
+        const el = document.querySelector('script[type="application/json"][data-page-data]');
+        if (!el) return null;
+        try {
+            const parsed = JSON.parse(el.textContent);
+            return parsed && typeof parsed === 'object' ? parsed : null;
+        } catch (e) {
+            return null;
+        }
+    }
+
     function renderAll(data) {
-        // 重建 7 个 section 外骨架（根据 isEnglish 决定哪些）
         rebuildSections();
         renderPersonal(data.personal);
         renderEducation(data.education || []);
         renderResearch(data.research || []);
+        renderProjects(data.projects || []);
         renderInternships(data.internships || []);
         renderPublications(data.publications || []);
         renderAwards(data.awards || []);
         renderSkills(data.skills || {});
+        // 自报渲染完成（验证脚本据此确定性等待）
+        try { document.documentElement.dataset.dshRendered = '1'; } catch (e) { /* 忽略 */ }
         document.dispatchEvent(new CustomEvent('cv:rendered'));
     }
 
-    // 重建 section 外骨架（清空 root，按双语需要构造 7 个 section）
+    // 重建 section 外骨架（清空 root，按 SECTIONS 清单构造，不依赖索引顺序）
     function rebuildSections() {
         while (root.firstChild) root.removeChild(root.firstChild);
-        for (let i = 0; i < T.sectionTitles.length; i++) {
+        SECTIONS.forEach(function (spec) {
             const sec = document.createElement('section');
             sec.className = 'content-block';
+            sec.setAttribute('data-cv-section', spec.key);
             const h2 = document.createElement('h2');
-            h2.textContent = T.sectionTitles[i];
+            h2.textContent = isEnglish ? spec.title.en : spec.title.zh;
             sec.appendChild(h2);
-            // section 0/1/2/3/4/5 需要 ul 容器
-            if (i < 6) {
+            if (spec.type) {
                 const ul = document.createElement('ul');
-                // 0: info-list, 1/2/3: exp-list, 4/5: award-list
-                if (i === 0) ul.className = 'info-list';
-                else if (i <= 3) ul.className = 'exp-list';
-                else ul.className = 'award-list';
+                ul.className = spec.type;
                 sec.appendChild(ul);
             }
-            // section 6 (Skills) 不需要预创建 ul
             root.appendChild(sec);
-        }
+        });
     }
 
-    function getSection(index) {
-        return root.querySelectorAll('section.content-block')[index];
+    function getSection(key) {
+        return root.querySelector('section[data-cv-section="' + key + '"]');
+    }
+
+    // 空数据降级：整块隐藏，避免出现「只有标题没有内容」的章节
+    function hideSection(sec) {
+        if (!sec) return;
+        sec.hidden = true;
     }
 
     // ----- Section 0: 基本信息 -----
     function renderPersonal(p) {
-        if (!p) return;
-        const sec = getSection(0);
+        const sec = getSection('personal');
         if (!sec) return;
         const ul = sec.querySelector('ul.info-list');
         if (!ul) return;
         ul.innerHTML = '';
+        if (!p) {
+            hideSection(sec);
+            return;
+        }
 
         const online = p.online || {};
+        const address = p.address || {};
         const rows = [
             { value: pick(p, 'name') },
             { value: pick(p, 'email') },
             { value: pick(p, 'phone') },
-            { value: p.address && (isEnglish
-                ? [pick(p.address, 'university'), pick(p.address, 'city'), pick(p.address, 'country')].filter(Boolean).join(', ')
-                : p.address.full) },
+            {
+                value: isEnglish
+                    ? [pick(address, 'university'), pick(address, 'city'), pick(address, 'country')]
+                        .filter(Boolean).join(', ')
+                    : address.full
+            },
             { value: online.github ? 'github.com/' + online.github : '' },
-            { value: online.homepage ? online.homepage.replace(/^https?:\/\//, '') : '' },
+            { value: online.homepage ? String(online.homepage).replace(/^https?:\/\//, '') : '' }
         ];
         if (online.scholar) rows.push({ value: online.scholar });
 
@@ -119,134 +178,224 @@
             li.appendChild(document.createTextNode(' ' + r.value));
             ul.appendChild(li);
         });
+
+        if (!ul.children.length) hideSection(sec);
     }
 
     // ----- Section 1: 教育背景 -----
     function renderEducation(arr) {
-        const sec = getSection(1);
+        const sec = getSection('education');
         if (!sec) return;
         const ul = sec.querySelector('ul.exp-list');
         if (!ul) return;
         ul.innerHTML = '';
+        if (!arr.length) {
+            hideSection(sec);
+            return;
+        }
         arr.forEach(function (e) {
+            const department = pick(e, 'department');
             ul.appendChild(makeExpItem(
                 pick(e, 'period'),
-                pick(e, 'school') + (e.department ? ' · ' + pick(e, 'department') : ''),
+                pick(e, 'school') + (department ? ' · ' + department : ''),
                 makeEduP(e)
             ));
         });
     }
 
     function makeEduP(e) {
+        const advisor = pick(e, 'advisor');
         if (isEnglish) {
-            // English: "Advisor: Prof. XXX　　GPA: X.X/4.0"
+            // English: "Ph.D. student　　Advisor: Prof. XXX　　GPA: 3.9/4.0"
             const parts = [];
-            const advisor = pick(e, 'advisor');
-            if (advisor) parts.push('Advisor: ' + advisor);
+            const degree = pick(e, 'degree');
+            if (degree) parts.push(degree);
+            if (advisor) parts.push(T.advisorPrefix + advisor);
             if (e.gpa) parts.push('GPA: ' + e.gpa);
             return parts.length ? parts.join('　　') : null;
-        } else {
-            // Chinese: "博士研究生　　导师：XXX 教授"
-            const degree = pick(e, 'degree');
-            const advisor = e.advisor;
-            if (!degree) return null;
-            return advisor ? (degree + '　　导师：' + advisor) : degree;
         }
+        // Chinese: "博士研究生　　导师：XXX 教授"
+        const degree = pick(e, 'degree');
+        if (!degree && !advisor) return null;
+        return advisor ? ((degree ? degree + '　　' : '') + T.advisorPrefix + advisor) : degree;
     }
 
-    // ----- Section 2: 研究经历 -----
+    // ----- 研究经历 -----
     function renderResearch(arr) {
-        const sec = getSection(2);
+        const sec = getSection('research');
         if (!sec) return;
         const ul = sec.querySelector('ul.exp-list');
         if (!ul) return;
         ul.innerHTML = '';
+        if (!arr.length) {
+            hideSection(sec);
+            return;
+        }
         arr.forEach(function (r) {
             const li = document.createElement('li');
             li.appendChild(makeExpPeriod(pick(r, 'period')));
             const body = document.createElement('div');
             body.className = 'exp-body';
             const h3 = document.createElement('h3');
-            h3.textContent = r.title || '';
+            h3.textContent = pick(r, 'title');
             body.appendChild(h3);
-            if (r.description) body.appendChild(makeP(r.description));
-            if (r.contributions && r.contributions.length) {
-                body.appendChild(makeP(T.contributionPrefix + r.contributions.join('、')));
+
+            const description = pick(r, 'description');
+            if (description) body.appendChild(makeP(description));
+
+            const contributions = pickList(r, 'contributions');
+            if (contributions.length) {
+                body.appendChild(makeP(T.contributionPrefix + contributions.join(T.listSep)));
             }
             li.appendChild(body);
             ul.appendChild(li);
         });
     }
 
-    // ----- Section 3: 实习经历 -----
-    function renderInternships(arr) {
-        const sec = getSection(3);
+    // ----- 项目经历 -----
+    // 依赖 data.json 的 projects[]；技术栈与状态也带上，方便招聘方快速判断。
+    // 完整项目列表在网站 projects 页，这里只列 cvFeatured !== false 的条目。
+    function renderProjects(arr) {
+        const sec = getSection('projects');
         if (!sec) return;
         const ul = sec.querySelector('ul.exp-list');
         if (!ul) return;
         ul.innerHTML = '';
+        const list = arr.filter(function (p) { return p.cvFeatured !== false; }).slice(0, 3);
+        if (!list.length) {
+            hideSection(sec);
+            return;
+        }
+        list.forEach(function (p) {
+            const li = document.createElement('li');
+            li.appendChild(makeExpPeriod(pick(p, 'statusLabel')));
+            const body = document.createElement('div');
+            body.className = 'exp-body';
+            const h3 = document.createElement('h3');
+            h3.textContent = pick(p, 'title');
+            body.appendChild(h3);
+
+            // 简历优先用 cvDescription（更短的一句），没有就退回完整描述
+            const description = pick(p, 'cvDescription') || pick(p, 'description');
+            if (description) body.appendChild(makeP(description));
+
+            const tech = pickList(p, 'tech');
+            if (tech.length) {
+                body.appendChild(makeP((isEnglish ? 'Stack: ' : '技术栈：') + tech.join(T.listSep)));
+            }
+
+            const links = pickList(p, 'links');
+            const hrefs = links
+                .map(function (l) { return (l && l.href) ? String(l.href).replace(/^https?:\/\//, '') : ''; })
+                .filter(Boolean);
+            if (hrefs.length) {
+                body.appendChild(makeP((isEnglish ? 'Links: ' : '链接：') + hrefs.join(' / ')));
+            }
+            li.appendChild(body);
+            ul.appendChild(li);
+        });
+    }
+
+    // ----- 实习经历 -----
+    function renderInternships(arr) {
+        const sec = getSection('internships');
+        if (!sec) return;
+        const ul = sec.querySelector('ul.exp-list');
+        if (!ul) return;
+        ul.innerHTML = '';
+        if (!arr.length) {
+            hideSection(sec);
+            return;
+        }
         arr.forEach(function (i) {
+            const role = pick(i, 'role');
             ul.appendChild(makeExpItem(
                 pick(i, 'period'),
-                (i.company || '') + (i.role ? ' · ' + i.role : ''),
-                i.description
+                pick(i, 'company') + (role ? ' · ' + role : ''),
+                pick(i, 'description')
             ));
         });
     }
 
     // ----- Section 4: 论文发表 -----
     function renderPublications(arr) {
-        const sec = getSection(4);
+        const sec = getSection('publications');
         if (!sec) return;
         const ul = sec.querySelector('ul.award-list');
         if (!ul) return;
         ul.innerHTML = '';
+        if (!arr.length) {
+            hideSection(sec);
+            return;
+        }
         arr.forEach(function (p) {
             const li = document.createElement('li');
             const strong = document.createElement('strong');
-            strong.textContent = (p.authors || []).join(', ');
+            // authors 是对象数组（{ name, isMe, ... }）：旧实现直接 join 会得到 [object Object]
+            strong.textContent = pickList(p, 'authors').map(authorText).join(T.listSep);
             li.appendChild(strong);
-            li.appendChild(document.createTextNode('. "' + (p.title || '') + '." '));
+            li.appendChild(document.createTextNode('. "' + pick(p, 'title') + '." '));
             const em = document.createElement('em');
-            em.textContent = p.venue || '';
+            em.textContent = pick(p, 'venue');
             li.appendChild(em);
             li.appendChild(document.createTextNode(', ' + (p.year || '') + '.'));
             ul.appendChild(li);
         });
     }
 
+    // 作者文本：对象取 name，并按 isMe/isCoFirst/isCorresponding 追加角标
+    function authorText(a) {
+        if (typeof a === 'string') return a;
+        if (!a) return '';
+        let name = a.name || '';
+        let marks = '';
+        if (a.isCoFirst && name.indexOf('†') === -1) marks += '†';
+        if (a.isCorresponding && name.indexOf('*') === -1) marks += '*';
+        return name + marks;
+    }
+
     // ----- Section 5: 获奖经历 -----
     function renderAwards(arr) {
-        const sec = getSection(5);
+        const sec = getSection('awards');
         if (!sec) return;
         const ul = sec.querySelector('ul.award-list');
         if (!ul) return;
         ul.innerHTML = '';
+        if (!arr.length) {
+            hideSection(sec);
+            return;
+        }
         arr.forEach(function (a) {
             const li = document.createElement('li');
             const strong = document.createElement('strong');
-            strong.textContent = (a.year || '') + (isEnglish ? '' : ' 年');
+            strong.textContent = (a.year || '') + T.yearSuffix;
             li.appendChild(strong);
-            li.appendChild(document.createTextNode('　' + (a.name || '')));
+            li.appendChild(document.createTextNode('　' + pick(a, 'name')));
             ul.appendChild(li);
         });
     }
 
     // ----- Section 6: 技能清单 -----
     function renderSkills(skills) {
-        const sec = getSection(6);
+        const sec = getSection('skills');
         if (!sec) return;
-        // 只保留 h2
         const h2 = sec.querySelector('h2');
         sec.innerHTML = '';
         if (h2) sec.appendChild(h2);
 
+        // 真实 bug 修复：data.json 用的是 skills.tools（旧代码读 skills.frameworks → 永远缺一组）
         const groups = [
             { title: T.skillGroups[0], items: skills.languages || [] },
-            { title: T.skillGroups[1], items: skills.frameworks || [] }
-        ];
+            { title: T.skillGroups[1], items: skills.tools || [] },
+            { title: T.skillGroups[2], items: skills.spoken || [] }
+        ].filter(function (g) { return g.items.length; });
+
+        if (!groups.length) {
+            sec.hidden = true;
+            return;
+        }
+
         groups.forEach(function (g) {
-            if (!g.items.length) return;
             const group = document.createElement('div');
             group.className = 'skill-group';
             const h3 = document.createElement('h3');
@@ -255,14 +404,19 @@
             const tags = document.createElement('div');
             tags.className = 'tags';
             g.items.forEach(function (it) {
+                const level = pick(it, 'level');
                 const span = document.createElement('span');
                 span.className = 'tag';
-                span.textContent = it.name + (it.level ? ('（' + it.level + '）') : '');
+                span.textContent = pick(it, 'name') + (level ? levelSuffix(level) : '');
                 tags.appendChild(span);
             });
             group.appendChild(tags);
             sec.appendChild(group);
         });
+    }
+
+    function levelSuffix(level) {
+        return isEnglish ? ' (' + level + ')' : '（' + level + '）';
     }
 
     // ----- helpers -----
@@ -288,9 +442,7 @@
             h3.textContent = h3Text;
             div.appendChild(h3);
         }
-        if (pText) {
-            div.appendChild(makeP(pText));
-        }
+        if (pText) div.appendChild(makeP(pText));
         return div;
     }
 
@@ -305,11 +457,9 @@
         while (root.firstChild) root.removeChild(root.firstChild);
         const p = document.createElement('p');
         p.className = 'cv-error';
-        p.style.cssText = 'color: var(--color-error, #c00); padding: 1rem; border: 1px solid currentColor; border-radius: 4px;';
-        const msg = isEnglish
-            ? 'Failed to load data.json (' + err.message + '). Please check the file exists.'
+        p.textContent = isEnglish
+            ? 'Failed to load data.json (' + err.message + '). Please check that the file exists.'
             : '无法加载 data.json (' + err.message + ')。请检查文件是否存在。';
-        p.textContent = msg;
         root.appendChild(p);
     }
 })();

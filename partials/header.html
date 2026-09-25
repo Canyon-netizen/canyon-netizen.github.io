@@ -1,20 +1,49 @@
 <header class="site-header">
     <div class="container header-inner">
         <a href="__BASE_LANG__index.html" class="brand">
-            <span class="brand-mark">YN</span>
+            <span class="brand-mark" aria-hidden="true">{{brandMark}}</span>
             <span class="brand-text">{{brandText}}</span>
         </a>
-        <nav class="site-nav" id="site-nav">
+
+        <nav class="site-nav" id="site-nav" aria-label="{{navToggleLabel}}">
             <a href="__BASE_LANG__index.html" class="nav-link{{navActive_index}}">{{navHome}}</a>
             <a href="__BASE_LANG__about.html" class="nav-link{{navActive_about}}">{{navAbout}}</a>
             <a href="__BASE_LANG__research.html" class="nav-link{{navActive_research}}">{{navResearch}}</a>
             <a href="__BASE_LANG__publications.html" class="nav-link{{navActive_publications}}">{{navPublications}}</a>
             <a href="__BASE_LANG__projects.html" class="nav-link{{navActive_projects}}">{{navProjects}}</a>
+
+            <!-- 二级导航：桌面端下拉，移动端在抽屉内展开 -->
+            <div class="nav-more" id="nav-more">
+                <button class="nav-more-toggle" id="nav-more-toggle" aria-expanded="false" aria-controls="nav-more-menu" aria-haspopup="true">
+                    {{navMore}}
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+                </button>
+                <div class="nav-more-menu" id="nav-more-menu" role="menu">
+                    <a href="__BASE_LANG__blog.html" role="menuitem" class="{{navActive_blogClass}}"><span class="nav-menu-icon" aria-hidden="true">✍️</span>{{navBlog}}</a>
+                    <a href="__BASE_LANG__talks.html" role="menuitem" class="{{navActive_talksClass}}"><span class="nav-menu-icon" aria-hidden="true">🎤</span>{{navTalks}}</a>
+                    <a href="__BASE_LANG__books.html" role="menuitem" class="{{navActive_booksClass}}"><span class="nav-menu-icon" aria-hidden="true">📚</span>{{navBooks}}</a>
+                    <a href="__BASE_LANG__hobbies.html" role="menuitem" class="{{navActive_hobbiesClass}}"><span class="nav-menu-icon" aria-hidden="true">🌿</span>{{navHobbies}}</a>
+                </div>
+            </div>
+
             <a href="__BASE_LANG__cv.html" class="nav-link{{navActive_cv}}">{{navCV}}</a>
+
+            <div class="nav-mobile-extra">
+                <a href="__BASE_LANG__blog.html" class="nav-link{{navActive_blog}}">{{navBlog}}</a>
+                <a href="__BASE_LANG__talks.html" class="nav-link{{navActive_talks}}">{{navTalks}}</a>
+                <a href="__BASE_LANG__books.html" class="nav-link{{navActive_books}}">{{navBooks}}</a>
+                <a href="__BASE_LANG__hobbies.html" class="nav-link{{navActive_hobbies}}">{{navHobbies}}</a>
+                <div class="lang-row">
+                    <a href="{{langZhHref}}" class="nav-lang-zh{{activeLangZh}}">中文</a>
+                    <span class="nav-lang-divider">/</span>
+                    <a href="{{langEnHref}}" class="nav-lang-en{{activeLangEn}}">English</a>
+                </div>
+            </div>
         </nav>
+
         <div class="nav-actions">
             <button class="nav-action nav-search" id="search-trigger" title="{{searchTitle}}" aria-label="{{searchAriaLabel}}">
-                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
             </button>
             <div class="nav-action nav-lang-group" id="lang-toggle-group">
                 <a href="{{langZhHref}}" class="nav-lang-zh{{activeLangZh}}" title="中文">中</a>
@@ -22,10 +51,10 @@
                 <a href="{{langEnHref}}" class="nav-lang-en{{activeLangEn}}" title="English">EN</a>
             </div>
             <button class="nav-action nav-theme" id="theme-toggle" title="{{themeTitle}}" aria-label="{{themeTitle}}">
-                <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
-                <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+                <svg class="icon-moon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
             </button>
-            <button class="nav-toggle" id="nav-toggle" aria-label="{{navToggleLabel}}">
+            <button class="nav-toggle" id="nav-toggle" aria-label="{{navToggleLabel}}" aria-expanded="false" aria-controls="site-nav">
                 <span></span><span></span><span></span>
             </button>
         </div>

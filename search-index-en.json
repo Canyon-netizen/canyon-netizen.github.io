@@ -1,0 +1,238 @@
+[
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/index.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/about.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/research.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/publications.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/projects.html",
+    "type": "page"
+  },
+  {
+    "title": "Blog",
+    "excerpt": "Study notes, research reflections and technical write-ups.",
+    "url": "en/blog.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/talks.html",
+    "type": "page"
+  },
+  {
+    "title": "Reading",
+    "excerpt": "Books I have read and my reading list, grouped by topic. More ⭐ means a stronger personal recommendation.",
+    "url": "en/books.html",
+    "type": "page"
+  },
+  {
+    "title": "Beyond Work",
+    "excerpt": "The part of me outside research and engineering — things I do away from the keyboard, most of which help me become a better researcher.",
+    "url": "en/hobbies.html",
+    "type": "page"
+  },
+  {
+    "title": "",
+    "excerpt": "",
+    "url": "en/cv.html",
+    "type": "page"
+  },
+  {
+    "title": "2026.09 Started my Ph.D. at the College of Compu…",
+    "excerpt": "Started my Ph.D. at the College of Computer Science and Technology, Zhejiang University .",
+    "url": "en/index.html",
+    "type": "news"
+  },
+  {
+    "title": "2026.07 Released the open-source project daily-p…",
+    "excerpt": "Released the open-source project daily-paper-reader on GitHub (Astro + Python, MIT licensed).",
+    "url": "en/index.html",
+    "type": "news"
+  },
+  {
+    "title": "2026.06 Graduated with a bachelor's degree from …",
+    "excerpt": "Graduated with a bachelor's degree from the College of Computer Science and Technology, Zhejiang University .",
+    "url": "en/index.html",
+    "type": "news"
+  },
+  {
+    "title": "2025.05 Published zjureport_latex , a LaTeX temp…",
+    "excerpt": "Published zjureport_latex , a LaTeX template that reproduces the Zhejiang University lab-report format.",
+    "url": "en/index.html",
+    "type": "news"
+  },
+  {
+    "title": "Research notes: reading a paper from scratch",
+    "excerpt": "My \"three-pass\" approach to reading papers, and how I work through a top-conference paper in a week — what to focus on at each step, from title and abstract to ",
+    "body": "Reading papers is a daily routine in research. A top-conference paper runs 8-15 pages: method, experiments, appendix, and possibly supplementary material. Many students (including me, once) dive straight into the details and come out a week later still confused. Here is the \"three-pass\" approach I use. The three-pass method: each pass has a different goal, and each gets you deeper (click to enlarge). Pass 1: Skim (15-20 minutes) Goal: decide whether the paper deserves a close read, and which subfield it belongs to. Title and abstract : what problem, what method, what result? The end of the Introduction : usually 3-5 concrete contributions; this is the densest part of the paper. Section and figure captions : skim them to understand the overall structure. Conclusion : see what the authors believe their work means. After this pass you should be able to summarise it in your own words: \"This paper targets problem X, proposes method Y, and improves on the state of the art by Z% on dataset W.\" Pass 2: Understand (1-2 hours) Goal: understand the core idea of the method well enough to restate it and explain it to someone else. Read the method section carefully, and for every equation ask \"what is this computing?\" Draw a system diagram by hand. Skip the heavy derivations; the intuition is the point . Mark unfamiliar concepts to look up later instead of breaking your reading rhythm. After a good paper you can \"play back\" its method diagram in your head. After a bad one you only remember a pile of symbols. Pass 3: Reproduce (half a day to a day) Goal: find the hidden details, whether the experimental setup is sound, and what the authors did not say. If you had to reproduce it, what would you run into? What the authors left out: how were hyperparameters chosen? How was the data split? What are the failure cases? Is the experimental design fair? Is baseline the strongest available choice? Turn the above into 5-10 questions, then look for the authors' code or their students' follow-up papers. A few habits Never read without a pen: every close read gets 1-2 pages of notes, so that six months later you can still reconstruct it. Code first, theory second: code that runs makes the method concrete. Explain it to a classmate: if you cannot make it clear, you have not understood it. Share in a group meeting: forcing yourself to explain it in 20 minutes is the best practice there is. Summary Reading a paper is not reading a novel; it is reverse engineering. The first pass tells you whether it is worth reading, the second tells you what the method actually is, and the third is where you internalise the authors' trade-offs. One close read plus three to five skims a week is a comfortable pace.",
+    "url": "en/blog/2026-06-20-research-notes.html",
+    "type": "post"
+  },
+  {
+    "title": "Managing Python project configuration: environment variables, config files and secrets",
+    "excerpt": "A Python project usually needs different configuration across environments (development, testing, production). This article collects the configuration approache",
+    "body": "A production Python project juggles several kinds of configuration: database connections, API keys, model hyperparameters, and different environments (development, testing, production). This is how I think about the trade-offs. 1. Environment variables (the baseline) Read with os.environ . Simple, but weakly typed and awkward to manage. import os DB_URL = os.environ.get(\"DATABASE_URL\", \"sqlite:///dev.db\") 2. .env files + python-dotenv Put environment variables in .env so switching is easy during development. Always add .env to .gitignore . # .env DATABASE_URL=postgres://... SECRET_KEY=xxx 3. YAML / JSON / TOML config files Good for structured configuration, such as machine-learning hyperparameters. # config.yaml model: name: resnet50 lr: 0.001 batch_size: 64 data: train: data/train val: data/val 4. Pydantic Settings (recommended) Type safety, automatic validation, and merging across sources (env > file > default). My default choice for new projects. from pydantic_settings import BaseSettings class Settings(BaseSettings): db_url: str secret_key: str debug: bool = False class Config: env_file = \".env\" settings = Settings() 5. Secrets Never put secrets in code, config files, or git. Team projects should use Vault / AWS Secrets Manager / GCP Secret Manager ; personal projects should at least use .env plus .gitignore . If a secret was ever committed, rotate it immediately and clean up the git history. What I do in practice Small scripts: os.environ plus .env . Medium projects: Pydantic Settings plus .env . Training runs: Hydra or OmegaConf for composing configs. Deployment: 12-factor , all configuration via environment variables, secrets handled by the cloud provider.",
+    "url": "en/blog/2026-05-08-python-config.html",
+    "type": "post"
+  },
+  {
+    "title": "canyon-netizen.github.io — Personal Homepage",
+    "excerpt": "This website itself: a zero-build static site written in plain HTML/CSS/JS, bilingual, with dark mode, site-wide search and PWA offline support. 技术栈 HTML、CSS、JavaScript",
+    "url": "en/projects.html",
+    "type": "project"
+  },
+  {
+    "title": "daily-paper-reader",
+    "excerpt": "An open-source tool for discovering and reading AI papers: multi-source paper crawling, personalized retrieval with LLM ranking, and close reading with notes. MIT license",
+    "url": "en/projects.html",
+    "type": "project"
+  },
+  {
+    "title": "zjureport_latex",
+    "excerpt": "A LaTeX template that reproduces the Zhejiang University lab-report format. 技术栈 LaTeX",
+    "url": "en/projects.html",
+    "type": "project"
+  },
+  {
+    "title": "Reasoning3D — 3D visualisation of LLM reasoning",
+    "excerpt": "Streams the hidden states of an LLM as it generates a chain of thought into 3D space, so you can watch the trajectory, its rhythm and where it branches. Ships a GPU-free ",
+    "url": "en/projects.html",
+    "type": "project"
+  },
+  {
+    "title": "Yiye — AI-assisted novel writing platform",
+    "excerpt": "A long-form writing platform: eleven genres each with their own prompt system, a preset template marketplace, assistants for continuation, polishing, suggestions and nami",
+    "url": "en/projects.html",
+    "type": "project"
+  },
+  {
+    "title": "Machine Learning",
+    "excerpt": "Studying the foundations of machine learning and model evaluation, while strengthening the underlying mathematics and algorithms.",
+    "url": "en/research.html",
+    "type": "direction"
+  },
+  {
+    "title": "Natural Language Processing and Large Language Models",
+    "excerpt": "Interested in core problems in natural language processing, including text representation, text generation and the methods behind large language models.",
+    "url": "en/research.html",
+    "type": "direction"
+  },
+  {
+    "title": "Research and Engineering Practice",
+    "excerpt": "Focused on the engineering side of research: data processing, reproducible experiments and maintainable project structure, practised through open-source projects.",
+    "url": "en/research.html",
+    "type": "direction"
+  },
+  {
+    "title": "Computer Systems: A Programmer's Perspective (CSAPP)",
+    "excerpt": "Randal E. Bryant A classic of computer-systems fundamentals: it connects the hardware layer all the way up to applications. Highly recommended.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "Design Patterns: Elements of Reusable Object-Oriented Software",
+    "excerpt": "Gang of Four The classic of object-oriented design. Some patterns are dated, so read them alongside the features of modern languages.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "Deep Learning (the \"flower book\")",
+    "excerpt": "Ian Goodfellow The reference text for deep learning: solid theory, though the code examples are outdated.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "One Hundred Years of Solitude",
+    "excerpt": "Gabriel García Márquez The landmark of magical realism; every rereading reveals something new.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "The Three-Body Problem",
+    "excerpt": "Liu Cixin A high point of Chinese science fiction, with a vast cosmic vision and sharp reflection on human nature.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "Man's Search for Meaning",
+    "excerpt": "Viktor E. Frankl Logotherapy distilled from the author's concentration-camp experience; a deeply affecting book.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "Thinking, Fast and Slow",
+    "excerpt": "Daniel Kahneman Kahneman's classic of cognitive psychology; the System 1 / System 2 framework is a useful way to think about judgement.",
+    "url": "en/books.html",
+    "type": "book"
+  },
+  {
+    "title": "Running",
+    "excerpt": "Three to five runs a week at around 5'30\" per kilometre. Running is when my mind gets to wander.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Photography",
+    "excerpt": "Street and travel photography, mostly shot on a phone. I like catching the moment when light and shadow meet.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Guitar",
+    "excerpt": "Practising fingerstyle guitar; currently working through \"River Flows in You\".",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Writing",
+    "excerpt": "Occasional blog posts and short essays — a way of organising my thoughts.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Pour-over Coffee",
+    "excerpt": "One cup a day: Ethiopian Yirgacheffe, light roast, with a pronounced floral note.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Hiking",
+    "excerpt": "Short weekend hikes, plus one multi-day trek each year.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Games",
+    "excerpt": "The occasional single-player game, mostly indie titles; I rarely play online games.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "Film",
+    "excerpt": "Science fiction, mystery and arthouse films. A steady viewer of Nolan, Villeneuve and Bong Joon-ho.",
+    "url": "en/hobbies.html",
+    "type": "hobby"
+  }
+]

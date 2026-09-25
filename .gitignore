@@ -1,20 +1,41 @@
-# 系统文件
+# 绯荤粺鏂囦欢
 .DS_Store
 Thumbs.db
 
-# 编辑器
-.vscode/
+# 缂栬緫鍣?.vscode/
 .idea/
 *.swp
 *.swo
 *~
 
-# 本地构建/缓存
+# 鏈湴鏋勫缓/缂撳瓨
 node_modules/
 .cache/
 .tmp/
 
-# 临时文件
+# 涓存椂鏂囦欢
 *.log
 *.bak
 **/__pycache__/
+
+# 鏈湴楠岃瘉浜х墿锛坱ools/ 涓嬬殑妫€鏌ヨ剼鏈敓鎴愶級
+.dsh-dom/
+.dsh-shots/
+.dsh-cv-check/
+.dsh-cv-preview/
+.dsh-print/
+.dsh-print-png/
+.dsh-print-png-*/
+.dsh-edge-profile/
+.dsh-edge-profile-*/
+.dsh-edge-cdp-*/
+.dsh-edge-a11y-*/
+.dsh-edge-resp-*/
+.dsh-edge-print-*/
+.dsh-edge-search-*/
+.dsh-edge-probe-*/
+.dsh-edge-mob-*/
+.dsh-edge-nojs-*/
+.dsh-theme-dark.html
+.dsh-probe.txt
+.dsh-*/

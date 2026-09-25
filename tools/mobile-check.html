@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>移动端溢出诊断</title>
+    <style>
+        body { font: 13px/1.6 "Cascadia Code", Consolas, monospace; margin: 0; padding: 14px; background: #0f172a; color: #e2e8f0; }
+        h1 { font-size: 15px; margin: 0 0 10px; }
+        pre { white-space: pre-wrap; word-break: break-all; margin: 0 0 14px; }
+        iframe { position: absolute; left: -4000px; top: 0; border: 0; visibility: hidden; }
+        .ok { color: #34d399; }
+        .bad { color: #f87171; font-weight: 700; }
+    </style>
+</head>
+<body>
+    <h1>移动端（390px）横向溢出诊断</h1>
+    <pre id="out">running…</pre>
+    <div id="frames"></div>
+    <script>
+    var PAGES = [
+        '/index.html',
+        '/about.html',
+        '/research.html',
+        '/publications.html',
+        '/projects.html',
+        '/blog.html',
+        '/talks.html',
+        '/books.html',
+        '/hobbies.html',
+        '/cv.html',
+        '/blog/2026-06-20-research-notes.html',
+        '/blog/2026-05-08-python-config.html',
+        '/404.html',
+        '/en/index.html',
+        '/en/cv.html'
+    ];
+    var W = 390, H = 900;
+    var out = document.getElementById('out');
+    var lines = [];
+    var idx = 0;
+
+    function next() {
+        if (idx >= PAGES.length) {
+            document.title = 'overflow-done';
+            document.body.setAttribute('data-overflow', 'done');
+            return;
+        }
+        var path = PAGES[idx++];
+        var f = document.createElement('iframe');
+        f.width = W;
+        f.height = H;
+        f.src = path;
+        var settled = false;
+        function check() {
+            if (settled) return;
+            settled = true;
+            setTimeout(function () {
+                var d = f.contentDocument, win = f.contentWindow;
+                if (!d || !d.body) {
+                    lines.push('!! ' + path + ' 无法读取');
+                } else {
+                    // body{overflow-x:hidden} 会掩盖真实撑宽，先临时关掉再量
+                    var probe = d.createElement('style');
+                    probe.textContent = 'body{overflow-x:visible !important;}';
+                    d.head.appendChild(probe);
+
+                    var docW = d.documentElement.scrollWidth;
+                    var bodyW = d.body.scrollWidth;
+                    var widest = Math.max(docW, bodyW);
+                    var offenders = [];
+                    var nodes = d.querySelectorAll('body *');
+                    for (var i = 0; i < nodes.length; i++) {
+                        var el = nodes[i];
+                        var r = el.getBoundingClientRect();
+                        if (r.width === 0 || r.height === 0) continue;
+                        if (r.right <= W + 1) continue;
+                        // 自身就是横向滚动容器（如 <pre>）的内容属于预期，不算溢出
+                        var p = el.parentElement;
+                        var inScroller = false;
+                        while (p && p !== d.body) {
+                            var ov = win.getComputedStyle(p).overflowX;
+                            if (ov === 'auto' || ov === 'scroll' || ov === 'hidden') { inScroller = true; break; }
+                            p = p.parentElement;
+                        }
+                        if (inScroller) continue;
+                        offenders.push(el.tagName.toLowerCase() + '.' + (el.className || '').toString().split(' ')[0] +
+                            ' right=' + Math.round(r.right) + ' w=' + Math.round(r.width));
+                    }
+                    var flag = (widest > W + 1 || offenders.length) ? 'OVERFLOW' : 'ok';
+                    lines.push((flag === 'ok' ? '✓ ' : '✗ ') + path + '  scrollW=' + widest +
+                        (offenders.length ? '\n    ' + offenders.slice(0, 6).join('\n    ') : ''));
+                }
+                out.textContent = lines.join('\n') + '\n\nrunning ' + idx + '/' + PAGES.length;
+                f.remove();
+                next();
+            }, 900);
+        }
+        f.addEventListener('load', check);
+        setTimeout(check, 5000);
+        document.getElementById('frames').appendChild(f);
+    }
+
+    next();
+    </script>
+</body>
+</html>

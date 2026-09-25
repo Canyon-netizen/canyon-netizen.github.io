@@ -1,112 +1,238 @@
 [
   {
-    "title": "首页",
-    "url": "/",
-    "excerpt": "你的名字 — 个人简介、研究方向、论文发表、项目展示、最新动态"
+    "title": "",
+    "excerpt": "",
+    "url": "index.html",
+    "type": "page"
   },
   {
-    "title": "关于我",
-    "url": "/about.html",
-    "excerpt": "个人简介、教育背景、工作经历、技能清单、获奖与荣誉"
+    "title": "",
+    "excerpt": "",
+    "url": "about.html",
+    "type": "page"
   },
   {
-    "title": "研究方向",
-    "url": "/research.html",
-    "excerpt": "当前研究方向、研究兴趣、合作邀请"
+    "title": "",
+    "excerpt": "",
+    "url": "research.html",
+    "type": "page"
   },
   {
-    "title": "论文发表",
-    "url": "/publications.html",
-    "excerpt": "完整的论文发表列表，按年份倒序"
+    "title": "",
+    "excerpt": "",
+    "url": "publications.html",
+    "type": "page"
   },
   {
-    "title": "项目展示",
-    "url": "/projects.html",
-    "excerpt": "研究项目、开源项目展示"
+    "title": "",
+    "excerpt": "",
+    "url": "projects.html",
+    "type": "page"
   },
   {
     "title": "博客",
-    "url": "/blog.html",
-    "excerpt": "学习笔记、研究随想、技术分享"
+    "excerpt": "这里记录我的学习笔记、研究随想和技术分享。",
+    "url": "blog.html",
+    "type": "page"
   },
   {
-    "title": "分享 / Talks",
-    "url": "/talks.html",
-    "excerpt": "会议报告、研讨会演讲、内部分享"
+    "title": "",
+    "excerpt": "",
+    "url": "talks.html",
+    "type": "page"
   },
   {
     "title": "阅读 / Books",
-    "url": "/books.html",
-    "excerpt": "读过的书，按主题分类，技术、文学、传记"
+    "excerpt": "我读过的书，按主题分类。⭐ 越多表示个人推荐度越高。",
+    "url": "books.html",
+    "type": "page"
   },
   {
-    "title": "爱好 / Hobbies",
-    "url": "/hobbies.html",
-    "excerpt": "工作之外的兴趣：跑步、摄影、吉他、写作、咖啡、徒步、游戏、电影"
+    "title": "爱好 / Beyond Work",
+    "excerpt": "研究和工程之外的我。下面是我工作之外常做的事情 —— 它们大多帮助我成为一个更好的研究者。",
+    "url": "hobbies.html",
+    "type": "page"
   },
   {
-    "title": "简历 / CV",
-    "url": "/cv.html",
-    "excerpt": "完整简历，支持 PDF 下载"
+    "title": "",
+    "excerpt": "",
+    "url": "cv.html",
+    "type": "page"
+  },
+  {
+    "title": "2026.09 开始在 浙江大学计算机科学与技术学院 攻读博士学位。",
+    "excerpt": "开始在 浙江大学计算机科学与技术学院 攻读博士学位。",
+    "url": "index.html",
+    "type": "news"
+  },
+  {
+    "title": "2026.07 在 GitHub 上发布开源项目 daily-paper-reader （Ast…",
+    "excerpt": "在 GitHub 上发布开源项目 daily-paper-reader （Astro + Python，MIT 许可）。",
+    "url": "index.html",
+    "type": "news"
+  },
+  {
+    "title": "2026.06 本科毕业于 浙江大学计算机科学与技术学院 。",
+    "excerpt": "本科毕业于 浙江大学计算机科学与技术学院 。",
+    "url": "index.html",
+    "type": "news"
+  },
+  {
+    "title": "2025.05 发布 LaTeX 模板 zjureport_latex ，",
+    "excerpt": "发布 LaTeX 模板 zjureport_latex ，用于还原浙江大学实验报告格式。",
+    "url": "index.html",
+    "type": "news"
   },
   {
     "title": "研究笔记：从零开始读一篇论文",
-    "url": "/blog/2026-06-20-research-notes.html",
-    "excerpt": "分享读论文的三遍阅读法，以及如何用一周时间吃透一篇顶会论文"
+    "excerpt": "分享一下我读论文的\"三遍阅读法\"，以及如何用一周时间吃透一篇顶会论文。从标题、摘要到实验设计，每一步的侧重点和常见误区都讲清楚。",
+    "body": "读论文是研究生的日常。一篇顶会论文动辄 8-15 页，方法 + 实验 + 附录，可能还有补充材料。 很多同学（包括曾经的我）会一头扎进细节，结果读了一周还是云里雾里。 这里分享一下我的\"三遍阅读法\"。 三遍阅读法：每一遍的目标不同，读到的深度也不同（点击可放大）。 第一遍：鸟瞰（15-20 分钟） 目标：判断这篇论文值不值得细读、属于哪个子方向。 标题 + 摘要 ：解决什么问题？用什么方法？有什么结果？ Introduction 末尾 ：通常会列出 3-5 个具体贡献，这部分是最有信息密度的。 章节标题 + 图表标题 ：快速浏览，了解文章整体结构。 结论 ：看作者认为自己的工作有什么意义。 读完之后，你应该能用自己的话概括出：\"本文针对 XXX 问题，提出了 XXX 方法， 在 XXX 数据集上比 SOTA 提升了 X%。\" 第二遍：理解（1-2 小时） 目标：理解方法的核心思想，能复述、能向他人解释。 仔细读 方法章节 ，对每个公式问\"它在算什么\"。 画一张 系统框架图 ，用纸笔画出来。 跳过复杂的数学推导， 重点是直觉 。 遇到不熟悉的概念，标记下来后查资料，不要中断阅读节奏。 好的论文读完后，你能在脑海中\"播放\"它的方法流程图；差的论文读完后，你只记得一堆符号。 第三遍：复现（半天-1 天） 目标：发现论文的隐藏细节、实验设置的合理性、未明确说明的取舍。 假设你要复现这篇论文，你会遇到什么问题？ 作者没说清的：超参数怎么选？数据怎么切分？失败案例是什么？ 实验设计是否公平？ baseline 是不是选得最有利 ？ 把上面的疑问整理成 5-10 个问题，去找作者发的代码或者去读作者的博士论文。 一些个人习惯 不动笔墨不读书 ：每篇精读论文都有 1-2 页的笔记，半年后翻出来仍然能复述。 先跑代码再读 ：能跑通的代码能让方法变得具体。 和同学讲一遍 ：讲不清楚就说明没真懂。 组会上分享 ：逼自己用 20 分钟讲清楚，是最好的输出练习。 小结 读论文不是看小说，而是一次\"逆向工程\"。 第一遍判断值不值得读，第二遍搞清楚方法是什么，第三遍才真正内化作者的取舍。 一周一篇精读 + 三五篇泛读，是比较舒服的节奏。",
+    "url": "blog/2026-06-20-research-notes.html",
+    "type": "post"
   },
   {
     "title": "Python 项目配置管理：环境变量、配置文件、密钥",
-    "url": "/blog/2026-05-08-python-config.html",
-    "excerpt": "整理 Python 项目中几种配置管理方式：环境变量、.env 文件、YAML/TOML、Pydantic Settings、密钥管理"
+    "excerpt": "一个 Python 项目往往需要在不同环境（开发/测试/生产）下切换配置。本文整理了我常用的几种配置管理方式，以及它们各自的适用场景。",
+    "body": "一个工程化的 Python 项目往往要处理多种配置：数据库连接、API 密钥、模型超参、 不同的运行环境（开发/测试/生产）。本文整理几种常见方案的取舍。 1. 环境变量（最基础） 用 os.environ 读取，简单但弱类型、不便管理。 import os DB_URL = os.environ.get(\"DATABASE_URL\", \"sqlite:///dev.db\") 2. .env 文件 + python-dotenv 把环境变量写进 .env ，开发时方便切换。 一定要把 .env 加进 .gitignore 。 # .env DATABASE_URL=postgres://... SECRET_KEY=xxx 3. YAML/JSON/TOML 配置文件 适合结构化配置，比如 ML 训练的超参。 # config.yaml model: name: resnet50 lr: 0.001 batch_size: 64 data: train: data/train val: data/val 4. Pydantic Settings（推荐） 类型安全 + 自动校验 + 多来源合并（env > file > default）。 新项目强烈推荐。 from pydantic_settings import BaseSettings class Settings(BaseSettings): db_url: str secret_key: str debug: bool = False class Config: env_file = \".env\" settings = Settings() 5. 密钥管理 永远不要把密钥写进代码、配置文件、git。 团队项目用 Vault / AWS Secrets Manager / GCP Secret Manager ； 个人项目至少用 .env 并加 .gitignore 。 如果密钥曾经提交到 git，立刻 rotate（重新生成）并清理 git history。 我的实践 小脚本：直接 os.environ + .env 。 中等项目： Pydantic Settings + .env 。 训练实验： Hydra 或 OmegaConf 做配置组合。 生产部署： 12-factor ，配置全部走环境变量，密钥交给云服务。",
+    "url": "blog/2026-05-08-python-config.html",
+    "type": "post"
   },
   {
-    "title": "Home (EN)",
-    "url": "/en/index.html",
-    "excerpt": "Personal homepage — research, publications, projects"
+    "title": "canyon-netizen.github.io — 个人主页",
+    "excerpt": "本主页本身：零构建的静态站点，纯 HTML/CSS/JS 编写，中英双语，支持深色模式、全站搜索与 PWA 离线访问。 技术栈 HTML、CSS、JavaScript",
+    "url": "projects.html",
+    "type": "project"
   },
   {
-    "title": "About (EN)",
-    "url": "/en/about.html",
-    "excerpt": "Bio, education, work experience, skills, honors"
+    "title": "daily-paper-reader",
+    "excerpt": "一个用于发现和阅读 AI 论文的开源工具：多源论文抓取、个性化召回与 LLM 排序、论文精读与笔记，MIT 许可。 技术栈 Astro、TypeScript、Python",
+    "url": "projects.html",
+    "type": "project"
   },
   {
-    "title": "Research (EN)",
-    "url": "/en/research.html",
-    "excerpt": "Research interests and directions"
+    "title": "zjureport_latex",
+    "excerpt": "用 LaTeX 还原浙江大学实验报告格式的模板。 技术栈 LaTeX",
+    "url": "projects.html",
+    "type": "project"
   },
   {
-    "title": "Publications (EN)",
-    "url": "/en/publications.html",
-    "excerpt": "Complete list of publications"
+    "title": "Reasoning3D — LLM 推理过程 3D 可视化",
+    "excerpt": "把大模型生成推理链时的 hidden states 流实时投到 3D 空间，用来观察推理轨迹的节奏与分叉。提供了无需 GPU 的合成数据演示模式，向量注入的 hook 也已预留。 技术栈 Python、FastAPI、Three.js、scikit-learn",
+    "url": "projects.html",
+    "type": "project"
   },
   {
-    "title": "Projects (EN)",
-    "url": "/en/projects.html",
-    "excerpt": "Research projects and open-source tools"
+    "title": "一页 — 智能小说创作平台",
+    "excerpt": "面向长篇创作的写作平台：11 种小说类型各有专属提示词，含预设模板市场、续写 / 润色 / 建议 / 命名等写作助手，并支持多家模型 API 与本地模拟。 技术栈 JavaScript、HTML、CSS、LLM API",
+    "url": "projects.html",
+    "type": "project"
   },
   {
-    "title": "Blog (EN)",
-    "url": "/en/blog.html",
-    "excerpt": "Notes, thoughts, and tutorials"
+    "title": "机器学习",
+    "excerpt": "关注机器学习的基础方法与模型评估，正在系统补足数学与算法基础。",
+    "url": "research.html",
+    "type": "direction"
   },
   {
-    "title": "Talks (EN)",
-    "url": "/en/talks.html",
-    "excerpt": "Conference talks and presentations"
+    "title": "自然语言处理与大语言模型",
+    "excerpt": "关注自然语言处理的基础问题，包括文本表示、文本生成与大语言模型的相关方法。",
+    "url": "research.html",
+    "type": "direction"
   },
   {
-    "title": "Books (EN)",
-    "url": "/en/books.html",
-    "excerpt": "Books I've read — tech, fiction, biographies"
+    "title": "研究与工程实践",
+    "excerpt": "关注把想法落地的工程环节：数据处理、实验复现与可维护的项目结构，并通过开源项目积累经验。",
+    "url": "research.html",
+    "type": "direction"
   },
   {
-    "title": "Hobbies (EN)",
-    "url": "/en/hobbies.html",
-    "excerpt": "Beyond work: running, photography, guitar, writing, coffee, hiking"
+    "title": "深入理解计算机系统 (CSAPP)",
+    "excerpt": "Randal E. Bryant 计算机基础\"圣经\"，从硬件到应用层打通，强烈推荐。",
+    "url": "books.html",
+    "type": "book"
   },
   {
-    "title": "CV (EN)",
-    "url": "/en/cv.html",
-    "excerpt": "Curriculum Vitae, PDF download available"
+    "title": "设计模式",
+    "excerpt": "Gang of Four 面向对象设计的经典，但部分模式已过时，需结合现代语言特性理解。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "深度学习 (花书)",
+    "excerpt": "Ian Goodfellow 深度学习领域的\"圣经\"，理论扎实，但代码示例已过时。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "百年孤独",
+    "excerpt": "加西亚·马尔克斯 魔幻现实主义代表作，每读一遍都有新发现。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "三体",
+    "excerpt": "刘慈欣 中国科幻的巅峰之作，宏大的宇宙观和深刻的人性思考。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "活出生命的意义",
+    "excerpt": "维克多·弗兰克尔 从集中营经历中提炼的意义疗法，震撼人心。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "思考，快与慢",
+    "excerpt": "Daniel Kahneman 卡尼曼的认知心理学经典，系统 1 与系统 2 的思考框架很有启发。",
+    "url": "books.html",
+    "type": "book"
+  },
+  {
+    "title": "跑步",
+    "excerpt": "每周 3-5 次，配速 5'30\"。跑步是给大脑放空的时间。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "摄影",
+    "excerpt": "街头与旅行摄影，主要用手机拍摄。喜欢捕捉光影瞬间。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "吉他",
+    "excerpt": "练习指弹，目前在啃《River Flows in You》。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "写作",
+    "excerpt": "偶尔写博客和短文，整理思路的方式。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "手冲咖啡",
+    "excerpt": "每天一杯埃塞俄比亚耶加雪菲，浅烘，花香突出。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "徒步",
+    "excerpt": "周末短途徒步，每年一次多日长线。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "游戏",
+    "excerpt": "偶尔玩单机，独立游戏为主，少碰网游。",
+    "url": "hobbies.html",
+    "type": "hobby"
+  },
+  {
+    "title": "电影",
+    "excerpt": "偏好科幻、悬疑、文艺片。诺兰、维伦纽瓦、奉俊昊的忠实观众。",
+    "url": "hobbies.html",
+    "type": "hobby"
   }
 ]

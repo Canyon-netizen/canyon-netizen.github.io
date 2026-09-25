@@ -1,7 +1,7 @@
 {
-  "name": "你的名字 - 个人主页",
-  "short_name": "你的名字",
-  "description": "研究方向、论文发表、项目展示",
+  "name": "周睿 - 个人主页",
+  "short_name": "周睿",
+  "description": "浙江大学计算机科学与技术学院博士研究生周睿的个人主页：研究兴趣、开源项目与博客。",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

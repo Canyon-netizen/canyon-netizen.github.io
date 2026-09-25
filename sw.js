@@ -1,10 +1,11 @@
 // ========================================
 // Service Worker — 缓存优先策略
 // ========================================
-const CACHE_VERSION = 'v1.2.0';
+const CACHE_VERSION = 'v2.8.0';
 const CACHE_NAME = `personal-site-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [
+    // 中文页面
     '/',
     '/index.html',
     '/about.html',
@@ -16,24 +17,50 @@ const PRECACHE_URLS = [
     '/books.html',
     '/hobbies.html',
     '/cv.html',
+    '/404.html',
+    // 英文页面
     '/en/index.html',
     '/en/about.html',
+    '/en/research.html',
+    '/en/publications.html',
+    '/en/projects.html',
+    '/en/blog.html',
+    '/en/talks.html',
+    '/en/books.html',
+    '/en/hobbies.html',
     '/en/cv.html',
+    // 博客文章（中英双语）
+    '/blog/2026-06-20-research-notes.html',
+    '/blog/2026-05-08-python-config.html',
+    '/en/blog/2026-06-20-research-notes.html',
+    '/en/blog/2026-05-08-python-config.html',
+    // 数据与搜索索引
     '/data.json',
+    '/search-index.json',
+    '/search-index-en.json',
+    '/rss.xml',
+    '/rss-en.xml',
+    // 样式与脚本
     '/assets/css/style.css',
     '/assets/js/main.js',
     '/assets/js/partial-loader.js',
     '/assets/js/cv-renderer.js',
+    '/assets/js/page-renderer.js',
+    '/assets/js/ui.js',
+    '/assets/js/article.js',
+    // 模板片段
     '/partials/head-base.html',
     '/partials/head-extra-index.html',
     '/partials/head-blog.html',
     '/partials/header.html',
     '/partials/footer.html',
     '/partials/search-overlay.html',
+    // 静态资源与元信息
     '/assets/images/favicon.svg',
     '/assets/images/profile.svg',
+    '/assets/images/blog/three-pass-reading.svg',
+    '/assets/files/cv.pdf',
     '/manifest.json',
-    '/rss.xml',
     '/sitemap.xml'
 ];
 

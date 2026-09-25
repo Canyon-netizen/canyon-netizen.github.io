@@ -1,6 +1,21 @@
 <footer class="site-footer">
     <div class="container">
-        <p>&copy; 2026 {{brandText}}. {{footerCreditPrefix}} <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> {{footerCreditSuffix}}.</p>
-        {{lastUpdatedLine}}
+        <nav class="footer-nav" aria-label="{{brandText}}">
+            <a href="__BASE_LANG__index.html">{{navHome}}</a>
+            <a href="__BASE_LANG__about.html">{{navAbout}}</a>
+            <a href="__BASE_LANG__research.html">{{navResearch}}</a>
+            <a href="__BASE_LANG__publications.html">{{navPublications}}</a>
+            <a href="__BASE_LANG__projects.html">{{navProjects}}</a>
+            <a href="__BASE_LANG__blog.html">{{navBlog}}</a>
+            <a href="__BASE_LANG__talks.html">{{navTalks}}</a>
+            <a href="__BASE_LANG__books.html">{{navBooks}}</a>
+            <a href="__BASE_LANG__hobbies.html">{{navHobbies}}</a>
+            <a href="__BASE_LANG__cv.html">{{navCV}}</a>
+            <a href="__BASE__rss.xml" target="_blank" rel="noopener">RSS</a>
+        </nav>
+        <div class="footer-bottom">
+            <p>&copy; 2026 {{brandText}}. {{footerCreditPrefix}} <a href="https://pages.github.com/" target="_blank" rel="noopener">GitHub Pages</a> {{footerCreditSuffix}}.</p>
+            {{lastUpdatedLine}}
+        </div>
     </div>
 </footer>

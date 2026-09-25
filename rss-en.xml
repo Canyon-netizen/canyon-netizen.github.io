@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zhou Rui - Blog</title>
+    <link>https://canyon-netizen.github.io/en/</link>
+    <description>Study notes, research reflections and technical write-ups.</description>
+    <language>en</language>
+    <atom:link href="https://canyon-netizen.github.io/rss-en.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 20 Jun 2026 00:00:00 +0800</lastBuildDate>
+
+    <item>
+      <title>Research notes: reading a paper from scratch</title>
+      <link>https://canyon-netizen.github.io/en/blog/2026-06-20-research-notes.html</link>
+      <description>My "three-pass" approach to reading papers, and how I work through a top-conference paper in a week — what to focus on at each step, from title and abstract to experimental design, plus the pitfalls to avoid.</description>
+      <pubDate>Sat, 20 Jun 2026 00:00:00 +0800</pubDate>
+      <guid isPermaLink="true">https://canyon-netizen.github.io/en/blog/2026-06-20-research-notes.html</guid>
+      <category>Research</category>
+    </item>
+    <item>
+      <title>Managing Python project configuration: environment variables, config files and secrets</title>
+      <link>https://canyon-netizen.github.io/en/blog/2026-05-08-python-config.html</link>
+      <description>A Python project usually needs different configuration across environments (development, testing, production). This article collects the configuration approaches I use most, and when each of them fits.</description>
+      <pubDate>Fri, 08 May 2026 00:00:00 +0800</pubDate>
+      <guid isPermaLink="true">https://canyon-netizen.github.io/en/blog/2026-05-08-python-config.html</guid>
+      <category>Tech</category>
+    </item>
+  </channel>
+</rss>

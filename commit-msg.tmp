@@ -1,0 +1,41 @@
+feat: 视觉重做 + 双语一致 + 渲染缺陷修复 + 全套自动化验证
+
+第 1–13 轮站点优化的合并提交。主要变化：
+
+内容与数据
+- 项目页补齐 5 个真实仓库，star/主语言/许可证/最近更新来自 GitHub 公开 API
+  （tools/fetch-github-stats.py），并修正 GitHub 按字节数误判的语言
+- 首页「公开仓库」数字改为从 API 自动核对，统计卡注明口径
+- 英文站补上 2 篇完整文章（data.json 的 contentEn），中英同源模板生成
+- 简历新增「项目经历」章节（原渲染器按数组下标对应，整段被漏掉）
+- 新增可下载的 assets/files/cv.pdf（tools/make-cv.py，一页 A4）
+
+生成物取代手写（避免多处重复维护）
+- rss.xml / rss-en.xml / sitemap.xml ← tools/make-feeds.py
+- search-index.json / search-index-en.json ← tools/make-search-index.py（含文章正文）
+- 中英文章页 ← tools/make-articles.py
+- 各页内联 data.json（tools/inline-page-data.py），消除内容后到导致的布局抖动
+
+视觉与交互
+- 设计系统 v2：色板/排版/间距/动效/响应式全面重做
+- 搜索重做：按类型分组、类型标签、正文全文命中片段、两段式检索
+- 文章页：目录、代码块复制与键盘可聚焦、配图灯箱、阅读时间按正文重算
+- 打印样式：代码块改浅底、简历压到 1~2 页且末页不空
+
+可访问性与健壮性
+- 修复对比度（次级文字 3.78:1 → 5.0:1、深色模式当前页高亮、书单星标）
+- 触摸目标 ≥24px、字号下限 12px、面包屑与首页 meta 项补高度
+- 搜索框与 404 导航补可访问名
+- 禁用脚本时不再整页空白（html.js 门控 + <noscript> 说明）
+- 移除 color-mix() 百分比用法（部分引擎解析错误会让半透明底变不透明）
+
+验证工具（tools/，全部可重复运行）
+- check-site / check-encoding / render-cdp / assert-render
+- a11y-audit（25 页 11 类规则，含禁用脚本用例）
+- responsive-audit（11 档宽度 × 16 页 = 176 组合）
+- print-audit（打印媒体 + 真实 PDF 页数）
+- search-check（端到端搜索）
+- perf-audit（CLS/LCP/传输体积）、layout-probe（定位偏移来源）
+
+最终验证：静态 0 error/0 warning；编码 0 损坏；断言 26/26 页 203/203 条；
+a11y 25 页 0 问题；响应式 176 组合 0 问题；打印 0 问题；CLS 全页 0；CV 1 页。

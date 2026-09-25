@@ -23,7 +23,7 @@
 
   <!-- 主标题 -->
   <text x="80" y="200" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
-        font-size="92" font-weight="800" fill="#ffffff">你的名字</text>
+        font-size="92" font-weight="800" fill="#ffffff">周睿</text>
 
   <!-- 副标题 -->
   <text x="80" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', sans-serif"
