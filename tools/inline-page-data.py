@@ -25,6 +25,8 @@ DATA = json.loads((ROOT / "data.json").read_text(encoding="utf-8"))
 PAYLOAD = json.dumps(DATA, ensure_ascii=False, separators=(",", ":"))
 
 BLOCK = ('<script type="application/json" data-page-data>'
+         # 转义 </ 防止 JSON 里的 </script> 提前闭合；顺带避免 </section> 之类的
+         # 标签文本出现在 HTML 里，干扰按字符串定位的后续注入脚本
          + PAYLOAD.replace("</", "<\\/")
          + "</script>\n")
 

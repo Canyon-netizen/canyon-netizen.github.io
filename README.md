@@ -157,6 +157,9 @@ python tools/make-feeds.py       # → rss.xml + rss-en.xml + sitemap.xml（别�
 #    python tools/extract-post-content.py && python tools/normalize-post-content.py
 #    python tools/fix-code-blocks.py && python tools/add-post-en.py && python tools/link-post-en.py
 python tools/make-search-index.py  # → search-index.json + search-index-en.json（含文章正文全文）
+python tools/tag-related-posts.py  # → 给文章打「相关页面」标签（各主题页的「相关文章」区块用）
+python tools/add-related-sections.py # → 给 talks/research/publications 注入相关文章区块
+python tools/inline-page-data.py   # → 把 data.json 内联进各页（消除内容后到的布局抖动）
 python tools/fetch-github-stats.py # → 项目仓库的 star/主语言/许可证/最近更新 + 首页仓库总数
 python tools/add-project-entries.py # → 补进有据可查的新项目（描述需依 README，不臆造）
 python tools/add-js-flag.py        # → 给各页 head 注入「脚本可用」标记（保证禁用脚本时内容可见）

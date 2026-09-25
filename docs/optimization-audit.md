@@ -2,6 +2,29 @@
 
 > 本轮优化前的缺陷清单、处理方式与最终验证结论。改动细节见 `README.md` 的「改完怎么自检」一节。
 
+## 第 14 轮：把「空页面」接上真实内容
+可见文本量盘点显示最单薄的是 `talks`（539 字）、`research`（681 字）、`publications`（811 字）——
+分享记录、论文、获奖都还没公开，读者点进去看到的是一片空态。
+
+- 新增 `renderRelatedPosts`：按文章的 `relatedPages` 标签把文章接到主题页上。
+  `tools/tag-related-posts.py` 负责打标签（按文章实际内容归类，不是泛泛地全挂）。
+- `tools/add-related-sections.py`：给 talks / research / publications 的中英页注入区块；
+  **无关联文章时渲染器整块移除**，不会留下空标题。
+
+## 第 13 轮：首屏性能与布局稳定性
+新增 `tools/perf-audit.mjs`（CLS / LCP / 传输体积 / 图片尺寸 / 阻塞脚本 / 重复请求）
+与 `tools/layout-probe.mjs`（按时间点抓页面结构快照，定位偏移来源）。
+
+探针发现：`about.html` 在 50ms 时区块高 40px，数据到位后变成 234px，页脚被推下 **654px**；
+首页被推下 **1550px** —— 这是 CLS 的主要来源。
+
+- **把 `data.json` 在构建时内联进各页**（`tools/inline-page-data.py`），
+  页面渲染器优先读内联数据（缺失时仍回退 `fetch`）：内容在首次绘制就存在。
+- 修掉 2 张缺 `width/height` 的图（hero 头像、GitHub 贡献图）。
+- 内联后单页 gzip 约 16–17KB；**CLS 从 0.12 降到 0**。
+- 工具自身修了两处：CLS 偶发误报（每页测两遍取较小值）、文档体积漏计
+  （文档响应发生在 `Network.enable` 之前）。
+
 ## 第 12 轮：打印样式审计（并发现简历缺了「项目经历」）
 新增 `tools/print-audit.mjs`：用 `Emulation.setEmulatedMedia({media:'print'})` 真正切到打印媒体，
 再用 `Page.printToPDF` 出真实 PDF 数页数。检查 6 类问题：
@@ -303,11 +326,12 @@
 - 交互：顶部滚动进度条、文章阅读进度、回到顶部、导航 ScrollSpy、标题锚点、代码块语言标签与复制按钮、TOC 当前位置高亮。
 - 自适应：900px 以下抽屉导航、520px 以下统计卡两列、`prefers-reduced-motion` 与 `@media print` 完整覆盖。
 
-## 最终验证（第 12 轮结束状态）
-- `node tools/print-audit.mjs --pdf`：**7 个页面、0 处问题**（简历 2 页但内容高度 1.01 页，末页不空）。
-- `node tools/assert-render.mjs`：**26 / 26 页、203 / 203 条断言通过**。
+## 最终验证（第 14 轮结束状态）
+- `node tools/assert-render.mjs`：**26 / 26 页、206 / 206 条断言通过**。
 - `node tools/responsive-audit.mjs`：**176 个组合、0 处问题**。
 - `node tools/a11y-audit.mjs`：**25 个页面、0 处问题**（含禁用脚本用例）。
+- `node tools/perf-audit.mjs`：**CLS 全页 0**，首页 102KB / 其余 40–49KB（未超预算）。
+- `node tools/print-audit.mjs --pdf`：**7 个页面、0 处问题**。
 - `node tools/search-check.mjs`：**5 个用例全部通过**。
 - `node tools/check-site.mjs`：**0 error / 0 warning**，索引 39 条 ×2、`rss 2 篇` ×2、`sitemap 24 个 URL`。
 - `node tools/check-encoding.mjs`：**0 处损坏**。

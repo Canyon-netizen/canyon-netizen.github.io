@@ -1,7 +1,7 @@
 // ========================================
 // Service Worker — 缓存优先策略
 // ========================================
-const CACHE_VERSION = 'v2.8.0';
+const CACHE_VERSION = 'v2.9.0';
 const CACHE_NAME = `personal-site-${CACHE_VERSION}`;
 
 const PRECACHE_URLS = [

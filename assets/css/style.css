@@ -3486,6 +3486,84 @@ html[lang="en"] { --draft-label: "Draft"; }
     text-decoration: underline;
 }
 
+/* 相关文章：把主题页与已发布文章连起来（页面上内容少时的继续阅读路径） */
+.related-section {
+    margin-top: clamp(36px, 6vw, 64px);
+    padding-top: clamp(24px, 4vw, 36px);
+    border-top: 1px solid var(--color-border);
+}
+
+.related-section-title {
+    font-size: clamp(17px, 1.6vw, 20px);
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 18px;
+}
+
+.related-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+}
+
+.related-post {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 18px 20px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-card);
+    transition: transform var(--t-fast) var(--ease-out),
+                box-shadow var(--t-fast) var(--ease-out),
+                border-color var(--t-fast) var(--ease-out);
+}
+
+.related-post:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-md);
+}
+
+.related-post-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12.5px;
+    color: var(--color-text-mute);
+}
+
+.related-post-cat {
+    padding: 1px 8px;
+    border-radius: var(--radius-pill);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+    font-weight: 650;
+}
+
+.related-post-title {
+    font-size: 16px;
+    font-weight: 680;
+    line-height: 1.45;
+    color: var(--color-primary);
+    margin: 0;
+}
+
+.related-post-excerpt {
+    font-size: 13.5px;
+    line-height: 1.65;
+    color: var(--color-text-soft);
+    margin: 0;
+}
+
+.related-post-read {
+    margin-top: auto;
+    padding-top: 8px;
+    font-size: 13px;
+    font-weight: 650;
+    color: var(--color-accent);
+}
+
 /* 滚动渐入：只在脚本可用时隐藏内容。
    `html.js` 由各页 head 里的内联脚本添加；禁用脚本时内容直接显示，
    不会因为 .is-visible 永不被添加而整页空白。 */

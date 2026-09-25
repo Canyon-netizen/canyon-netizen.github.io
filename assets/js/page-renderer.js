@@ -1207,6 +1207,61 @@
         return null;
     }
 
+    // ============== 相关内容：把文章接到主题页上 ==============
+    // talks / research / publications 这些页面本身内容就少（分享记录、论文都还没公开），
+    // 读者点进来看到一大片空白。挂上「相关文章」既是真实内容，也给了继续阅读的路径。
+    // 关联关系写在 data.json 的 posts[].relatedPages / relatedPagesEn。
+    const renderRelatedPosts = function (sec, data) {
+        const list = findIn(sec, '[data-related-posts]') || sec;
+        list.innerHTML = '';
+
+        const pageKey = sec.getAttribute('data-page-key') || '';
+        const posts = (data.posts || []).filter(function (p) {
+            if (!p.published) return false;
+            const rel = (IS_EN ? (p.relatedPagesEn || p.relatedPages) : p.relatedPages) || [];
+            return rel.indexOf(pageKey) !== -1;
+        });
+        if (!posts.length) { removeNode(sec); return; }
+
+        posts.forEach(function (p) {
+            const a = document.createElement('a');
+            a.className = 'related-post';
+            const href = IS_EN ? (p.hrefEn || p.href) : p.href;
+            a.href = sitePath(href);
+
+            const meta = document.createElement('div');
+            meta.className = 'related-post-meta';
+            const time = document.createElement('span');
+            time.textContent = p.date || '';
+            meta.appendChild(time);
+            const cat = document.createElement('span');
+            cat.className = 'related-post-cat';
+            cat.textContent = pick(p, 'categoryLabel');
+            meta.appendChild(cat);
+            a.appendChild(meta);
+
+            const title = document.createElement('h3');
+            title.className = 'related-post-title';
+            title.textContent = pick(p, 'title');
+            a.appendChild(title);
+
+            const excerpt = pick(p, 'excerpt');
+            if (excerpt) {
+                const pEl = document.createElement('p');
+                pEl.className = 'related-post-excerpt';
+                pEl.textContent = excerpt;
+                a.appendChild(pEl);
+            }
+
+            const read = document.createElement('span');
+            read.className = 'related-post-read';
+            read.textContent = (IS_EN ? 'Read' : '阅读') + ' →';
+            a.appendChild(read);
+
+            list.appendChild(a);
+        });
+    };
+
     // ============== Renderer 注册 ==============
     const RENDERERS = {
         'personal-hero': renderPersonalHero,
@@ -1223,6 +1278,7 @@
         'books': renderBooks,
         'hobbies': renderHobbies,
         'talks': renderTalks,
+        'related-posts': renderRelatedPosts,
         '404-page': render404,
         'personal-bio': renderPersonalBio,
         'education': renderEducation,

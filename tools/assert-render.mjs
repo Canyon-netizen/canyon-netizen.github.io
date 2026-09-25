@@ -134,7 +134,10 @@ const CASES = [
         id: 'zh-research',
         must: ['研究方向', 'research-block', 'research-icon'],
         mustNot: ['{{', '方向一：XXX', 'XXX'],
-        custom: [['研究方向块 ≥1', (h) => count(h, /class="research-block/g) >= 1]]
+        custom: [
+            ['研究方向块 ≥1', (h) => count(h, /class="research-block/g) >= 1],
+            ['相关文章已接到本页', (h) => count(h, /class="related-post"/g) >= 1]
+        ]
     },
     {
         id: 'zh-publications',
@@ -173,7 +176,11 @@ const CASES = [
         id: 'zh-talks',
         must: ['分享'],
         mustNot: ['{{', '硕士答辩', 'XXX 研讨会', 'XXX Conference'],
-        custom: [['空态或真实条目', (h) => h.includes('empty-state') || count(h, /class="entry-item/g) > 0]]
+        custom: [
+            ['空态或真实条目', (h) => h.includes('empty-state') || count(h, /class="entry-item/g) > 0],
+            ['相关文章已接到本页（分享记录为空时的继续阅读路径）', (h) => count(h, /class="related-post"/g) >= 1],
+            ['相关文章链接指向文章页', (h) => /class="related-post" href="blog\/2026-06-20-research-notes\.html"/.test(h)]
+        ]
     },
     {
         id: 'zh-books',
