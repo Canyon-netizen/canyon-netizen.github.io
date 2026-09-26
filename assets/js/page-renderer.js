@@ -48,7 +48,9 @@
         yearsAgo: function (n) { return n + ' 年前'; },
         repoSourceNote: function (date) {
             return '仓库信息（star 数、主语言、许可证、最近更新时间）来自 GitHub 公开 API，抓取于 ' + date + '。';
-        }
+        },
+        searchForPrefix: '按这几个关键词搜索：',
+        searchThisSite: '搜索本站'
     };
     const TEXT_EN = {
         keyTechniques: 'Key techniques: ',
@@ -81,7 +83,9 @@
         yearsAgo: function (n) { return n === 1 ? '1 year ago' : n + ' years ago'; },
         repoSourceNote: function (date) {
             return 'Repository facts (stars, primary language, license, last update) come from the public GitHub API, fetched on ' + date + '.';
-        }
+        },
+        searchForPrefix: 'Searching for ',
+        searchThisSite: 'Search this site'
     };
 
     // 文案对象在 init() 里按语言选定（见 let T）；I18N 是渲染器里使用的别名
@@ -1021,6 +1025,62 @@
     };
 
     // ---- 404：error-page ----
+    // 从访问失败的 URL 里提取可搜索的关键词：
+    //   /blog/2026-06-20-research-notes.html → "research notes"
+    //   /en/projects/  → "projects"
+    // 去掉语言前缀、扩展名、纯数字/日期，剩下的按连字符拆成词。
+    function pathKeywords() {
+        // ?q= 优先：这样 404 页的搜索链接能被分享/收藏，禁用 JS 时也能落到带关键词的搜索
+        try {
+            const q = new URLSearchParams(location.search).get('q');
+            if (q && q.trim()) return q.trim().slice(0, 60);
+        } catch (e) { /* URLSearchParams 不可用时忽略 */ }
+        let path = '';
+        try { path = decodeURIComponent(location.pathname); } catch (e) { path = location.pathname; }
+        const segments = path.split('/').filter(Boolean);
+        const stop = ['en', 'zh', 'index', 'html', 'htm', 'blog', 'posts', 'pages'];
+        const words = [];
+        segments.forEach(function (seg) {
+            seg.replace(/\.(html?|php|aspx?)$/i, '')
+                .split(/[-_+]+/)
+                .forEach(function (w) {
+                    const clean = w.replace(/[^\p{L}\p{N}]+/gu, '').trim();
+                    if (!clean) return;
+                    if (stop.indexOf(clean.toLowerCase()) !== -1) return;
+                    if (/^\d+$/.test(clean)) return;            // 2026、06、20 这类无检索价值
+                    if (clean.length < 2) return;
+                    words.push(clean);
+                });
+        });
+        return words.slice(0, 4).join(' ');
+    }
+
+    // 打开搜索：搜索弹层由 partial-loader 异步注入，而 main.js 的 search:open
+    // 监听也在它之后才绑定。用户可能在弹层就绪前就点了按钮，所以这里要等
+    // partials:loaded（或直接用 main.js 暴露的 API），否则事件会被丢掉。
+    function dispatchSearchOpen(query) {
+        function fire() {
+            if (window.__SITE_SEARCH__ && typeof window.__SITE_SEARCH__.open === 'function') {
+                window.__SITE_SEARCH__.open(query);
+                return true;
+            }
+            return false;
+        }
+        if (fire()) return;
+        const onLoaded = function () {
+            document.removeEventListener('partials:loaded', onLoaded);
+            // partials 注入后 main.js 仍可能在本轮事件里初始化，放到下一个宏任务
+            setTimeout(fire, 0);
+        };
+        document.addEventListener('partials:loaded', onLoaded);
+        // 兜底：万一 partials:loaded 已经派发过，重试几次
+        let tries = 0;
+        (function retry() {
+            if (fire()) { document.removeEventListener('partials:loaded', onLoaded); return; }
+            if (++tries < 20) setTimeout(retry, 100);
+        })();
+    }
+
     const render404 = function (sec, data) {
         const cfg = pageCfg(data, '404');
         setText(sec, '[data-404-code]', pick(cfg, 'code'));
@@ -1029,6 +1089,47 @@
 
         const desc = findIn(sec, '[data-404-desc]');
         if (desc) desc.innerHTML = pick(cfg, 'desc');
+
+        // 用 URL 里的关键词直接开搜索：读者访问 /blog/xxx 失败时，
+        // 让他重新想关键词是最没必要的摩擦
+        const keywords = pathKeywords();
+        const searchBox = findIn(sec, '[data-404-search]');
+        if (searchBox) {
+            if (keywords) {
+                searchBox.hidden = false;
+                const hint = findIn(searchBox, '[data-404-search-hint]');
+                if (hint) hint.textContent = (T.searchForPrefix || '') + '「' + keywords + '」';
+                const btn = findIn(searchBox, '[data-404-search-btn]');
+                if (btn) {
+                    btn.hidden = false;
+                    const label = (T.searchThisSite || '搜索本站') + ' →';
+                    btn.innerHTML = '';
+                    // 直接建 <a href="?q=关键词#search"> 作为「无 JS 也有效」的兜底，
+                    // 再用 JS 改成打开搜索弹层（不刷新页面）；同时挂 onclick 属性，
+                    // 避免绑定顺序 / 事件系统差异导致点了没反应
+                    const link = document.createElement('a');
+                    link.className = 'btn btn-primary';
+                    link.href = (BASE || '') + '?q=' + encodeURIComponent(keywords);
+                    link.textContent = label;
+                    link.setAttribute('data-404-search-link', '1');
+                    link.onclick = function (e) {
+                        if (window.__SITE_SEARCH__ && typeof window.__SITE_SEARCH__.open === 'function') {
+                            e.preventDefault();
+                            window.__SITE_SEARCH__.open(keywords);
+                        }
+                    };
+                    btn.appendChild(link);
+                }
+            } else {
+                removeNode(searchBox);
+            }
+        }
+
+        // 带 ?q= 进来时直接打开搜索结果（404 搜索链接的落地行为）
+        try {
+            const q = new URLSearchParams(location.search).get('q');
+            if (q && q.trim()) dispatchSearchOpen(q.trim());
+        } catch (e) { /* 忽略 */ }
 
         const ctas = findIn(sec, '[data-404-ctas]');
         if (ctas) {

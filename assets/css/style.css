@@ -3486,6 +3486,33 @@ html[lang="en"] { --draft-label: "Draft"; }
     text-decoration: underline;
 }
 
+/* 404 页：用 URL 里的关键词直接搜索 */
+.error-search {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 22px 0 6px;
+    padding: 18px 20px;
+    border: 1px dashed var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-bg-alt);
+}
+
+.error-search[hidden] { display: none; }
+
+.error-search-hint {
+    font-size: 14px;
+    color: var(--color-text-soft);
+    text-align: center;
+    word-break: break-word;
+}
+
+.error-search-hint::before {
+    content: "🔍 ";
+    margin-right: 2px;
+}
+
 /* 相关文章：把主题页与已发布文章连起来（页面上内容少时的继续阅读路径） */
 .related-section {
     margin-top: clamp(36px, 6vw, 64px);

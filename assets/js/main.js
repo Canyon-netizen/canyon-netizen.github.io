@@ -367,15 +367,38 @@ function initSearch(isEnglish) {
         return indexLoading;
     }
 
-    function open() {
+    // query 可选：404 页会把「访问失败的路径里的关键词」传进来，
+    // 让搜索直接带着线索打开，而不是让读者重新想关键词
+    function open(query) {
         overlay.classList.add('open');
         document.body.style.overflow = 'hidden';
+        const prefill = typeof query === 'string' ? query : (open.__prefill || '');
+        if (prefill) {
+            input.value = prefill;
+        }
         setTimeout(function () {
             input.focus();
             if (input.select) input.select();
         }, 50);
-        if (!fuse) loadIndex();
+        if (!fuse) {
+            // 索引就绪后用「当时输入框里的内容」渲染一次。
+            // 注意：不能只依赖 loadIndex() 内部那次渲染 —— 如果索引在我这次
+            // 注册 .then 之前就已经就绪（缓存命中），内部渲染早已跑过，
+            // 而用户可能在之后才输入，结果就会一直空着（曾导致搜索偶发无结果）。
+            loadIndex().then(function () {
+                if (!fuse) return;                 // 索引加载失败时由 loadIndex 自己提示
+                const q = input.value.trim();
+                if (q) render(q);
+            });
+        } else if (prefill) {
+            render(prefill.trim());
+        }
     }
+
+    // 事件方式打开（search:open）也能带 query
+    document.addEventListener('search:open', function (e) {
+        open(e && e.detail && e.detail.query);
+    });
 
     function close() {
         overlay.classList.remove('open');
@@ -516,7 +539,6 @@ function initSearch(isEnglish) {
         close: close,
         isOpen: function () { return overlay.classList.contains('open'); }
     };
-    document.addEventListener('search:open', open);
     document.addEventListener('search:close', close);
 
     // ui.js 当前只实现 ↑/↓/Enter 与 Tab 陷阱，Esc 关闭与 Ctrl+K 打开仍由这里兜底，

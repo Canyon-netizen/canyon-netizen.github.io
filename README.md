@@ -147,6 +147,9 @@ node tools/responsive-audit.mjs --widths=375,768,1440   # 只查关键断点
 #     图片是否超版心 / 横向溢出（纸上无法滚动）/ 简历页数与末页占比
 node tools/print-audit.mjs --pdf
 
+# 4f) 404 页「按 URL 关键词搜索」验证（含把关键词带进搜索弹层的交互）
+node tools/404-search-probe.mjs
+
 # 5) 移动端横向溢出：起服务器后打开 tools/mobile-check.html，应全部 ✓
 
 # 6) 新增/修改博客文章后的生成链路

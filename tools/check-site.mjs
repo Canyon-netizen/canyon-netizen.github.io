@@ -194,9 +194,11 @@ for (const f of htmlFiles) {
         if (!clean) continue;
         if (/\.(html|css|js|svg|png|jpe?g|webp|ico|json|xml|pdf|txt)$/i.test(clean) || clean.endsWith('/')) {
             // 相对路径要相对**当前页面所在目录**解析：blog/ 与 en/blog/ 下的页面
-            // 用 ../ 或 ../../ 指回根目录，直接按根目录拼会误报
+            // 用 ../ 或 ../../ 指回根目录，直接按根目录拼会误报。
+            // 以 / 开头的是「站点根绝对路径」（404 页必须这么写，因为它会出现在任意深度），
+            // 要相对仓库根解析。
             if (/__BASE|{{/.test(clean)) continue;
-            const target = resolve(dir, clean);
+            const target = clean.startsWith('/') ? resolve(ROOT, '.' + clean) : resolve(dir, clean);
             if (!existsSync(target)) {
                 // 可选资源：仓库里没有也不算缺陷（例如简历 PDF 待用户提供）
                 const optional = /\.pdf$/i.test(clean);

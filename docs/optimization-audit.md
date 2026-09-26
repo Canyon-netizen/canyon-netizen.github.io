@@ -2,6 +2,39 @@
 
 > 本轮优化前的缺陷清单、处理方式与最终验证结论。改动细节见 `README.md` 的「改完怎么自检」一节。
 
+## 第 15 轮：404 页接搜索（并挖出 404 页在子路径下完全失效）
+**目标**：读者访问 `/blog/xxx` 失败时，少一次「重新想关键词」的摩擦。
+
+新增：404 渲染器从 URL 提取关键词（剥离扩展名、语言前缀、纯数字），显示
+「按这几个关键词搜索：…」+ 按钮，点击把关键词带进搜索弹层并直接出结果；
+按钮同时是带 `?q=` 的 `<a>`，**禁用 JS 也能落到带关键词的搜索页**。
+
+**挖出的真实缺陷（严重）**：`404.html` 用的是相对路径（`assets/css/style.css`、
+`assets/js/page-renderer.js`…）。GitHub Pages 会把 404.html 的内容返回给**任意**
+未命中路径，于是访问 `/blog/xxx` 时浏览器去请求 `/blog/assets/...` ——
+**样式与脚本全部 404，页面变成一张无样式的死骨架**。本站有 `/blog/`、`/en/`、
+`/en/blog/` 三层目录，这条路径相当常见。
+
+修复：
+- `404.html` 的资源引用、`basePath`、语言链接全部改为站点根绝对路径
+  （`/assets/...`、`basePath: '/'`）——404 页会出现在任意深度，相对前缀无法表达。
+- `check-site.mjs` 的本地引用校验区分「相对路径（按页目录解析）」与
+  「站点根绝对路径（按仓库根解析）」，否则新增的 `/assets/...` 会被误判为坏引用。
+
+**顺带修掉两个真实缺陷**
+1. **搜索偶发无结果**：`open()` 只在索引未加载时依赖 `loadIndex()` 内部那次渲染；
+   若索引已就绪（缓存命中）而用户随后输入，就再也不会渲染。现在 `open()` 在索引
+   就绪后按当前输入框内容渲染一次。
+2. 404 搜索按钮原来直接 `dispatchEvent('search:open')`，但搜索弹层由
+   `partial-loader` 异步注入、`main.js` 的监听也在其后绑定 —— 事件会被丢掉。
+   现在走 `window.__SITE_SEARCH__.open()`，未就绪时等 `partials:loaded`。
+
+新增 `tools/404-search-probe.mjs`：模拟 GitHub Pages 的 404 行为（状态 404 + 404.html
+内容、URL 不变），覆盖 4 种路径形态，验证关键词提取、按钮交互、弹层与结果。
+
+遗留（已知限制）：英文路径下的 404 页文案仍是中文（同一份 404.html），
+`lang` 也仍是 `zh-CN`；搜索索引会按路径正确选用英文索引。
+
 ## 第 14 轮：把「空页面」接上真实内容
 可见文本量盘点显示最单薄的是 `talks`（539 字）、`research`（681 字）、`publications`（811 字）——
 分享记录、论文、获奖都还没公开，读者点进去看到的是一片空态。
@@ -326,14 +359,15 @@
 - 交互：顶部滚动进度条、文章阅读进度、回到顶部、导航 ScrollSpy、标题锚点、代码块语言标签与复制按钮、TOC 当前位置高亮。
 - 自适应：900px 以下抽屉导航、520px 以下统计卡两列、`prefers-reduced-motion` 与 `@media print` 完整覆盖。
 
-## 最终验证（第 14 轮结束状态）
+## 最终验证（第 15 轮结束状态）
+- `node tools/404-search-probe.mjs`：**4 种路径形态全部通过**（关键词提取、按钮交互、弹层、结果）。
 - `node tools/assert-render.mjs`：**26 / 26 页、206 / 206 条断言通过**。
-- `node tools/responsive-audit.mjs`：**176 个组合、0 处问题**。
-- `node tools/a11y-audit.mjs`：**25 个页面、0 处问题**（含禁用脚本用例）。
-- `node tools/perf-audit.mjs`：**CLS 全页 0**，首页 102KB / 其余 40–49KB（未超预算）。
-- `node tools/print-audit.mjs --pdf`：**7 个页面、0 处问题**。
-- `node tools/search-check.mjs`：**5 个用例全部通过**。
-- `node tools/check-site.mjs`：**0 error / 0 warning**，索引 39 条 ×2、`rss 2 篇` ×2、`sitemap 24 个 URL`。
+- `node tools/check-site.mjs`：**0 error / 0 warning**。
 - `node tools/check-encoding.mjs`：**0 处损坏**。
 - `python tools/check-cv.py`：CV PDF 完整、可渲染、**1 页**。
-- 遗留：highlight.js 与 Fuse.js 走 CDN，离线时无高亮/搜索（都会降级而不报错）。
+- `node tools/a11y-audit.mjs`：**25 个页面、0 处问题**（含禁用脚本用例）。
+- `node tools/responsive-audit.mjs`：**176 个组合、0 处问题**。
+- `node tools/perf-audit.mjs`：**CLS 全页 0**。
+- `node tools/print-audit.mjs --pdf`：**7 个页面、0 处问题**。
+- `node tools/search-check.mjs`：**5 个用例全部通过**。
+- 遗留：英文路径的 404 页文案仍为中文（见上）；highlight.js / Fuse.js 走 CDN。
